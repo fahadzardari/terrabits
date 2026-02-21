@@ -5,7 +5,7 @@ import ContactForm from "../common/ContactForm.astro";
 
 <div
     id="contact-modal"
-    class={`font-manrope fixed inset-0 z-100 flex  items-center  justify-center bg-[#dee4ff] transition-opacity duration-300  ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+    class={`font-manrope fixed inset-0 z-100 flex items-center justify-center bg-[#dee4ff] transition-opacity duration-300 ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
 >
     <!-- Modal Box -->
     <div
@@ -96,7 +96,19 @@ import ContactForm from "../common/ContactForm.astro";
                 </div>
             </div>
             <div class="flex-1 bg-[#BAB8E5]">
-                <ContactForm />
+                <!-- Two possible right-side panes: contact form (legacy) and Calendly iframe (preferred when configured) -->
+                <div id="contact-form-wrapper">
+                    <ContactForm />
+                </div>
+
+                <div id="calendly-wrapper" class="hidden h-full w-full">
+                    <iframe
+                        id="calendly-iframe"
+                        src="about:blank"
+                        title="Schedule a meeting"
+                        class="h-full w-full border-0"
+                    ></iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -108,6 +120,12 @@ import ContactForm from "../common/ContactForm.astro";
         transition:
             opacity 0.3s ease,
             visibility 0.3s ease;
+    }
+
+    /* Make iframe take full modal height */
+    #calendly-iframe {
+        min-height: 60vh;
+        height: 100%;
     }
 
     /* Scrollbar styling */
@@ -128,8 +146,22 @@ import ContactForm from "../common/ContactForm.astro";
         const modal = document.getElementById("contact-modal");
         const openBtns = document.querySelectorAll(".chat-cta");
         const closeBtn = document.getElementById("close-modal");
+        const contactFormWrapper = document.getElementById("contact-form-wrapper");
+        const calendlyWrapper = document.getElementById("calendly-wrapper");
+        const calendlyIframe = document.getElementById("calendly-iframe");
 
-        function openModal() {
+        function openModal(useCalendly = false, calendlyUrl = "") {
+            // Decide which pane to show
+            if (useCalendly && calendlyWrapper && calendlyIframe) {
+                contactFormWrapper?.classList.add("hidden");
+                calendlyWrapper.classList.remove("hidden");
+                // If a URL is provided, set iframe src (avoids preloading unless needed)
+                if (calendlyUrl) calendlyIframe.src = calendlyUrl;
+            } else {
+                calendlyWrapper?.classList.add("hidden");
+                contactFormWrapper?.classList.remove("hidden");
+            }
+
             modal.classList.remove("invisible", "opacity-0");
             modal.classList.add("visible", "opacity-100");
             document.body.style.overflow = "hidden";
@@ -139,12 +171,22 @@ import ContactForm from "../common/ContactForm.astro";
             modal.classList.remove("visible", "opacity-100");
             modal.classList.add("invisible", "opacity-0");
             document.body.style.overflow = "";
+            // Optionally unload calendly iframe to stop audio/etc.
+            if (calendlyIframe) calendlyIframe.src = "about:blank";
         }
 
         // Add event listener to all chat-cta buttons
         if (openBtns && modal) {
             openBtns.forEach((btn) => {
-                btn.addEventListener("click", openModal);
+                btn.addEventListener("click", (e) => {
+                    // If author configured window.CALENDLY_URL, prefer that
+                    const globalCalendly = window?.CALENDLY_URL || null;
+                    // Also allow per-button override via data-calendly attribute
+                    const btnUrl = btn.getAttribute("data-calendly") || null;
+                    const useCalendly = Boolean(btnUrl || globalCalendly);
+                    const urlToUse = btnUrl || globalCalendly || "";
+                    openModal(useCalendly, urlToUse);
+                });
             });
         }
 

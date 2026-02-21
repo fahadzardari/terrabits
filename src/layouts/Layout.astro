@@ -21,5 +21,10 @@ import Navbar from "../components/common/Navbar.astro";
         <Navbar />
         <slot />
         <Footer />
+
+        <!-- Global Calendly URL (used by ContactModal) -->
+        <script>
+            window.CALENDLY_URL = "https://calendly.com/arayanmemon338/consultation-call";
+        </script>
     </body>
 </html>
