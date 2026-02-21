@@ -27,7 +27,7 @@ export default defineConfig({
             allowedHosts: true,
         },
     },
-    site: "https://terrabits.com",
+    site: "https://terrabits.io",
     output: "static",
     integrations: [
         sitemap(),
