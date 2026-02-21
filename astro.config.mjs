@@ -27,7 +27,7 @@ export default defineConfig({
             allowedHosts: true,
         },
     },
-    site: "https://nixxonaustralia.com",
+    site: "https://terrabits.com",
     output: "static",
     integrations: [
         sitemap(),
