@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Collaborate from "../components/common/Collaborate.astro";
+import Testimonials from "../components/common/Testimonials.astro";
+import OurProcess from "../components/common/OurProcess.astro";
+import Ideas from "../components/home/ideas.astro";
+import Experience from "../components/home/Experience.astro";
+import Portfolio from "../components/home/Portfolio.astro";
+import Vision from "../components/home/Vision.astro";
+import OurServices from "../components/home/OurServices.astro";
+import Video from "../components/home/Video.astro";
+import HeroHome from "../components/home/HeroHome.astro";
+import CollabPic from "../assets/collab-mobile.png";
+import Image from "astro/components/Image.astro";
+---
+
+<Layout title="Home - Nixxon Australia">
+    <HeroHome />
+    <div class="overflow-hidden border-none bg-[#4B00A3]">
+        <div class="rounded-t-[2rem] bg-[#f8f8f8] md:rounded-none">
+            <Experience />
+            <OurServices />
+            <Video />
+            <Vision />
+        </div>
+    </div>
+    <Ideas />
+    <div class="overflow-hidden border-none bg-[#4B00A3]">
+        <div class="rounded-t-[2rem] bg-[#f8f8f8] md:rounded-none">
+            <OurProcess />
+            <Portfolio />
+        </div>
+    </div>
+
+    <Image
+        src={CollabPic}
+        alt="Collaborate Background"
+        class={"rounded-t-4xl block md:hidden"}
+    />
+
+    <div class="overflow-hidden border-none bg-[#B5B1DE]">
+        <div class="rounded-t-[2rem] md:rounded-none">
+            <Collaborate />
+            <Testimonials />
+        </div>
+    </div>
+</Layout>

@@ -1,0 +1,168 @@
+---
+const { isOpen = false } = Astro.props;
+import ContactForm from "../common/ContactForm.astro";
+---
+
+<div
+    id="contact-modal"
+    class={`font-manrope fixed inset-0 z-100 flex  items-center  justify-center bg-[#dee4ff] transition-opacity duration-300  ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+>
+    <!-- Modal Box -->
+    <div
+        class="relative mx-16 flex max-h-[95vh] min-h-[90vh] w-full max-w-7xl overflow-y-auto rounded-2xl bg-white shadow-lg"
+    >
+        <!-- Close Button -->
+        <button
+            id="close-modal"
+            class="absolute top-4 right-4 z-10 cursor-pointer rounded-full bg-[#FFFFFF] px-4 py-4 text-2xl text-gray-600 shadow-lg hover:text-black"
+        >
+            <svg
+                width="15"
+                height="15"
+                viewBox="0 0 15 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M10.5581 7.5L14.4644 11.4453C14.9722 11.9141 14.9722 12.6953 14.4644 13.1641L13.605 14.0234C13.1362 14.5312 12.355 14.5312 11.8862 14.0234L7.97998 10.1172L4.03467 14.0234C3.56592 14.5312 2.78467 14.5312 2.31592 14.0234L1.45654 13.1641C0.94873 12.6953 0.94873 11.9141 1.45654 11.4453L5.36279 7.5L1.45654 3.59375C0.94873 3.125 0.94873 2.34375 1.45654 1.875L2.31592 1.01562C2.78467 0.507812 3.56592 0.507812 4.03467 1.01562L7.97998 4.92188L11.8862 1.01562C12.355 0.507812 13.1362 0.507812 13.605 1.01562L14.4644 1.875C14.9722 2.34375 14.9722 3.125 14.4644 3.59375L10.5581 7.5Z"
+                    fill="black"></path>
+            </svg>
+        </button>
+
+        <!-- Content Wrapper (Put your form here) -->
+        <div class="flex w-full flex-col rounded-2xl bg-[#f3f0ff] lg:flex-row">
+            <div
+                class="flex flex-col justify-center gap-4 bg-white px-6 py-4 md:py-12 lg:w-2/5 lg:max-w-[460px] lg:gap-16 lg:px-14"
+            >
+                <div>
+                    <h1
+                        class="mb-3 text-3xl font-medium text-black md:text-3xl lg:mb-6 lg:text-4xl xl:text-5xl"
+                    >
+                        Book a call to learn how we can help you!
+                    </h1>
+                    <p class="text-sm text-[#6B7280] lg:text-base lg:leading-6">
+                        Complete the form and share details of how we can help.
+                    </p>
+                </div>
+                <div>
+                    <p
+                        class="mb-3 leading-[20px] font-semibold tracking-[2.8px] text-[#9CA3AF] lg:mb-6"
+                    >
+                        THE NEXT STEPS
+                    </p>
+                    <ul class="list-none leading-6 text-[#374151]">
+                        <li
+                            class="mb-3 flex items-center gap-x-2 text-sm md:gap-x-4 md:text-sm lg:mb-6 lg:text-base"
+                        >
+                            <span
+                                class="rounded-full bg-[#B6B6B6] px-3 py-1 font-bold text-white"
+                            >
+                                1
+                            </span>
+                            <p>
+                                We begin with an introductory call to understand
+                                your goals and vision.
+                            </p>
+                        </li>
+                        <li
+                            class="mb-3 flex items-center gap-x-2 text-sm md:gap-x-4 md:text-sm lg:mb-6 lg:text-base"
+                        >
+                            <span
+                                class="rounded-full bg-[#757575] px-3 py-1 font-bold text-white"
+                            >
+                                2
+                            </span>
+                            <p>
+                                You’ll then receive a customized questionnaire
+                                aligned to your chosen service for deeper
+                                insights.
+                            </p>
+                        </li>
+                        <li
+                            class="mb-3 flex items-center gap-x-2 text-sm md:gap-x-4 md:text-sm lg:mb-6 lg:text-base"
+                        >
+                            <span
+                                class="rounded-full bg-[#343434] px-3 py-1 font-bold text-white"
+                            >
+                                3
+                            </span>
+                            <p>
+                                Finally, our experts design a personalized
+                                package, guiding you toward the most effective
+                                solution for your business.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-1 bg-[#BAB8E5]">
+                <ContactForm />
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Smooth modal fade */
+    #contact-modal {
+        transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease;
+    }
+
+    /* Scrollbar styling */
+    #contact-modal .overflow-y-auto::-webkit-scrollbar {
+        width: 8px;
+    }
+    #contact-modal .overflow-y-auto::-webkit-scrollbar-thumb {
+        background: #c4b5fd; /* soft purple */
+        border-radius: 10px;
+    }
+    #contact-modal .overflow-y-auto::-webkit-scrollbar-track {
+        background: transparent;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const modal = document.getElementById("contact-modal");
+        const openBtns = document.querySelectorAll(".chat-cta");
+        const closeBtn = document.getElementById("close-modal");
+
+        function openModal() {
+            modal.classList.remove("invisible", "opacity-0");
+            modal.classList.add("visible", "opacity-100");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            modal.classList.remove("visible", "opacity-100");
+            modal.classList.add("invisible", "opacity-0");
+            document.body.style.overflow = "";
+        }
+
+        // Add event listener to all chat-cta buttons
+        if (openBtns && modal) {
+            openBtns.forEach((btn) => {
+                btn.addEventListener("click", openModal);
+            });
+        }
+
+        if (closeBtn && modal) {
+            closeBtn.addEventListener("click", closeModal);
+        }
+
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal on ESC key press
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && modal.classList.contains("visible")) {
+                closeModal();
+            }
+        });
+    });
+</script>

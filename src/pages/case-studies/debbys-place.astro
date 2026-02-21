@@ -1,0 +1,206 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaseStudyHeader from "../../components/work/case-study/CaseStudyHeader.astro";
+import CaseStudyIntro from "../../components/work/case-study/CaseStudyIntro.astro";
+import CoverDebby from "../../assets/work/debbys-place/cover.png";
+import CaseStudyChallengeWithGoal from "../../components/work/case-study/CaseStudyChallengeWithGoal.astro";
+import DesignApproach from "../../components/work/case-study/DesignApproach.astro";
+import CaseStudyProcess from "../../components/work/case-study/CaseStudyProcess.astro";
+
+import RewardIcon from "../../assets/icons/reward-icon.svg";
+import RecycleIcon from "../../assets/icons/recycle-icon.svg";
+import EyeIcon from "../../assets/icons/eye-icon.svg";
+import DebbyCard from "../../components/work/case-study/DebbyCard.astro";
+import ImageOne from "../../assets/work/debbys-place/1.png";
+import ImageTwo from "../../assets/work/debbys-place/2.png";
+import ImageThree from "../../assets/work/debbys-place/3.png";
+import ImageFour from "../../assets/work/debbys-place/4.png";
+---
+
+<Layout title="Debby's Place - Case Study  - Nixxon Australia">
+    <div class="our-services h-20"></div>
+    <CaseStudyHeader
+        title="Debby’s Place"
+        tags={["Web Design", "Development"]}
+        image={CoverDebby}
+        url="/case-studies/debbys-place"
+        subtitle="A Vibrant Digital Salon Experience"
+    />
+
+    <CaseStudyIntro
+        title="The Vision"
+        heading="Where Style Meets Comfort."
+        paragraph="Debby's Place isn't just a salon; it's a sanctuary for self-expression. Known for their intricate braiding and warm atmosphere, they needed a digital presence that reflected the duality of their brand: high-end professional styling wrapped in a comforting, welcoming environment.<br><br>The existing customer journey relied heavily on Instagram DMs, which was becoming unmanageable. The goal was to build a centralized hub that automated booking while showcasing the artistry of their work."
+    />
+
+    <CaseStudyChallengeWithGoal
+        title="The Challenge"
+        heading="Sealing Personal Touch"
+        paragraph="Transitioning from a social-media-first business to a standalone platform carried a risk: losing the personal connection clients loved. We needed to solve operational inefficiencies without making the brand feel corporate or cold."
+        featuresList={[
+            "<strong>Overwhelming manual booking via DMs.</strong>",
+            "<strong>No centralized gallery for specific styles.</strong>",
+            "<strong>Pricing and service transparency issues.</strong>",
+        ]}
+    />
+
+    <DesignApproach
+        title="Design Approach"
+        heading="Crafting the experience"
+        cards={[
+            {
+                title: "Bold Color Strategy",
+                paragraph:
+                    "We utilized a vibrant Hot Pink (#E91E63) as the primary action color to evoke energy and femininity, balanced by clean whites and dark grays to maintain readability and professionalism.",
+                icon: EyeIcon,
+            },
+            {
+                title: "Dynamic Hero Layout",
+                paragraph:
+                    "A polaroid-style collage in the hero section immediately showcases the diversity of styles and real client results, building trust instantly before the user even scrolls.",
+                icon: RecycleIcon,
+            },
+            {
+                title: "Clean Typography",
+                paragraph:
+                    "Mixing Great Vibes for script accents to mimic a personal signature with the robust Inter font family for Ul elements ensures the site is legible yet full of character.",
+                icon: RewardIcon,
+            },
+        ]}
+    />
+
+    <div
+        class="internal-padding grid grid-cols-1 gap-8 py-8 md:grid-cols-2 lg:py-16"
+    >
+        <DebbyCard
+            title="Visual Service Menu"
+            paragraph="Cards with clear imagery help clients identify styles (Braids, Cornrows, etc.) without needing technical knowledge."
+            image={ImageOne}
+        />
+        <div class="md:translate-y-14">
+            <DebbyCard
+                title="Trust & Clarity"
+                paragraph="Icon-driven value propositions and a collapsible FAQ section reduce support inquiries by 60%."
+                image={ImageTwo}
+            />
+        </div>
+        <DebbyCard
+            title="Strong Call-to-Actions"
+            paragraph="Strategically placed booking buttons with high contrast backgrounds ensure conversion paths are never missed."
+            image={ImageThree}
+        />
+        <div class="md:translate-y-14">
+            <DebbyCard
+                title="Mobile Optimization"
+                paragraph="Since 85% of traffic comes from Instagram, the site is fully responsive with touch-friendly navigation."
+                image={ImageFour}
+            />
+        </div>
+    </div>
+
+    <div class="internal-padding py-8">
+        <span class="mb-4 text-lg font-semibold text-[#643DB4] md:text-xl">
+            The Impact
+        </span>
+        <div
+            class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-8"
+        >
+            <div class="flex flex-col gap-2 md:w-3/5 md:gap-4">
+                <h1
+                    class="text-5xl font-semibold text-black md:text-4xl md:leading-tight lg:text-5xl xl:text-6xl 2xl:text-[68px]"
+                >
+                    A Salon that never sleeps
+                </h1>
+                <p
+                    class="text-sm leading-8 text-[#535353] capitalize lg:text-lg"
+                >
+                    The launch of Debby's Place transformed the business
+                    operations. By automating the inquiry process, Debby and her
+                    team reclaimed hours of time each week, allowing them to
+                    focus on what they do best: styling.
+                </p>
+
+                <a
+                    href=""
+                    class="mt-4 inline-flex cursor-pointer items-center gap-x-2 font-semibold text-[#4B00A3] hover:text-[#6E2EF7] md:mt-6"
+                >
+                    <span> View Live Site </span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="16"
+                        viewBox="0 0 18 16"
+                        fill="currentColor"
+                    >
+                        <path
+                            d="M10.704 0.298379C10.6109 0.203871 10.5 0.128816 10.3777 0.0775867C10.2554 0.0263572 10.124 -2.52381e-05 9.99142 -2.33249e-05C9.85879 -2.14118e-05 9.72748 0.026362 9.60515 0.0775943C9.48281 0.128827 9.37189 0.203881 9.27884 0.298391C9.18579 0.392901 9.11247 0.504978 9.06314 0.628095C9.01382 0.751213 8.98949 0.882912 8.99155 1.01553C8.99361 1.14814 9.02203 1.27902 9.07516 1.40054C9.12828 1.52206 9.20505 1.63181 9.301 1.72338L14.67 7.01438L1 7.01438C0.734783 7.01438 0.480429 7.11974 0.292893 7.30727C0.105356 7.49481 -3.60698e-07 7.74916 -3.49105e-07 8.01438C-3.37512e-07 8.2796 0.105356 8.53395 0.292893 8.72149C0.480429 8.90902 0.734783 9.01438 1 9.01438L14.665 9.01438L9.3 14.2994C9.11581 14.4864 9.01258 14.7384 9.01257 15.001C9.01257 15.2635 9.1158 15.5155 9.29999 15.7026C9.48417 15.8896 9.73453 15.9968 9.99702 16.0009C10.2595 16.0049 10.5131 15.9056 10.703 15.7244L17.628 8.90138C17.7459 8.78509 17.8395 8.64653 17.9035 8.49374C17.9674 8.34095 18.0003 8.17699 18.0003 8.01138C18.0003 7.84576 17.9674 7.6818 17.9035 7.52902C17.8395 7.37623 17.7459 7.23767 17.628 7.12138L10.703 0.298379L10.704 0.298379Z"
+                            fill="currentColor"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="mt-auto flex gap-4 md:w-2/5">
+                <article class="rounded-2xl bg-[#f2f2f2] p-4 text-center">
+                    <h2
+                        class="text-lg font-semibold md:text-[28px] lg:text-[36px] xl:text-[44px] 2xl:text-[52px]"
+                    >
+                        60%
+                    </h2>
+                    <p class="text-sm capitalize lg:text-base">
+                        efficiency Increase
+                    </p>
+                </article>
+
+                <article
+                    class="rounded-2xl border border-[#9D7EFF] bg-[#F3EFFF] p-4 text-center"
+                >
+                    <h2
+                        class="text-lg font-semibold text-[#4B00A3] md:text-[28px] lg:text-[36px] xl:text-[44px] 2xl:text-[52px]"
+                    >
+                        +2m
+                    </h2>
+                    <p class="text-sm capitalize lg:text-base">
+                        Avg. Session Time
+                    </p>
+                </article>
+
+                <article class="rounded-2xl bg-[#f2f2f2] p-4 text-center">
+                    <h2
+                        class="text-lg font-semibold md:text-[28px] lg:text-[36px] xl:text-[44px] 2xl:text-[52px]"
+                    >
+                        A+
+                    </h2>
+                    <p class="text-sm capitalize lg:text-base">
+                        Brand Feedback
+                    </p>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <CaseStudyProcess
+        heading="From Discovery To Launch"
+        steps={[
+            {
+                number: 1,
+                title: "Discovery",
+                description: "Brand audit and user persona definition.",
+            },
+            {
+                number: 2,
+                title: "Wireframing",
+                description: "Mapping the booking flow and content structure.",
+            },
+            {
+                number: 3,
+                title: "Design",
+                description: 'Applying the "Pink Power" visual identity.',
+            },
+            {
+                number: 4,
+                title: "Launch",
+                description: "Deployment and social media integration.",
+            },
+        ]}
+    />
+</Layout>

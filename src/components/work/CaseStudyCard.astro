@@ -1,0 +1,94 @@
+---
+import CaseStudyDefaultImage from "../../assets/work/green-nest.png";
+
+interface Props {
+    title?: string;
+    description?: string;
+    tags?: string[];
+    image?: any;
+    logo?: any;
+    url?: string;
+    type?: "featured" | "logo" | "website" | "mobile-app" | "video-animation";
+}
+
+const {
+    title = "Green Nest Organic Hygiene & Skincare",
+    description = "In A World Filled With Chemical-Heavy Cleaning Products, Green Nest Was Born To Offer A Gentle, Plant-Based Alternative. The Brand Focuses On Hygiene Products Infused With Organic Ingredients Like Aloe Vera, Tea Tree, And Lime.",
+    tags = ["FMCG", "Personal Care", "Herbal Handwash"],
+    image = CaseStudyDefaultImage,
+    url = "#",
+    type = "featured",
+} = Astro.props;
+---
+
+<a
+    href={url}
+    class="case-study-card group relative block aspect-square max-h-[1000px] w-full overflow-hidden rounded-3xl transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl"
+    style={`background: url('${image.src}') center center / cover no-repeat;`}
+>
+    <!-- Gradient Overlay -->
+    <div
+        class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 transition-all duration-300 group-hover:from-black/50 group-hover:to-black/70"
+    >
+    </div>
+
+    <!-- Content Container -->
+    <div
+        class="relative flex h-full flex-col justify-between p-6 text-white md:p-8 lg:p-10"
+    >
+        <!-- Top Section: Title & Logo -->
+        <div class="flex items-start justify-between gap-4">
+            <div class="max-w-2xl flex-1">
+                <h3
+                    class="mb-3 text-2xl leading-tight font-semibold md:mb-4 md:text-3xl lg:text-4xl"
+                >
+                    {title}
+                </h3>
+                <p
+                    class="line-clamp-3 text-sm leading-relaxed opacity-90 md:text-base lg:text-lg"
+                >
+                    {description}
+                </p>
+            </div>
+        </div>
+
+        <!-- Bottom Section: Tags -->
+        <div class="flex flex-wrap gap-2 md:gap-3">
+            {
+                tags.map((tag) => (
+                    <span class="rounded-full bg-[#8067CE] px-4 py-2 text-xs font-medium transition-colors duration-200 hover:bg-[#9d7eff] md:px-5 md:py-2.5 md:text-sm lg:text-base">
+                        {tag}
+                    </span>
+                ))
+            }
+        </div>
+    </div>
+
+    <!-- Hover Indicator -->
+    <div
+        class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 md:h-12 md:w-12"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 text-white md:h-6 md:w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+    </div>
+</a>
+
+<style>
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>

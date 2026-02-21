@@ -1,0 +1,115 @@
+---
+import CaseStudyDefaultImage from "../../../assets/work/green-nest.png";
+
+interface Props {
+    title?: string;
+    description?: string;
+    tags?: string[];
+    image?: any;
+    url?: string;
+    subtitle?: string;
+}
+
+const {
+    title = "Green Nest",
+    tags = ["FMCG", "Personal Care", "Herbal Handwash"],
+    image = CaseStudyDefaultImage,
+    url = "#",
+    subtitle = "Organic Hygiene & Skincare",
+} = Astro.props;
+---
+
+<a
+    href="/case-studies"
+    class="hover:text-primary-purple mx-[2dvw] mt-6 mb-6 inline-flex cursor-pointer items-center gap-2 text-sm text-[#212121] transition-colors duration-200 md:mb-12 md:text-base lg:mx-[6dvw]"
+>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="15"
+        height="14"
+        viewBox="0 0 15 14"
+        fill="none"
+        style="color: currentColor;"
+    >
+        <path
+            d="M6.08 13.0855C6.15754 13.1643 6.24998 13.2268 6.35193 13.2695C6.45387 13.3122 6.56329 13.3342 6.67382 13.3342C6.78434 13.3342 6.89376 13.3122 6.99571 13.2695C7.09765 13.2268 7.19009 13.1642 7.26763 13.0855C7.34517 13.0067 7.40628 12.9133 7.44738 12.8107C7.48848 12.7081 7.50876 12.5984 7.50704 12.4879C7.50532 12.3774 7.48164 12.2683 7.43737 12.167C7.39309 12.0658 7.32912 11.9743 7.24917 11.898L2.775 7.48883L14.1667 7.48883C14.3877 7.48883 14.5996 7.40103 14.7559 7.24475C14.9122 7.08847 15 6.87651 15 6.6555C15 6.43448 14.9122 6.22252 14.7559 6.06624C14.5996 5.90996 14.3877 5.82216 14.1667 5.82216L2.77917 5.82216L7.25 1.418C7.40349 1.26211 7.48952 1.05211 7.48952 0.83334C7.48952 0.61457 7.4035 0.404572 7.25001 0.248679C7.09652 0.0927863 6.88789 0.00350218 6.66915 0.000100505C6.4504 -0.00330117 6.23909 0.0794524 6.08083 0.230497L0.309999 5.91633C0.211735 6.01324 0.133708 6.12871 0.0804507 6.25603C0.0271937 6.38335 -0.000231074 6.51999 -0.00023108 6.658C-0.000231086 6.79601 0.0271937 6.93264 0.0804507 7.05996C0.133708 7.18729 0.211734 7.30276 0.309999 7.39966L6.08083 13.0855L6.08 13.0855Z"
+            fill="currentColor"></path>
+    </svg>
+    Back to Case Studies
+</a>
+<header class="internal-padding py-8">
+    <a
+        href={url}
+        class="case-study-card group relative block aspect-square max-h-[1000px] w-full overflow-hidden rounded-3xl transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl"
+        style={`background: url('${image.src}') center center / cover no-repeat;`}
+    >
+        <!-- Gradient Overlay -->
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 transition-all duration-300 group-hover:from-black/50 group-hover:to-black/70"
+        >
+        </div>
+
+        <!-- Content Container -->
+        <div
+            class="relative flex h-full flex-col justify-between p-6 text-white md:p-8 lg:p-10"
+        >
+            <!-- Top Section: Title & Logo -->
+            <div class="flex items-start justify-between gap-4">
+                <div class="max-w-2xl flex-1">
+                    <h3
+                        class="mb-3 text-2xl leading-tight font-semibold md:mb-4 md:text-3xl lg:text-4xl"
+                    >
+                        {title}
+                    </h3>
+                    <!-- Tags -->
+                    <div class="mb-2 flex flex-wrap gap-2 md:gap-3">
+                        {
+                            tags.map((tag) => (
+                                <span class="rounded-full bg-[#8067CE] px-4 py-2 text-xs font-medium transition-colors duration-200 hover:bg-[#9d7eff] md:px-5 md:py-2.5 md:text-sm lg:text-base">
+                                    {tag}
+                                </span>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="flex flex-wrap gap-2 md:gap-3">
+                <div
+                    class="text-2xl leading-tight font-semibold md:mb-4 md:text-3xl lg:text-4xl"
+                >
+                    {subtitle}
+                </div>
+            </div>
+        </div>
+    </a>
+
+    <!-- Hover Indicator -->
+    <div
+        class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 md:h-12 md:w-12"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 text-white md:h-6 md:w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+    </div>
+</header>
+
+<style>
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>

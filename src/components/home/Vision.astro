@@ -1,0 +1,242 @@
+---
+import CommonButton from "../common/CommonButton.astro";
+import Insight from "../../assets/home/vision/insight.png";
+import Creativity from "../../assets/home/vision/creativity.png";
+import Support from "../../assets/home/vision/support.png";
+import Success from "../../assets/home/vision/success.png";
+import Image from "astro/components/Image.astro";
+
+const features = [
+    {
+        id: 1,
+        icon: Insight,
+        title: "Local Insight, Global <span class='text-[#9D7EFF]'>  Standards </span>",
+        description:
+            "We Understand The Australian Market — Its Pace, Its People, And Its Potential. Our Strategies Are Grounded In Local Insights But Built To Meet World-class Standards, Ensuring Your Brand Competes Anywhere, Anytime.",
+        border: true,
+    },
+    {
+        id: 2,
+        icon: Creativity,
+        title: "Creativity That <span class='text-[#9D7EFF]'> Converts </span>",
+        description:
+            "From First Impressions To Final Clicks, Everything We Create Is Designed Toot Inspire Action. We Blend Artistry With Strategy So Your Brand Doesn't Just Look Great — It Works Hard For You.",
+        border: true,
+    },
+    {
+        id: 3,
+        icon: Success,
+        title: "<span class='text-[#9D7EFF]'>Seamless</span> From Start To Scale",
+        description:
+            "Whether You're Launching Something New Or Taking Your Business To The Next Level, We Make The Process Effortless. Clear Communication, Transparent Timelines, And Solutions That Grow With You.",
+        border: true,
+    },
+    {
+        id: 4,
+        icon: Support,
+        title: "A <span class='text-[#9D7EFF]'>Partner</span>, Not Just A Provider",
+        description:
+            "We Don't Vanish After The Handover. We're Here For The Long Run — Tracking, Tweaking, And Fine-tuning To Ensure Your Brand Keeps Thriving Long After Launch.",
+        border: false,
+    },
+];
+---
+
+<section
+    class="vision-section md:rounded-t-0 flex flex-col gap-x-[6dvw] gap-y-4 rounded-t-4xl bg-[#f0f2ff] px-[5dvw] pt-[80px] pb-4 md:flex-row md:justify-between md:px-[4dvw] md:pt-[90px] lg:gap-x-[9dvw] lg:px-[6dvw] lg:pt-[130px] lg:pb-8"
+>
+    <div class="vision-intro flex flex-col md:w-1/3">
+        <h2
+            class="vision-title leading-2xl md:leading-3xl lg:leading-4xl xl:leading-5xl 2xl:leading-7xl mb-2 text-2xl font-semibold md:text-3xl lg:mb-8 lg:text-5xl xl:mb-6 xl:text-5xl 2xl:mb-12 2xl:text-6xl"
+        >
+            <span class="animate-charcter text-[#9D7EFF]"
+                >Built for Your Vision.</span
+            > Driven by Ours.
+        </h2>
+        <p
+            class="vision-desc mb-4 text-sm text-[#3C3C3C] lg:mb-6 lg:text-base lg:leading-5 xl:mb-4 xl:text-lg xl:leading-6 2xl:mb-6"
+        >
+            At Nixxon Australia, every business has a story worth telling — and
+            we make sure it's told in a way that inspires, connects, and
+            delivers results.
+        </p>
+        <CommonButton
+            href="/services"
+            className="vision-btn w-full md:mx-auto md:w-fit"
+        >
+            View Services
+        </CommonButton>
+    </div>
+    <div class="vision-features flex flex-1 flex-col">
+        {
+            features.map((feature, index) => (
+                <div
+                    class={`feature-item mb-4 flex flex-col xl:mb-6 ${feature.border ? "3xl:pb-8 border-b border-[#434343]/50 pb-3 md:pb-6" : ""}`}
+                    data-index={index}
+                >
+                    <div class="flex">
+                        <Image
+                            src={feature.icon}
+                            alt={feature.title}
+                            class="mr-4 aspect-square h-[34px] md:h-[50px] xl:h-[62px] 2xl:mr-6"
+                        />
+                        <div class="flex flex-col">
+                            <h3
+                                set:html={feature.title}
+                                class="3xl:text-5xl 3xl:leading-[70px] mb-2 text-xl leading-6 font-medium md:leading-10 xl:text-2xl 2xl:text-3xl 2xl:leading-14"
+                            />
+                            <p class="text-xs leading-4 text-[#3C3C3C] md:text-sm xl:text-base xl:leading-6 2xl:text-lg">
+                                {feature.description}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>
+
+<script>
+    import { gsap } from "../../utils/gsapUtils.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // ScrollTrigger.getAll().forEach((st) => st.kill());
+
+        const section = document.querySelector(".vision-section");
+        const featureItems = gsap.utils.toArray(".feature-item");
+        const nextSection = document.querySelector(".ideas-section"); // Make sure this selector matches your next section
+
+        if (featureItems.length > 0) {
+            const firstItem = featureItems[0];
+            const restItems = featureItems.slice(1);
+
+            // Set the first item to be visible from the start
+            gsap.set(firstItem, { opacity: 1, y: 0 });
+            // Set the rest of the items to be animated
+            gsap.set(restItems, { opacity: 0, y: 50 });
+
+            // pin distance = how long the section stays fixed
+            const pinDistance = window.innerHeight * (featureItems.length + 2);
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top top",
+                    end: `+=${pinDistance}`,
+
+                    scrub: 1,
+                    pin: true,
+                    pinSpacing: true,
+                    anticipatePin: 1,
+                    // markers: true, // keep for debugging
+                },
+            });
+
+            // reveal each of the rest of the feature items one by one
+            restItems.forEach((item, index) => {
+                tl.to(
+                    item,
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.5,
+                    },
+                    index * 0.8, // stagger on scroll
+                );
+            });
+
+            // add padding at the end so the last item "rests" before unpinning
+            tl.to({}, { duration: 0.25 });
+        }
+    });
+</script>
+
+<style>
+    /* Make sure the section behaves properly for pinning */
+    .vision-section {
+        position: relative;
+        overflow: visible !important;
+        min-height: 100vh;
+    }
+
+    .vision-features {
+        min-height: 650px;
+        position: relative;
+        overflow: visible !important;
+    }
+
+    .feature-item {
+        will-change: transform, opacity;
+        opacity: 0; /* Start invisible */
+        transform: translateY(50px); /* Start below */
+        visibility: visible !important; /* Ensure visibility */
+    }
+
+    /* This helps ensure GSAP's pin-spacer works properly */
+    body .gsap-pin-spacer {
+        display: block !important;
+        height: auto !important;
+        background-color: #f0f2ff;
+    }
+
+    .glow-text {
+        color: #9d7eff;
+        text-shadow:
+            0 0 8px #bbaaff,
+            0 0 16px #9d7eff,
+            0 0 24px #9d7eff44;
+        font-weight: 600;
+        animation: neon-pulse 1.6s ease-in-out infinite alternate;
+        transition: text-shadow 0.2s;
+    }
+
+    @keyframes neon-pulse {
+        0% {
+            text-shadow:
+                0 0 8px #bbaaff,
+                0 0 16px #9d7eff,
+                0 0 24px #9d7eff44;
+        }
+        100% {
+            text-shadow:
+                0 0 16px #bbaaff,
+                0 0 32px #9d7eff,
+                0 0 48px #9d7eff88;
+        }
+    }
+
+    .glow-text:hover {
+        text-shadow:
+            0 0 24px #bbaaff,
+            0 0 48px #9d7eff,
+            0 0 64px #9d7effcc;
+        animation: none;
+    }
+
+    .animate-charcter {
+        text-transform: uppercase;
+        background-image: linear-gradient(
+            -225deg,
+            #9d7eff 0%,
+            #8067ce 50%,
+            #372962 100%
+        );
+        background-size: auto auto;
+        background-clip: border-box;
+        background-size: 200% auto;
+        color: #fff;
+        background-clip: text;
+        text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textclip 2s linear infinite;
+        display: inline-block;
+        /* font-size: 190px; */
+    }
+
+    @keyframes textclip {
+        to {
+            background-position: 200% center;
+        }
+    }
+</style>

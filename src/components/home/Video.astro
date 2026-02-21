@@ -1,0 +1,123 @@
+---
+import Image from "astro/components/Image.astro";
+import VideoSub from "../../assets/home/services/video-sub.png";
+import HomeReel from "../../assets/home-reel.mp4";
+---
+
+<section class="video-section bg-[#f8f8f8]">
+    <div class="video-scroll-container">
+        <div class="video-scroll-wrapper">
+            <video
+                src={HomeReel}
+                class="video-scroll-img mx-auto w-full rounded-lg object-cover"
+                autoplay
+                controls={false}
+                muted
+                loop
+                playsinline
+                controlslist="nodownload nofullscreen noremoteplayback"
+                disablepictureinpicture
+                oncontextmenu="return false;"
+                ><ay video> </ay>
+            </video>
+            <!-- Add a spacer div to create distance between sections -->
+            <div class="section-spacer"></div>
+        </div>
+
+        <script>
+            import { gsap } from "gsap";
+            import { ScrollTrigger } from "gsap/ScrollTrigger";
+            gsap.registerPlugin(ScrollTrigger);
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const videoWrapper = document.querySelector(
+                    ".video-scroll-wrapper",
+                );
+
+                // Ensure the wrapper is centered and responsive
+                gsap.set(videoWrapper, {
+                    width: "85vw",
+                    height: "90vh",
+                    xPercent: -50,
+                    yPercent: -50,
+                    top: "50%",
+                    left: "50%",
+                    position: "absolute",
+                });
+
+                // Timeline for zoom in and zoom out
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".video-section",
+                        start: "top top",
+                        end: () => "+=" + window.innerHeight * 2, // Increased for more scroll space
+                        scrub: true,
+                        pin: true,
+                        pinSpacing: true, // Important to create proper spacing
+                    },
+                });
+
+                // Step 1: scale up to fullscreen
+                tl.to(videoWrapper, {
+                    width: "100vw",
+                    height: "100vh",
+                    ease: "power2.inOut",
+                });
+
+                // Step 2: hold at fullscreen for longer (increase duration here)
+                tl.to(videoWrapper, {
+                    width: "100vw",
+                    height: "100vh",
+                    duration: 0.1, // Increase this value for a longer hold
+                    ease: "none",
+                });
+
+                // Step 3: scale back down
+                tl.to(videoWrapper, {
+                    width: "80vw",
+                    height: "80vh",
+                    ease: "power2.inOut",
+                });
+
+                // Add a delay at the end before unpinning
+                tl.to({}, { duration: 0.1 });
+            });
+        </script>
+
+        <style>
+            .video-section {
+                position: relative;
+                width: 100%;
+                height: 100vh;
+                overflow: hidden;
+                z-index: 100; /* Higher than Vision section */
+                background: #f8f8f8; /* Background to hide content behind */
+            }
+
+            .video-scroll-container {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+
+            .video-scroll-wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                border-radius: 16px;
+            }
+
+            .video-scroll-img {
+                width: 100%;
+                height: 100%;
+            }
+
+            /* Add this section spacer */
+            /* .section-spacer {
+    width: 100%;
+    height: 1vh; 
+  } */
+        </style>
+    </div>
+</section>

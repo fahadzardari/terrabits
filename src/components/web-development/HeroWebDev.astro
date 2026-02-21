@@ -1,0 +1,206 @@
+---
+import webdevimage from "../../assets/web-dev.png";
+import CommonButton from "../common/CommonButton.astro";
+import Image from "astro/components/Image.astro";
+---
+
+<section
+    class="hero-section relative overflow-hidden bg-[#4B00A3] pt-20 text-white md:min-h-screen lg:ml-[65px] lg:rounded-l-3xl lg:pt-0 xl:ml-[88px]"
+>
+    <div
+        class="flex h-full flex-col pt-8 pl-4 md:min-h-screen lg:mt-0 lg:flex-row lg:items-end lg:justify-between lg:pt-0 lg:pb-20 lg:pl-8 2xl:pb-24 2xl:pl-12"
+    >
+        <!-- Left -->
+        <div class="z-10 mb-8 w-full sm:mb-0 lg:w-[50%] lg:px-0 xl:w-[50%]">
+            <!-- <span class="mb-4 block h-[2px] w-10 bg-white"></span> -->
+            <h1
+                class="3xl:text-[86px] 3xl:leading-[100px] mb-2 text-[32px] font-medium md:text-[42px] lg:mb-4 lg:text-[56px] lg:leading-[60px] xl:text-[66px] xl:leading-[70px] 2xl:text-[76px] 2xl:leading-[85px]"
+            >
+                Building More Than Websites, <span class="font-bold"
+                    >We Build Legacies</span
+                >.
+            </h1>
+            <p
+                class="mb-2 text-[10px] font-medium tracking-[1px] md:text-xs lg:mb-4 xl:mb-8 xl:text-sm 2xl:text-base 2xl:leading-6"
+            >
+                Where elegance meets performance delivering digital experiences
+                that are as functional as they are unforgettable.
+            </p>
+            <div class="flex items-center space-x-4">
+                <CommonButton
+                    className="chat-cta text-xs font-semibold md:text-sm lg:text-lg"
+                >
+                    Lets Talk
+                </CommonButton>
+            </div>
+        </div>
+
+        <!-- Right -->
+        <div
+            class="z-0 ml-auto w-auto lg:absolute lg:right-0 lg:bottom-12 lg:w-[50%] xl:bottom-6 xl:w-[50%] 2xl:bottom-0"
+        >
+            <div id="hand-wrap" class="hand-wrap hero-breathe">
+                <Image
+                    id="hand-tilt"
+                    src={webdevimage}
+                    alt="Hero Image"
+                    class="w-full cursor-pointer"
+                />
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // import { gsap, ScrollTrigger } from "../../utils/gsapUtils.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Hand tilt effect (keep your existing code)
+        const hand = document.getElementById("hand-tilt");
+        const handWrap = document.getElementById("hand-wrap");
+        if (hand) {
+            // lightweight pointer tilt + scale using rAF for perf
+            hand.style.willChange = "transform";
+            let raf = null;
+            let last = { x: 0, y: 0 };
+            const scaleOnHover = 1.06;
+            hand.addEventListener("pointerenter", () => {
+                if (handWrap)
+                    handWrap.style.transition = "transform 220ms ease-out";
+            });
+            hand.addEventListener("pointermove", (e) => {
+                const rect = hand.getBoundingClientRect();
+                last.x = (e.clientX - rect.left) / rect.width - 0.5;
+                last.y = (e.clientY - rect.top) / rect.height - 0.5;
+                if (raf) return;
+                raf = requestAnimationFrame(() => {
+                    const rx = -last.y * 12; // rotateX
+                    const ry = last.x * 12; // rotateY
+                    hand.style.transform = `scale(${scaleOnHover}) rotateX(${rx}deg) rotateY(${ry}deg)`;
+                    raf = null;
+                });
+            });
+            hand.addEventListener("pointerleave", () => {
+                if (raf) cancelAnimationFrame(raf);
+                hand.style.transition = "transform 420ms ease-out";
+                hand.style.transform = "scale(1) rotateX(0deg) rotateY(0deg)";
+                raf = null;
+            });
+        }
+
+        // Lazy-load GSAP and only run non-critical animations when section is near viewport
+        const section = document.querySelector(".hero-section");
+        const prefersReduced = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (!prefersReduced && "IntersectionObserver" in window && section) {
+            const io = new IntersectionObserver(
+                (entries, obs) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        obs.disconnect();
+                        import("../../utils/gsapUtils.js")
+                            .then(({ gsap, ScrollTrigger }) => {
+                                gsap.registerPlugin(ScrollTrigger);
+                                // subtle entrance for left content (staggered)
+                                gsap.from(".hero-section .z-10", {
+                                    y: 0,
+                                    opacity: 0,
+                                    duration: 0.9,
+                                    ease: "power3.out",
+                                    stagger: 0.06,
+                                });
+                                // gentle slide-in for hero image (inner image) and parallax on scroll
+                                gsap.from("#hand-tilt", {
+                                    x: 80,
+                                    opacity: 0,
+                                    duration: 1.05,
+                                    ease: "power3.out",
+                                });
+                                gsap.to("#hand-tilt", {
+                                    y: -36,
+                                    rotation: 1.2,
+                                    ease: "none",
+                                    scrollTrigger: {
+                                        trigger: ".hero-section",
+                                        start: "top top",
+                                        end: "bottom top",
+                                        scrub: 0.55,
+                                    },
+                                });
+                                // small bounce when hero first enters (non-looping)
+                                gsap.fromTo(
+                                    handWrap || "#hand-wrap",
+                                    { scale: 0.998 },
+                                    {
+                                        scale: 1.01,
+                                        duration: 3.2,
+                                        ease: "sine.inOut",
+                                        yoyo: true,
+                                        repeat: 1,
+                                    },
+                                );
+                            })
+                            .catch(() => {
+                                /* animations non-critical - fail silently */
+                            });
+                    });
+                },
+                { root: null, threshold: 0.08 },
+            );
+            io.observe(section);
+        }
+    });
+</script>
+
+<style>
+    .animated-gradient-text {
+        background: linear-gradient(
+            90deg,
+            #fff 0%,
+            #7f5cff 25%,
+            #00e0ff 50%,
+            #ff6bcb 75%,
+            #fff 100%
+        );
+        background-size: 200% 100%;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        animation: gradient-move 3s linear infinite;
+        background-repeat: repeat;
+    }
+    @keyframes gradient-move {
+        0% {
+            background-position: 0% 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+
+    /* subtle CSS-only idle breathing on wrapper for very cheap animation */
+    .hero-breathe {
+        will-change: transform;
+        display: inline-block;
+        transform-origin: center center;
+        animation: hero-breathe 6s ease-in-out infinite;
+    }
+    @keyframes hero-breathe {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.02);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+</style>
+
+<!-- cubic-bezier(.22,1,.36,1), box-shadow 0.3s cubic-bezier(.22,1,.36,1) 
+   
+  cubic-bezier(.22,1,.36,1), box-shadow 0.5s cubic-bezier(.22,1,.36,1)
+   cubic-bezier(.22,1,.36,1), box-shadow 0.3s cubic-bezier(.22,1,.36,1)
+-->

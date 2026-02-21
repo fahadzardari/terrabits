@@ -1,0 +1,264 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaseStudyHeader from "../../components/work/case-study/CaseStudyHeader.astro";
+import CaseStudyIntro from "../../components/work/case-study/CaseStudyIntro.astro";
+import CoverHalalFoods from "../../assets/work/halal-foods/cover.png";
+import DesignApproach from "../../components/work/case-study/DesignApproach.astro";
+import CaseStudyProcess from "../../components/work/case-study/CaseStudyProcess.astro";
+
+import RewardIcon from "../../assets/icons/reward-icon.svg";
+import RecycleIcon from "../../assets/icons/recycle-icon.svg";
+import EyeIcon from "../../assets/icons/eye-icon.svg";
+import ImageOne from "../../assets/work/halal-foods/1.png";
+import ImageTwo from "../../assets/work/halal-foods/2.png";
+import ImageThree from "../../assets/work/halal-foods/3.png";
+import ImageFour from "../../assets/work/halal-foods/4.png";
+import CaseStudyChallenge from "../../components/work/case-study/CaseStudyChallenge.astro";
+import Image from "astro/components/Image.astro";
+import Location from "../../assets/icons/location.png";
+import Plus from "../../assets/icons/plus.png";
+import Filter from "../../assets/icons/filter.png";
+---
+
+<Layout title="Halal Food - Case Study  - Nixxon Australia">
+    <div class="our-services h-20"></div>
+    <CaseStudyHeader
+        title="Halal Food"
+        tags={["Mobile App", "UI/UX design"]}
+        image={CoverHalalFoods}
+        url="/case-studies/halal-food-app"
+        subtitle="The All-in-One Lifestyle Super App"
+    />
+
+    <CaseStudyIntro
+        title="Client Overview:"
+        heading="Connecting the Community"
+        paragraph="Halal Food is a Canadian startup with a mission to simplify lifestyle discovery for the Muslim community. Beyond just food delivery, the goal was to create a centralized hub where users could find verified Halal restaurants, butchers, ingredients, and even pharmacies carrying compatible products.<br><br>The platform needed to feel authentic and trustworthy while maintaining the slick, responsive performance expected of modern 'Super Apps' like Uber or Grab."
+    />
+
+    <CaseStudyChallenge
+        title="The Challenge"
+        heading="The All-in-One Lifestyle Super App"
+        paragraph="The primary user pain point was fragmentation. Users had to switch between multiple apps to check prayer times, find halal restaurants, and verify pharmaceutical ingredients. "
+        featuresList={[
+            "<strong>Creating a unified visual language that respects cultural nuances without feeling dated.</strong>",
+            "<strong>Designing a complex information architecture that houses food, retail, and utility features without clutter.</strong>",
+            "<strong>Building trust through transparent 'Halal Verification' indicators across all verticals.</strong>",
+        ]}
+    />
+
+    <DesignApproach
+        title="Design Approach"
+        heading="Strategic Design Solutions"
+        paragraph="We approached the redesign with three core pillars."
+        cards={[
+            {
+                title: "Color Psychology",
+                paragraph:
+                    "We selected Deep Forest Green (#1A3215) to evoke nature, organic quality, and cultural authenticity, balanced by Soft Lime for freshness and approachability.",
+                icon: EyeIcon,
+            },
+            {
+                title: "Simplified Onboarding",
+                paragraph:
+                    'To reduce drop-off, we introduced a "Guest Login" feature, allowing users to explore the app\'s value proposition before committing to account creation.',
+                icon: RecycleIcon,
+            },
+            {
+                title: "Super App Dashboard",
+                paragraph:
+                    'A modular card and pill-based grid system allows the dashboard to scale, accommodating new categories like "Quran Learning" without breaking the layout.',
+                icon: RewardIcon,
+            },
+        ]}
+    />
+
+    <div
+        class="internal-padding flex flex-col gap-y-8 bg-[#4B00A3] py-8 text-white md:flex md:flex-row md:gap-x-8 md:gap-y-0 lg:py-16"
+    >
+        <div class="relative order-2 md:order-1 md:w-1/2">
+            <Image
+                src={ImageFour}
+                alt="Halal Food App Feature Highlights"
+                class="relative z-20 mx-auto rounded-lg"
+            />
+            <div
+                class="absolute inset-0 z-0 m-auto aspect-square w-full rounded-full bg-[#570CB1]"
+            >
+            </div>
+            <div
+                class="absolute inset-0 z-0 m-auto aspect-square w-[95%] rounded-full bg-[#6713CA]"
+            >
+            </div>
+        </div>
+        <div class="order-1 flex flex-col gap-x-2 md:order-2 md:w-1/2">
+            <span
+                class="mb-4 text-lg font-semibold text-[#C5B3FF] capitalize md:text-xl"
+            >
+                FEATURE HIGHLIGHTS
+            </span>
+            <h1
+                class="mb-4 text-5xl font-semibold md:text-4xl md:leading-tight lg:text-5xl xl:text-6xl 2xl:text-[68px]"
+            >
+                A Staple App for the Community
+            </h1>
+            <p class="mb-4 text-sm leading-8 lg:text-lg">
+                The launch of the Halal Food redesign saw immediate positive
+                feedback regarding its usability and aesthetic appeal.
+            </p>
+            <ul class="flex flex-col gap-y-4">
+                <li class="inline-flex gap-4">
+                    <Image src={Plus} alt="Add icon" class="h-12 w-12" />
+
+                    <div>
+                        <h3
+                            class="text-base font-semibold lg:text-lg xl:text-xl 2xl:text-2xl"
+                        >
+                            Pharmacy Integration
+                        </h3>
+                        <p class="mt-1 text-sm lg:text-lg">
+                            A specialized vertical for health products, ensuring
+                            that even over- the-counter medicines comply with
+                            Halal standards, filtering out gelatin-based
+                            products automatically.
+                        </p>
+                    </div>
+                </li>
+                <li class="inline-flex gap-4">
+                    <Image src={Filter} alt="Filter icon" class="h-12 w-12" />
+
+                    <div>
+                        <h3
+                            class="text-base font-semibold lg:text-lg xl:text-xl 2xl:text-2xl"
+                        >
+                            Location-Based Discovery
+                        </h3>
+                        <p class="mt-1 text-sm lg:text-lg">
+                            Global search capabilities allow users to find
+                            specific ingredients, restaurant names, or service
+                            categories instantly from the home dashboard.
+                        </p>
+                    </div>
+                </li>
+                <li class="inline-flex gap-4">
+                    <Image
+                        src={Location}
+                        alt="Location icon"
+                        class="h-12 w-12"
+                    />
+
+                    <div>
+                        <h3
+                            class="text-base font-semibold lg:text-lg xl:text-xl 2xl:text-2xl"
+                        >
+                            Seamless Search & Filter
+                        </h3>
+                        <p class="mt-1 text-sm lg:text-lg">
+                            Smart geolocation features automatically surface
+                            relevant Halal options. The header integrates the
+                            Hijri date, grounding the utility in the user's
+                            cultural context.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="internal-padding flex flex-col py-8">
+        <h1
+            class="mb-4 text-5xl font-semibold text-black md:text-4xl md:leading-tight lg:text-5xl xl:text-6xl 2xl:text-[68px]"
+        >
+            A Staple App for the Community
+        </h1>
+        <p class="mb-4 text-sm leading-8 text-[#535353] capitalize lg:text-lg">
+            The launch of the Halal Food redesign saw immediate positive
+            feedback regarding its usability and aesthetic appeal.
+        </p>
+        <div class="mx-auto flex flex-col gap-4 md:flex-row">
+            <article class="p-4 py-4 text-center">
+                <h2
+                    class="text-[50px] font-semibold text-[#643DB4] md:text-[60px] lg:text-[70px] 2xl:text-[82px]"
+                >
+                    30%
+                </h2>
+                <h3
+                    class="mb-2 text-lg font-semibold text-black capitalize lg:text-xl xl:text-2xl"
+                >
+                    Higher Conversion Rate
+                </h3>
+                <p class="text-sm text-black capitalize lg:text-base">
+                    Increase in order completions attributed to the simplified
+                    Guest Login flow.
+                </p>
+            </article>
+            <article
+                class="border-x-0 p-4 py-4 text-center md:border-x-2 md:border-x-[#643DB4]"
+            >
+                <h2
+                    class="text-[50px] font-semibold text-[#643DB4] md:text-[60px] lg:text-[70px] 2xl:text-[82px]"
+                >
+                    500+
+                </h2>
+                <h3
+                    class="mb-2 text-lg font-semibold text-black capitalize lg:text-xl xl:text-2xl"
+                >
+                    Partners Onboarding
+                </h3>
+                <p class="text-sm text-black capitalize lg:text-base">
+                    Scaled rapidly to support hundreds of local vendors within 6
+                    months.
+                </p>
+            </article>
+
+            <article class="p-4 py-4 text-center">
+                <h2
+                    class="text-[50px] font-semibold text-[#643DB4] md:text-[60px] lg:text-[70px] 2xl:text-[82px]"
+                >
+                    4.8
+                </h2>
+                <h3
+                    class="mb-2 text-lg font-semibold text-black capitalize lg:text-xl xl:text-2xl"
+                >
+                    App Store Rating
+                </h3>
+                <p class="text-sm text-black capitalize lg:text-base">
+                    Users praised the "Dark Green Theme" for its visual clarity
+                    and elegance.
+                </p>
+            </article>
+        </div>
+    </div>
+
+    <div class="internal-padding flex flex-col items-center py-8 pb-24">
+        <h1
+            class="mb-4 text-center text-5xl font-semibold text-black capitalize md:text-4xl md:leading-tight lg:text-5xl xl:text-6xl 2xl:text-[68px]"
+        >
+            Optimized for all devices
+        </h1>
+
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <div class="overflow-hidden rounded-lg">
+                <Image
+                    src={ImageOne}
+                    alt="Halal Food App Design Showcase 1"
+                    class="h-full w-full object-cover md:translate-y-16"
+                />
+            </div>
+            <div class="overflow-hidden rounded-lg">
+                <Image
+                    src={ImageTwo}
+                    alt="Halal Food App Design Showcase 2"
+                    class="h-full w-full object-cover"
+                />
+            </div>
+            <div class="overflow-hidden rounded-lg">
+                <Image
+                    src={ImageThree}
+                    alt="Halal Food App Design Showcase 3"
+                    class="h-full w-full object-cover md:translate-y-16"
+                />
+            </div>
+        </div>
+    </div>
+</Layout>

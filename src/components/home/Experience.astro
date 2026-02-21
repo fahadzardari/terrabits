@@ -1,0 +1,62 @@
+---
+import CommonButton from "../common/CommonButton.astro";
+const {
+    typewriter = "We have Passion for our craft",
+    experience = "With over two decades of experience and a global footprint, our teams operate as a cohesive unit, consistently exceeding expectations and delivering unparalleled service to our diverse clientele worldwide.",
+    actionButton = true,
+} = Astro.props;
+
+// Calculate width based on typewriter length (+2ch for safety)
+const typewriterWidth = `${typewriter.length - 5}ch`;
+---
+
+<section
+    class={`  internal-padding ${actionButton ? "py-16 2xl:py-24" : "pt-16 2xl:pt-24"} `}
+>
+    <div class="flex flex-wrap items-center gap-4">
+        <h2
+            class="3xl:text-4xl m-0 text-xl font-normal text-[#000047] lg:text-xl lg:leading-8 xl:text-2xl xl:leading-10 2xl:text-3xl 2xl:leading-12"
+        >
+            <span
+                id="typewriter"
+                class="from-gradient-start to-gradient-end align-center my-auto mb-[4px] inline-flex items-center bg-gradient-to-r bg-clip-text pr-1 text-xs font-semibold whitespace-nowrap text-transparent xl:text-sm 2xl:text-base"
+                style={`width: ${typewriterWidth};`}
+                data-text={typewriter}></span>
+            {experience}
+        </h2>
+    </div>
+    {
+        actionButton && (
+            <CommonButton className="chat-cta w-full md:w-fit mt-4 md:mt-6 lg:mt-10">
+                {" "}
+                Learn More{" "}
+            </CommonButton>
+        )
+    }
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const el = document.getElementById("typewriter");
+        if (!el) return;
+
+        // Get text from data attribute (from props)
+        const text = el.getAttribute("data-text") || "";
+        let i = 0;
+
+        function type() {
+            if (el && i <= text.length) {
+                el.textContent = text.slice(0, i);
+                i++;
+                setTimeout(type, 35);
+            } else if (el) {
+                setTimeout(() => {
+                    el.textContent = "";
+                    i = 0;
+                    setTimeout(type, 300); // small pause before restarting
+                }, 4000);
+            }
+        }
+        type();
+    });
+</script>

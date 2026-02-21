@@ -1,0 +1,269 @@
+---
+const { projects = [] } = Astro.props;
+import Image from "astro/components/Image.astro";
+import Logo1 from "../../assets/home/portfolio/logos/1.png";
+import Logo2 from "../../assets/home/portfolio/logos/2.png";
+import Logo3 from "../../assets/home/portfolio/logos/3.png";
+import Logo4 from "../../assets/home/portfolio/logos/4.png";
+import Logo5 from "../../assets/home/portfolio/logos/5.png";
+import Logo6 from "../../assets/home/portfolio/logos/6.png";
+import Logo7 from "../../assets/home/portfolio/logos/7.png";
+import Logo8 from "../../assets/home/portfolio/logos/8.png";
+import Logo9 from "../../assets/home/portfolio/logos/9.png";
+
+// Enhanced logo project data
+const logoProjects = [
+    {
+        image: Logo1,
+        title: "Quadrant Eye",
+        client: "Vision Care Startup",
+        description: "Modern identity for an innovative vision care provider.",
+        year: "2023",
+    },
+    {
+        image: Logo2,
+        title: "Type Mouse",
+        client: "Digital Agency",
+        description: "Sleek branding for a creative content writing service.",
+        year: "2023",
+    },
+    {
+        image: Logo3,
+        title: "MSHK Designs",
+        client: "Interior Design Studio",
+        description: "Sophisticated identity for an upscale design firm.",
+        year: "2022",
+    },
+    {
+        image: Logo4,
+        title: "Blade Works",
+        client: "Culinary Tools",
+        description: "Premium identity for artisan knife manufacturer.",
+        year: "2023",
+    },
+    {
+        image: Logo5,
+        title: "Nixxon",
+        client: "Tech Startup",
+        description: "Futuristic branding for an AI-driven technology company.",
+        year: "2023",
+    },
+    {
+        image: Logo6,
+        title: "EcoWave",
+        client: "Sustainable Products",
+        description: "Fresh, green identity for an eco-friendly brand.",
+        year: "2022",
+    },
+    {
+        image: Logo7,
+        title: "FitPulse",
+        client: "Health & Fitness",
+        description: "Dynamic logo for a fitness tracking app.",
+        year: "2023",
+    },
+    {
+        image: Logo8,
+        title: "TravelNest",
+        client: "Travel Agency",
+        description: "Adventurous branding for a travel planning service.",
+        year: "2023",
+    },
+    {
+        image: Logo9,
+        title: "ByteCraft",
+        client: "Software Development",
+        description: "Cutting-edge identity for a software solutions firm.",
+        year: "2022",
+    },
+];
+
+import CommonButton from "../common/CommonButton.astro";
+---
+
+<section class="internal-padding py-20">
+    <header class="relative mb-12">
+        <div class="mb-6 flex items-center justify-between">
+            <h2
+                class="mb-3 text-4xl font-semibold text-[#000047] md:text-[54px]"
+            >
+                Let Us Present Your Brand
+            </h2>
+            <CommonButton className="chat-cta">
+                Let's get started <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="text ml-2 transition-transform duration-300 ease-in-out group-hover:translate-x-1 group-hover:text-[#9D7EFF]"
+                >
+                    <path
+                        d="M0.321289 8.9375L12.2213 8.9375L6.73379 14.425L8.07129 15.75L15.8213 8L8.07129 0.25L6.73379 1.575L12.2213 7.0625L0.321289 7.0625L0.321289 8.9375Z"
+                        fill="currentColor"></path>
+                </svg>
+            </CommonButton>
+        </div>
+        <p class="text-base leading-6 text-[#2B2B2B]">
+            We design narratives that evoke powerful emotions in your audience
+            and truly connect with them. Beyond words, a consistent visual
+            identity across all touchpoints that emphasizes your company's
+            essential values is guaranteed by our design expertise.
+        </p>
+    </header>
+
+    <div class="mx-auto">
+        <div
+            id="logo-grid"
+            class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
+            {
+                logoProjects.map((project, index) => (
+                    <div class="logo-portfolio-cards group logo-gradient relative aspect-square overflow-hidden rounded-xl p-6 shadow-lg transition-all duration-300">
+                        <div class="logo-portfolio-cards-inner relative flex h-full w-full items-center justify-center transition-transform duration-500 ease-out group-hover:scale-95">
+                            <Image
+                                src={project.image}
+                                alt={project.title}
+                                class="logo-image max-h-[70%] max-w-[70%] object-contain transition-all duration-500 ease-out group-hover:scale-110"
+                            />
+                        </div>
+
+                        <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent p-6 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+                            <h3 class="text-xl font-semibold text-white">
+                                {project.title}
+                            </h3>
+                            <p class="text-sm text-white/80">
+                                {project.client}
+                            </p>
+                            <div class="mt-2 hidden text-sm text-white/70 md:block">
+                                {project.description}
+                            </div>
+                            <div class="mt-3 flex items-center justify-between">
+                                <span class="rounded-full bg-white/20 px-3 py-1 text-xs text-white">
+                                    {project.year}
+                                </span>
+                                <button class="logo-button rounded-full px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-indigo-500">
+                                    View Project
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    // IMPORTANT: Do not import GSAP here - avoid conflicts with other components
+    document.addEventListener("DOMContentLoaded", () => {
+        // Set up 3D tilt effect for logo cards
+        const logoCards = document.querySelectorAll(".logo-portfolio-cards");
+        const tiltHandlers = new Map();
+
+        logoCards.forEach((card) => {
+            // Store the handler function for later cleanup
+            const tiltHandler = handleTilt.bind(card);
+            const resetHandler = resetTilt.bind(card);
+
+            tiltHandlers.set(card, { tiltHandler, resetHandler });
+
+            card.addEventListener("mousemove", tiltHandler);
+            card.addEventListener("mouseleave", resetHandler);
+        });
+
+        // Cleanup function to prevent memory leaks
+        function cleanupTiltEffects() {
+            tiltHandlers.forEach((handlers, card) => {
+                card.removeEventListener("mousemove", handlers.tiltHandler);
+                card.removeEventListener("mouseleave", handlers.resetHandler);
+            });
+            tiltHandlers.clear();
+        }
+
+        function handleTilt(e) {
+            const card = this;
+            const cardRect = card.getBoundingClientRect();
+            const cardWidth = cardRect.width;
+            const cardHeight = cardRect.height;
+
+            // Calculate mouse position relative to card center
+            const centerX = cardRect.left + cardWidth / 2;
+            const centerY = cardRect.top + cardHeight / 2;
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+
+            // Calculate rotation (limit to small values)
+            const rotateY = (mouseX / cardWidth) * 8; // max 8 degrees
+            const rotateX = -(mouseY / cardHeight) * 8; // max 8 degrees
+
+            // Apply transform with subtle perspective
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+
+            // Add highlight effect based on mouse position
+            const glareX = (mouseX / cardWidth) * 100 + 50;
+            const glareY = (mouseY / cardHeight) * 100 + 50;
+            card.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0) 60%), linear-gradient(to bottom right, #9d7eff, #8067ce)`;
+        }
+
+        function resetTilt() {
+            this.style.transform = "none";
+            this.style.background =
+                "linear-gradient(to bottom right, #9d7eff, #8067ce)";
+        }
+
+        // Add manual animation instead of using GSAP
+        function animateCardsIn() {
+            logoCards.forEach((card, index) => {
+                // Set initial state
+                card.style.opacity = "0";
+                card.style.transform = "translateY(20px)";
+
+                // Animate in with a stagger
+                setTimeout(
+                    () => {
+                        card.style.transition =
+                            "opacity 0.5s ease, transform 0.5s ease";
+                        card.style.opacity = "1";
+                        card.style.transform = "translateY(0)";
+                    },
+                    100 + index * 100,
+                ); // 100ms delay between each card
+            });
+        }
+
+        // Run animation
+        animateCardsIn();
+
+        // Clean up on page navigation
+        window.addEventListener("beforeunload", cleanupTiltEffects);
+    });
+</script>
+
+<style>
+    /* Avoid using :root variables - define colors directly */
+    .logo-gradient {
+        background: linear-gradient(to bottom right, #9d7eff, #8067ce);
+    }
+
+    /* Logo Card Styles */
+    .logo-portfolio-cards {
+        will-change: transform, background;
+        transition: all 0.3s ease;
+        /* Explicitly set opacity to ensure visibility */
+        opacity: 1;
+    }
+
+    .logo-portfolio-cards:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Explicitly styled button instead of using global class */
+    .logo-button {
+        background: linear-gradient(90deg, #8067ce 0%, #4338ca 100%);
+    }
+
+    .logo-button:hover {
+        background: linear-gradient(90deg, #9d7eff 0%, #6366f1 100%);
+    }
+</style>

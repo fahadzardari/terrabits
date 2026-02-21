@@ -1,0 +1,180 @@
+---
+import PHPImage from "../../assets/web-dev/services/php.png";
+import PHPImageHover from "../../assets/web-dev/services/php-hover.png";
+import PythonImage from "../../assets/web-dev/services/python.png";
+import PythonImageHover from "../../assets/web-dev/services/python-hover.png";
+import WixImage from "../../assets/web-dev/services/wix.png";
+import WixImageHover from "../../assets/web-dev/services/wix-hover.png";
+import MagentoImage from "../../assets/web-dev/services/magento.png";
+import MagentoImageHover from "../../assets/web-dev/services/magento-hover.png";
+import ShopifyImage from "../../assets/web-dev/services/shopify.png";
+import ShopifyImageHover from "../../assets/web-dev/services/shopify-hover.png";
+import WordpressImage from "../../assets/web-dev/services/wordpress.png";
+import WordpressImageHover from "../../assets/web-dev/services/wordpress-hover.png";
+import Image from "astro/components/Image.astro";
+
+// Updated services array with images instead of SVG icons
+const webServices = [
+    {
+        name: "Wordpress",
+        image: WordpressImage,
+        hoverImage: WordpressImageHover,
+    },
+    {
+        name: "Shopify",
+        image: ShopifyImage,
+        hoverImage: ShopifyImageHover,
+    },
+    {
+        name: "Wix",
+        image: WixImage,
+        hoverImage: WixImageHover,
+    },
+    {
+        name: "PHP",
+        image: PHPImage,
+        hoverImage: PHPImageHover,
+    },
+    {
+        name: "Magento",
+        image: MagentoImage,
+        hoverImage: MagentoImageHover,
+    },
+    {
+        name: "Python",
+        image: PythonImage,
+        hoverImage: PythonImageHover,
+    },
+];
+
+const {
+    title = "OUR SERVICES",
+    description = "We Are Specialized In The Following Services",
+    services = webServices,
+} = Astro.props;
+---
+
+<section class="our-services internal-padding pt-8 lg:pt-16">
+    <div class="mx-auto mb-12 px-4 lg:mb-20">
+        <h5
+            class="gradient-text mb-6 text-center text-base leading-6 font-bold tracking-[5px] md:text-lg lg:text-xl"
+        >
+            {title}
+        </h5>
+        <h2
+            class="mb-6 text-center text-[30px] leading-[40px] font-medium text-[#000047] lg:mb-10 lg:text-[40px] lg:leading-[50px] xl:text-[50px]"
+        >
+            {description}
+        </h2>
+        <!-- Services Tabs -->
+        <div
+            class="mb-4 grid w-full grid-cols-2 justify-center gap-[10px] md:flex md:flex-wrap lg:mb-8 xl:mb-10 2xl:mb-12"
+        >
+            {
+                services.map((service) => (
+                    <button class="service-tab flex min-w-[150px] flex-col items-center justify-between gap-4 rounded-md bg-white pt-5 pb-6 text-xs font-medium transition md:text-sm lg:min-w-[220px] lg:text-base">
+                        <div class="service-icon">
+                            <Image
+                                src={service.image}
+                                alt={service.name}
+                                class="service-image"
+                                width="41"
+                                height="41"
+                                loading="lazy"
+                            />
+                            <Image
+                                src={service.hoverImage}
+                                alt={`${service.name} Hover`}
+                                class="service-image-hover"
+                                width="41"
+                                height="41"
+                                loading="lazy"
+                            />
+                        </div>
+                        <span class="service-name">{service.name}</span>
+                    </button>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .service-tab {
+        background: #fff;
+        transition:
+            background 0.25s cubic-bezier(0.4, 1.3, 0.7, 1.01),
+            color 0.25s cubic-bezier(0.4, 1.3, 0.7, 1.01),
+            transform 0.22s cubic-bezier(0.4, 1.3, 0.7, 1.01);
+        will-change: background, color, transform;
+    }
+
+    /* Image swap on hover functionality */
+    .service-icon {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 41px;
+        height: 41px;
+    }
+
+    .service-image,
+    .service-image-hover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 0.25s cubic-bezier(0.4, 1.3, 0.7, 1.01);
+    }
+
+    .service-image {
+        opacity: 1;
+    }
+
+    .service-image-hover {
+        opacity: 0;
+    }
+
+    .service-tab:hover {
+        background: #9d7eff;
+        color: #fff;
+        transform: scale(1.04);
+        cursor: pointer;
+    }
+
+    .service-tab .service-name {
+        color: #333333;
+    }
+
+    .service-tab:hover .service-name {
+        color: #fff;
+    }
+
+    /* Show hover image and hide regular image on hover */
+    .service-tab:hover .service-image {
+        opacity: 0;
+    }
+
+    .service-tab:hover .service-image-hover {
+        opacity: 1;
+    }
+
+    .video-scroll-wrapper {
+        position: relative;
+        z-index: 1;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .video-scroll-img {
+        width: 100%;
+        max-width: 900px;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px rgba(75, 0, 163, 0.1);
+        transition: border-radius 0.3s;
+        will-change: transform, width, height, border-radius;
+    }
+</style>

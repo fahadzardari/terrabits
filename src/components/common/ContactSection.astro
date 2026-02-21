@@ -1,0 +1,24 @@
+---
+import ContactForm from "./ContactForm.astro";
+import CommonButton from "./CommonButton.astro";
+---
+
+<div class="internal-padding my-28 flex flex-row gap-x-4">
+    <div class="w-[65%]">
+        <h3 class="text-contact-blue mb-20 text-2xl font-semibold">
+            Have a plan? Let’s Get Started
+        </h3>
+        <ContactForm />
+    </div>
+    <div class="flex min-w-[218px] flex-auto flex-col items-end">
+        <h2 class="text-contact-blue mb-8 text-[50px] font-medium text-nowrap">
+            How can we help you?
+        </h2>
+        <p class="text-right text-3xl text-[#2A2111] capitalize">
+            Are you ready to push <br />
+            boundaries and explore new <br />
+            frontiers of innovation?
+        </p>
+        <CommonButton className={"mt-7"}> Let's work Together </CommonButton>
+    </div>
+</div>

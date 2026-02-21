@@ -1,0 +1,184 @@
+---
+import HeroImage from "../../assets/branding/branding-1.png";
+import HeroImage2 from "../../assets/branding/branding-2.png";
+
+import CommonButton from "../common/CommonButton.astro";
+import Image from "astro/components/Image.astro";
+---
+
+<section
+    class="hero-section relative overflow-hidden bg-[#4B00A3] pt-32 text-white lg:ml-[65px] lg:min-h-screen lg:rounded-l-3xl xl:ml-[88px]"
+>
+    <div
+        class="3xl:mt-48 mt-12 flex h-full flex-col md:mt-16 lg:mt-20 lg:flex-row lg:justify-between lg:pl-4 xl:mt-32 2xl:mt-40 2xl:pl-12"
+    >
+        <!-- Left -->
+        <div
+            class="z-10 w-auto px-6 lg:mt-auto lg:w-[55%] lg:pb-24 2xl:w-[50%] 2xl:pb-40"
+        >
+            <!-- <span class="mb-4 block h-[2px] w-10 bg-white"></span> -->
+            <h1
+                class="text-[42px] font-medium capitalize md:text-[52px] lg:text-[76px] 2xl:mb-6 2xl:text-[86px] 2xl:leading-[100px]"
+            >
+                <span class="font-bold">Branding </span>
+            </h1>
+            <p
+                class="mb-4 text-xs font-medium tracking-[1px] md:text-sm lg:mb-8 xl:text-base 2xl:text-xl 2xl:leading-6"
+            >
+                A wide range of services, including brand planning, are provided
+                by our skilled experts. Be it establishing a visual identity,
+                creating a logo, or crafting brand messaging, we are here to
+                help. With our innovative ideas, your company will stand out and
+                build long-lasting relationships with clients.
+            </p>
+            <div class="flex items-center space-x-4">
+                <CommonButton
+                    className="chat-cta text-xs font-semibold md:text-sm lg:text-lg"
+                >
+                    Lets Talk
+                </CommonButton>
+            </div>
+        </div>
+
+        <!-- Right -->
+        <div
+            class="z-0 w-full lg:absolute lg:-right-4 lg:-bottom-24 lg:w-[80%] xl:-right-12 xl:-bottom-20 xl:w-[70%] 2xl:w-[60%]"
+        >
+            <Image id={"hand-tilt"} src={HeroImage} alt="Hand Image" />
+        </div>
+        <div
+            class="absolute top-12 left-0 z-0 w-1/3 md:top-6 lg:-top-12 2xl:-top-32"
+        >
+            <Image src={HeroImage2} alt="Hand Image" />
+        </div>
+    </div>
+</section>
+
+<script>
+    // lightweight, performant interactions for hero
+    const section = document.querySelector(".hero-section");
+    const hand = document.getElementById("hand-tilt");
+
+    // respect user preference
+    const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    // cheap, throttled pointer tilt using rAF (no external lib)
+    if (hand) {
+        hand.style.willChange = "transform";
+        let raf = null;
+        let last = { x: 0, y: 0 };
+
+        hand.addEventListener("pointermove", (e) => {
+            const r = hand.getBoundingClientRect();
+            last.x = (e.clientX - r.left) / r.width - 0.5;
+            last.y = (e.clientY - r.top) / r.height - 0.5;
+            if (raf) return;
+            raf = requestAnimationFrame(() => {
+                const rx = -last.y * 10; // rotateX
+                const ry = last.x * 10; // rotateY
+                hand.style.transform = `scale(1.06) rotateX(${rx}deg) rotateY(${ry}deg)`;
+                raf = null;
+            });
+        });
+
+        hand.addEventListener("pointerenter", () => {
+            hand.style.transition = "transform 220ms ease-out";
+        });
+        hand.addEventListener("pointerleave", () => {
+            if (raf) cancelAnimationFrame(raf);
+            hand.style.transition = "transform 420ms ease-out";
+            hand.style.transform = "scale(1) rotateX(0deg) rotateY(0deg)";
+            raf = null;
+        });
+    }
+
+    // Lazy-load GSAP only when section is near viewport to avoid blocking initial load
+    if (!prefersReduced && "IntersectionObserver" in window && section) {
+        const io = new IntersectionObserver(
+            (entries, obs) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    obs.disconnect();
+                    // dynamically import the project's gsap wrapper (keeps initial bundle small)
+                    import("../../utils/gsapUtils.js")
+                        .then(({ gsap, ScrollTrigger }) => {
+                            gsap.registerPlugin(ScrollTrigger);
+
+                            // subtle entrance for left content
+                            gsap.from(".hero-section .z-10", {
+                                y: 0,
+                                opacity: 0,
+                                duration: 0.9,
+                                ease: "power3.out",
+                                stagger: 0.06,
+                            });
+
+                            // subtle parallax on the large image with scrub (very low cost)
+                            if (hand) {
+                                gsap.to("#hand-tilt", {
+                                    y: -28,
+                                    rotation: 2,
+                                    ease: "none",
+                                    scrollTrigger: {
+                                        trigger: ".hero-section",
+                                        start: "top top",
+                                        end: "bottom top",
+                                        scrub: 0.6,
+                                    },
+                                });
+
+                                // gentle idle "breathe" to add life without heavy cost
+                                gsap.to("#hand-tilt", {
+                                    scale: 1.02,
+                                    duration: 3.6,
+                                    yoyo: true,
+                                    repeat: -1,
+                                    ease: "sine.inOut",
+                                });
+                            }
+                        })
+                        .catch(() => {
+                            /* fail silently — animations are non-critical */
+                        });
+                });
+            },
+            { root: null, threshold: 0.12 },
+        );
+        io.observe(section);
+    }
+</script>
+
+<style>
+    .animated-gradient-text {
+        background: linear-gradient(
+            90deg,
+            #fff 0%,
+            #7f5cff 25%,
+            #00e0ff 50%,
+            #ff6bcb 75%,
+            #fff 100%
+        );
+        background-size: 200% 100%;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        animation: gradient-move 3s linear infinite;
+        background-repeat: repeat;
+    }
+    @keyframes gradient-move {
+        0% {
+            background-position: 0% 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+</style>
+
+<!-- cubic-bezier(.22,1,.36,1), box-shadow 0.3s cubic-bezier(.22,1,.36,1) 
+ 
+ cubic-bezier(.22,1,.36,1), box-shadow 0.5s cubic-bezier(.22,1,.36,1)
+  cubic-bezier(.22,1,.36,1), box-shadow 0.3s cubic-bezier(.22,1,.36,1)
+-->

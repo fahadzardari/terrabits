@@ -1,0 +1,98 @@
+---
+import "../../index.css";
+import Layout from "../../layouts/Layout.astro";
+import Experience from "../../components/home/Experience.astro";
+import Accordion from "../../components/common/Accordion.astro";
+import Testimonials from "../../components/common/Testimonials.astro";
+import HeroLogoDesign from "../../components/logo-design/HeroLogoDesign.astro";
+import WhyLogoDesignsMatter from "../../components/logo-design/WhyLogoDesignsMatter.astro";
+import Acc1 from "../../assets/logo-design/accordion/1.1.gif";
+import Acc2 from "../../assets/logo-design/accordion/1.2.gif";
+import Acc3 from "../../assets/logo-design/accordion/1.3.gif";
+import Acc4 from "../../assets/logo-design/accordion/1.4.gif";
+import Acc5 from "../../assets/logo-design/accordion/2.1.gif";
+import Acc6 from "../../assets/logo-design/accordion/2.2.gif";
+import Acc7 from "../../assets/logo-design/accordion/2.3.gif";
+import Acc8 from "../../assets/logo-design/accordion/2.4.gif";
+import Acc9 from "../../assets/logo-design/accordion/3.1.png";
+import Acc10 from "../../assets/logo-design/accordion/3.2.png";
+import Acc11 from "../../assets/logo-design/accordion/3.3.png";
+import Acc12 from "../../assets/logo-design/accordion/3.4.png";
+import Acc13 from "../../assets/logo-design/accordion/4.1.png";
+import Acc14 from "../../assets/logo-design/accordion/4.2.png";
+import Acc15 from "../../assets/logo-design/accordion/4.3.png";
+import Acc16 from "../../assets/logo-design/accordion/4.4.png";
+import Acc17 from "../../assets/logo-design/accordion/5.1.png";
+import Acc18 from "../../assets/logo-design/accordion/5.2.png";
+import Acc19 from "../../assets/logo-design/accordion/5.3.png";
+import Acc20 from "../../assets/logo-design/accordion/5.4.png";
+import Acc21 from "../../assets/logo-design/accordion/6.1.png";
+import Acc22 from "../../assets/logo-design/accordion/6.2.png";
+import Acc23 from "../../assets/logo-design/accordion/6.3.png";
+import Acc24 from "../../assets/logo-design/accordion/6.4.png";
+import PresentLogos from "../../components/logo-design/PresentLogos.astro";
+import Portfolio from "../../components/home/Portfolio.astro";
+
+const accordionItems = [
+    {
+        title: "2D Animated Logo",
+        body: "Our 2D animated logos will instantaneously be recognizable and memorable to your audience. With its classic, simple, and trendy features, your 2d logo designs will skyrocket your business in just a matter of time. So, what are you waiting for?",
+        cta: ["Get Started", "Live Chat"],
+        images: [Acc1, Acc2, Acc3, Acc4],
+    },
+    {
+        title: "3D Animated Logo",
+        body: "Our 3D logo design service will instantly hypnotize your new customers in such a way that they will keep on getting back to you for your product or services. A 3d logo design is a strong symbolic representation of your business.",
+        cta: ["View Work"],
+        images: [Acc5, Acc6, Acc7, Acc8],
+    },
+    {
+        title: "Iconic Logo Design",
+        body: "Our iconic logo design will surely blow your audience's mind, with its compelling imagery that is highly indicative and presents your particular product or brand. We use a different yet unique type of abstract representation for your organization.",
+        cta: ["Book a Call"],
+        images: [Acc9, Acc10, Acc11, Acc12],
+    },
+    {
+        title: "Illustrative Logo",
+        body: "Illustrative logos are quite unique and they have been in trend for a well amount of time. They are simply just pictures, but they deliver and strong and steady meaning. Illustrative logos are a perfect choice if you're selling products or services.",
+        cta: ["See Case Studies"],
+        images: [Acc13, Acc14, Acc15, Acc16],
+    },
+    {
+        title: "Symbolic Logo",
+        body: "A symbolic logo design is a perfect choice for you if you’re looking for an abstract representation of your well-established or a startup business. Symbolic logo can be eye-catching, and highly captivating, that makes your brand stand out.",
+        cta: ["Book a Call"],
+        images: [Acc17, Acc18, Acc19, Acc20],
+    },
+    {
+        title: "Typographic Logo",
+        body: "Typographic logo designs completely rely on text, they are powerful enough to print themselves into the mind of your customers. Typographic logo designs help you share your brand's exciting, admirable and successful story in-depth.",
+        cta: ["Discover More"],
+        images: [Acc21, Acc22, Acc23, Acc24],
+    },
+];
+---
+
+<Layout title="Logo Design - Nixxon Australia">
+    <HeroLogoDesign />
+
+    <div class="overflow-hidden border-none bg-[#4B00A3]">
+        <div class="rounded-t-[2rem] bg-[#f8f8f8] md:rounded-none">
+            <Experience
+                typewriter="Eye catching identity design"
+                experience="We craft impactful brand identities that capture the essence of our clients’ businesses. With skilled designers and attention to detail, we create memorable visuals that clearly convey their message and values."
+            />
+            <span class="our-services h-0 w-0"> </span>
+            <WhyLogoDesignsMatter />
+            <!-- <PresentLogos /> -->
+        </div>
+    </div>
+    <Portfolio filterType="logo" header={true} hideFilters={true} pageTitle="Logo Design Projects" />
+    <Accordion
+        title="Logos That Define Your Brand."
+        description="From classic to animated, we design logos that define your brand."
+        para="Our approach blends creativity and strategy, ensuring every logo not only looks stunning but also resonates with your audience. Whether you need a mark that inspires trust, a bold design that stands out, or motion graphics that tell a story, we deliver logos that adapt seamlessly to your brand’s world."
+        panels={accordionItems}
+    />
+    <Testimonials />
+</Layout>

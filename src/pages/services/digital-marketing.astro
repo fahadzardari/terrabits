@@ -1,0 +1,93 @@
+---
+import "../../index.css";
+import Layout from "../../layouts/Layout.astro";
+import Experience from "../../components/home/Experience.astro";
+import SwiperSection from "../../components/common/SwiperSection.astro";
+import { digitalMarketingCards } from "../../data/swipers";
+import VerticalSwiper from "../../components/common/VerticalSwiper.astro";
+import Testimonials from "../../components/common/Testimonials.astro";
+import HeroDigitalMarketing from "../../components/digital-marketing/HeroDigitalMarketing.astro";
+import DigitalMarketingAdSpending from "../../components/digital-marketing/DigitalMarketingAdSpending.astro";
+
+import VerticalImage1 from "../../assets/digital-marketing/vert-1.png";
+import VerticalImage2 from "../../assets/digital-marketing/vert-2.png";
+import VerticalImage3 from "../../assets/digital-marketing/vert-3.png";
+import VerticalImage4 from "../../assets/digital-marketing/vert-4.png";
+import VerticalImage5 from "../../assets/digital-marketing/vert-5.png";
+import VerticalImage6 from "../../assets/digital-marketing/vert-6.png";
+
+// Create array of data for swiper slides
+const digitalMarketingSlides = [
+    {
+        id: "01",
+        title: "Search Engine Optimization",
+        description:
+            "Our SEO strategies are designed to position your brand exactly where your audience is searching. From keyword research and technical optimization to high-quality link building and content alignment, we implement a holistic approach that increases visibility, drives qualified organic traffic, and builds long-term authority. With continuous monitoring and refinements, we ensure your brand doesn’t just rank it stays ahead of the competition.",
+        image: VerticalImage1,
+    },
+    {
+        id: "02",
+        title: "Google Ads",
+        description:
+            "We create data-driven Google Ads campaigns that maximize every click’s potential. Whether it’s high-intent search ads, eye-catching display banners, or engaging video ads on YouTube, our strategies focus on delivering measurable results. By leveraging advanced targeting, precise bidding, and conversion tracking, we help you capture the right audience at the right time, ensuring your budget turns into tangible growth.",
+        image: VerticalImage2,
+    },
+    {
+        id: "03",
+        title: "Meta Ads",
+        description:
+            "Meta platforms are where audiences engage daily — and we make sure your brand stands out. Our Facebook and Instagram ad campaigns combine compelling creative with precise audience segmentation to generate awareness, leads, and sales. From retargeting warm audiences to creating thumb-stopping ad visuals, we craft campaigns that not only capture attention but also convert interest into measurable business results.",
+        image: VerticalImage3,
+    },
+    {
+        id: "04",
+        title: "Social Media Marketing",
+        description:
+            "Your social presence is your digital voice, and we make it resonate with impact. Through a mix of organic strategies and paid promotions on platforms like LinkedIn, TikTok, and X, we build communities, foster engagement, and enhance your brand authority. Our approach focuses on storytelling, consistency, and platform-specific content to keep your audience connected and your brand culturally relevant.",
+        image: VerticalImage4,
+    },
+    {
+        id: "05",
+        title: "Content & Email Marketing",
+        description:
+            "Content is the fuel that drives digital engagement, and email is the channel that builds lasting relationships. We create insightful, SEO-optimized content that positions your brand as an industry authority, while our personalized email campaigns nurture leads, increase customer retention, and drive repeat business. Together, they form a powerful combination that educates, informs, and converts your audience.",
+        image: VerticalImage5,
+    },
+    {
+        id: "06",
+        title: "Conversion Rate Optimization & Analytics",
+        description:
+            "Clicks mean nothing without conversions — and that’s where CRO steps in. By analyzing user behavior, running A/B tests, and optimizing landing pages, we streamline the customer journey to turn visitors into loyal buyers. With deep analytics and performance insights, we not only improve results but also uncover growth opportunities, ensuring every marketing dollar delivers maximum ROI.",
+        image: VerticalImage6,
+    },
+];
+---
+
+<Layout title="Digital Marketing - Nixxon Australia">
+    <HeroDigitalMarketing />
+    <div class="overflow-hidden border-none bg-[#4B00A3]">
+        <div class="rounded-t-[2rem] bg-[#f8f8f8] md:rounded-none">
+            <Experience
+                typewriter="Define the Standard  "
+                experience="We Ignite your brand’s success with tailored marketing solutions that deliver measurable impact converting audiences, securing valuable leads, and driving growth with strategic, data-backed executions."
+            />
+            <span class="our-services h-0 w-0"> </span>
+            <VerticalSwiper
+                title="Digital Marketing Services That Set Us Apart"
+                description="Our business strategy is all about keeping up with the latest trends and updates. We make sure to facilitate our customers to the best of our abilities. At NixxonTech, the goal of our team is to provide the service that fulfills the desires of customers effectively."
+                slides={digitalMarketingSlides}
+            />
+            <SwiperSection
+                title="Beyond Strategy The True Art of Marketing"
+                description="We go further than plans and tactics crafting campaigns that blend creativity, data, and vision to create lasting impact and measurable growth."
+                swiperCards={digitalMarketingCards}
+            />
+        </div>
+    </div>
+    <DigitalMarketingAdSpending />
+    <div class="overflow-hidden border-none bg-[#4B00A3]">
+        <div class="rounded-t-[2rem] bg-[#f8f8f8] md:rounded-none">
+            <Testimonials />
+        </div>
+    </div>
+</Layout>

@@ -1,0 +1,245 @@
+---
+import CommonButton from "./CommonButton.astro";
+import SwiperCard from "./SwiperCard.astro";
+const {
+    swiperCards = [],
+    title = "The Art of Web Development",
+    description,
+} = Astro.props;
+---
+
+<section
+    class="3xl:ml-[11dvw] mx-[8dvw] flex flex-col overflow-hidden bg-[#f8f8f8] py-8 lg:mx-0 lg:ml-[8dvw] lg:flex-row lg:py-12"
+>
+    <div
+        class="relative z-20 flex flex-col gap-5 border-b border-b-[#808080] bg-[#f8f8f8] pb-4 lg:w-1/2 lg:border-r lg:border-b-0 lg:border-r-[#808080] lg:pr-12"
+    >
+        <h2
+            class="text-2xl font-semibold text-[#000047] lg:text-3xl xl:text-4xl 2xl:text-[40px]"
+        >
+            {title}
+        </h2>
+        <p
+            class="mb-7 text-sm text-[#2A2111] md:text-base lg:text-lg xl:text-xl 2xl:text-xl"
+        >
+            {description}
+        </p>
+        <CommonButton className="chat-cta w-fit">
+            Book a Discovery Call
+        </CommonButton>
+
+        <div class="ml-auto flex gap-x-4">
+            <button
+                class="steps-swiper-prev flex aspect-square h-12 cursor-pointer items-center justify-center rounded-full border border-[#D9D9D9] shadow-md hover:scale-105 lg:h-16"
+            >
+                <svg
+                    width="19"
+                    height="17"
+                    viewBox="0 0 19 17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M7.81748 0.840372C7.91054 0.745863 8.02146 0.670808 8.1438 0.619579C8.26613 0.568349 8.39744 0.541967 8.53007 0.541969C8.6627 0.541971 8.794 0.568354 8.91634 0.619587C9.03867 0.670819 9.14959 0.745873 9.24264 0.840383C9.3357 0.934893 9.40902 1.04697 9.45834 1.17009C9.50766 1.2932 9.532 1.4249 9.52994 1.55752C9.52788 1.69013 9.49945 1.82101 9.44633 1.94253C9.3932 2.06406 9.31643 2.1738 9.22049 2.26537L3.85148 7.55637L17.5215 7.55637C17.7867 7.55637 18.0411 7.66173 18.2286 7.84927C18.4161 8.0368 18.5215 8.29115 18.5215 8.55637C18.5215 8.82159 18.4161 9.07594 18.2286 9.26348C18.0411 9.45101 17.7867 9.55637 17.5215 9.55637L3.85648 9.55637L9.22148 14.8414C9.40567 15.0284 9.50891 15.2804 9.50891 15.543C9.50891 15.8055 9.40568 16.0575 9.2215 16.2446C9.03731 16.4316 8.78695 16.5388 8.52446 16.5428C8.26197 16.5469 8.0084 16.4476 7.81848 16.2664L0.893484 9.44337C0.775568 9.32708 0.681935 9.18852 0.618027 9.03573C0.554119 8.88295 0.521208 8.71898 0.521208 8.55337C0.521208 8.38776 0.554119 8.2238 0.618027 8.07101C0.681935 7.91822 0.775568 7.77966 0.893485 7.66337L7.81848 0.840372L7.81748 0.840372Z"
+                        fill="#212121"></path>
+                </svg>
+            </button>
+            <button
+                class="steps-swiper-next flex aspect-square h-12 cursor-pointer items-center justify-center rounded-full border border-[#D9D9D9] shadow-md hover:scale-105 lg:h-16"
+            >
+                <svg
+                    width="19"
+                    height="17"
+                    viewBox="0 0 19 17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M11.0578 0.840372C10.9647 0.745863 10.8538 0.670808 10.7314 0.619579C10.6091 0.568349 10.4778 0.541967 10.3452 0.541969C10.2125 0.541971 10.0812 0.568354 9.95891 0.619587C9.83657 0.670819 9.72565 0.745873 9.6326 0.840383C9.53955 0.934893 9.46623 1.04697 9.4169 1.17009C9.36758 1.2932 9.34324 1.4249 9.34531 1.55752C9.34737 1.69013 9.37579 1.82101 9.42892 1.94253C9.48204 2.06406 9.55881 2.1738 9.65476 2.26537L15.0238 7.55637L1.35376 7.55637C1.08854 7.55637 0.834189 7.66173 0.646653 7.84927C0.459116 8.0368 0.353759 8.29115 0.353759 8.55637C0.353759 8.82159 0.459116 9.07594 0.646653 9.26348C0.834189 9.45101 1.08854 9.55637 1.35376 9.55637L15.0188 9.55637L9.65376 14.8414C9.46957 15.0284 9.36634 15.2804 9.36633 15.543C9.36633 15.8055 9.46956 16.0575 9.65375 16.2446C9.83793 16.4316 10.0883 16.5388 10.3508 16.5428C10.6133 16.5469 10.8668 16.4476 11.0568 16.2664L17.9818 9.44337C18.0997 9.32708 18.1933 9.18852 18.2572 9.03573C18.3211 8.88295 18.354 8.71898 18.354 8.55337C18.354 8.38776 18.3211 8.2238 18.2572 8.07101C18.1933 7.91822 18.0997 7.77966 17.9818 7.66337L11.0568 0.840372L11.0578 0.840372Z"
+                        fill="#212121"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div
+        class="stepsSwiper relative z-10 mt-12 w-full overflow-hidden px-12 lg:mt-0"
+    >
+        <div class="swiper-wrapper">
+            {
+                swiperCards.map((s) => (
+                    <div class="swiper-slide">
+                        <SwiperCard
+                            serialNo={s.serialNo}
+                            title={s.title}
+                            description={s.description}
+                            textColor={s.textColor}
+                            serialBg={s.serialBg}
+                            background={s.background}
+                        />
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    import Swiper from "swiper";
+    import { Navigation, Autoplay } from "swiper/modules";
+    import "swiper/css";
+    import "swiper/css/navigation";
+
+    document.addEventListener("DOMContentLoaded", function () {
+        let swiper = new Swiper(".stepsSwiper", {
+            slidesPerView: "auto",
+            spaceBetween: 50,
+            initialSlide: 0,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: true,
+                pauseOnMouseEnter: false,
+            },
+            speed: 8000, // Slow speed for the ticker effect
+            loop: true,
+            modules: [Navigation, Autoplay],
+            breakpoints: {
+                0: { slidesPerView: 1, spaceBetween: 5, centeredSlides: true },
+                600: {
+                    slidesPerView: 2,
+                    spaceBetween: 40,
+                    centeredSlides: true,
+                },
+                908: {
+                    slidesPerView: 3,
+                    spaceBetween: 40,
+                    centeredSlides: true,
+                },
+                1024: { slidesPerView: 2.5, spaceBetween: 50 },
+            },
+        });
+
+        // --- MANUAL NAVIGATION CONTROL ---
+        const prevButton = document.querySelector(".steps-swiper-prev");
+        const nextButton = document.querySelector(".steps-swiper-next");
+        const swiperContainer = document.querySelector(".stepsSwiper");
+        let autoplayStopped = false;
+
+        // The most reliable way: recreate Swiper without autoplay
+        function switchToManualMode() {
+            if (autoplayStopped) return;
+
+            // Add class for CSS changes
+            if (swiperContainer) {
+                swiperContainer.classList.add("manual-navigation");
+            }
+
+            // Get current slide index before destroying
+            const currentIndex = swiper.activeIndex;
+
+            // Destroy current swiper instance
+            swiper.destroy(true, true);
+
+            // Create new instance without autoplay, but with same configuration
+            swiper = new Swiper(".stepsSwiper", {
+                slidesPerView: "auto",
+                spaceBetween: 50,
+                initialSlide: currentIndex, // Resume from current position
+                loop: true,
+                speed: 400, // Fast transitions for manual navigation
+                modules: [Navigation],
+                breakpoints: {
+                    0: {
+                        slidesPerView: 1,
+                        spaceBetween: 5,
+                        centeredSlides: true,
+                    },
+                    600: {
+                        slidesPerView: 2,
+                        spaceBetween: 40,
+                        centeredSlides: true,
+                    },
+                    908: {
+                        slidesPerView: 3,
+                        spaceBetween: 40,
+                        centeredSlides: true,
+                    },
+                    1024: { slidesPerView: 2.5, spaceBetween: 50 },
+                },
+            });
+
+            // Mark as stopped
+            autoplayStopped = true;
+
+            // Re-attach event listeners to the new instance
+            attachNavigationEvents();
+        }
+
+        // Separate function to attach navigation events (needed for recreated swiper)
+        function attachNavigationEvents() {
+            // Remove old listeners if any
+            prevButton.removeEventListener("click", handlePrevClick);
+            nextButton.removeEventListener("click", handleNextClick);
+
+            // Add new listeners
+            prevButton.addEventListener("click", handlePrevClick);
+            nextButton.addEventListener("click", handleNextClick);
+
+            // Also handle direct interaction
+            swiper.on("touchStart", switchToManualMode);
+        }
+
+        // Click handlers
+        function handlePrevClick() {
+            if (!autoplayStopped) {
+                switchToManualMode();
+            }
+            // Use a slight delay to ensure UI updates properly
+            setTimeout(() => {
+                swiper.slidePrev();
+            }, 10);
+        }
+
+        function handleNextClick() {
+            if (!autoplayStopped) {
+                switchToManualMode();
+            }
+            // Use a slight delay to ensure UI updates properly
+            setTimeout(() => {
+                swiper.slideNext();
+            }, 10);
+        }
+
+        // Initial attachment of events
+        attachNavigationEvents();
+
+        // Handle pointer events on slides as well
+        if (swiperContainer) {
+            swiperContainer.addEventListener("mousedown", switchToManualMode);
+        }
+    });
+</script>
+
+<style>
+    .stepsSwiper .swiper-wrapper {
+        transition-timing-function: linear !important;
+    }
+
+    /* Override this style when in manual mode */
+    .stepsSwiper.manual-navigation .swiper-wrapper {
+        transition-timing-function: ease !important;
+    }
+
+    .stepsSwiper .swiper-slide {
+        width: 400px;
+        height: auto;
+        flex-shrink: 0;
+        opacity: 1 !important;
+    }
+
+    /* Enhanced button styles to provide better feedback */
+    .steps-swiper-prev:active,
+    .steps-swiper-next:active {
+        transform: scale(0.95);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+</style>

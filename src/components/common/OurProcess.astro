@@ -1,0 +1,384 @@
+---
+import OurProcessCard from "../home/OurProcessCard.astro";
+import ideaIcon from "../../assets/home/process/idea.png";
+import ideaArt from "../../assets/home/process/idea-art.png";
+import creativityIcon from "../../assets/home/process/creativity.png";
+import creativityArt from "../../assets/home/process/creativity-art.png";
+import magicIcon from "../../assets/home/process/magic.png";
+import magicArt from "../../assets/home/process/magic-art.png";
+import deliveredIcon from "../../assets/home/process/delivered.png";
+import deliveredArt from "../../assets/home/process/delivered-art.png";
+
+const processes = [
+    {
+        title: "Your Idea",
+        description:
+            "We believe in giving our clients the freedom to express their ideas so the final product reflects their initial thought.",
+        icon: ideaIcon,
+        bgArt: ideaArt,
+        number: "01",
+    },
+    {
+        title: "Our creativity",
+        description:
+            "Once we get your input, now's the time for you to sitback and let our creativity dothe wonders.",
+        icon: creativityIcon,
+        bgArt: creativityArt,
+        number: "02",
+    },
+    {
+        title: "Make the magic",
+        description:
+            "The stage where the magic begins. The exquisite touch of our maestros brings mereideas to life. We put every essence of your thought in the final product.",
+        icon: magicIcon,
+        bgArt: magicArt,
+        number: "03",
+    },
+    {
+        title: "Delivered to you",
+        description:
+            "We hate to keep our clients waiting for their project. Your project getsdelivered to you as soon as we are done perfecting the minute details. We keep in touch unless you are satisfied.",
+        icon: deliveredIcon,
+        bgArt: deliveredArt,
+        number: "04",
+    },
+];
+---
+
+<section
+    class="process-section md:rounded-t-0 relative flex flex-col overflow-hidden rounded-t-4xl px-[8%] py-12 lg:py-20 xl:py-28 2xl:py-36"
+>
+    <!-- Decorative background elements -->
+    <div class="process-bg-circle-1"></div>
+    <div class="process-bg-circle-2"></div>
+    <div class="process-bg-dots"></div>
+
+    <h2
+        class="process-title relative z-10 mb-8 text-center text-3xl leading-20 font-bold text-black uppercase md:mb-16 md:text-4xl lg:text-5xl xl:text-6xl"
+    >
+        Our <span class="text-gradient-start">Process</span>
+    </h2>
+
+    <div
+        class="process-grid relative z-10 grid w-full grid-cols-2 justify-between gap-3 sm:gap-4 md:gap-6 xl:grid-cols-4"
+    >
+        {
+            processes.map((process, idx) => (
+                <div class="process-card-wrapper relative">
+                    <div class="process-number hidden xl:flex">
+                        {process.number}
+                    </div>
+                    <div class="process-connector" />
+                    <OurProcessCard
+                        title={process.title}
+                        description={process.description}
+                        icon={process.icon}
+                        bgArt={process.bgArt}
+                    />
+                </div>
+            ))
+        }
+    </div>
+</section>
+
+<script>
+    import { gsap } from "../../utils/gsapUtils";
+    import { ScrollTrigger } from "../../utils/gsapUtils";
+
+    const isMobile = window.innerWidth < 1280;
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Title animation
+        gsap.from(".process-title", {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "back.out(1.7)",
+        });
+
+        // Background elements animation
+        gsap.from(".process-bg-circle-1, .process-bg-circle-2", {
+            scale: 0,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.2,
+            ease: "elastic.out(1, 0.3)",
+        });
+
+        gsap.from(".process-bg-dots", {
+            opacity: 0,
+            scale: 0.5,
+            duration: 1,
+            ease: "power2.out",
+        });
+
+        // Cards staggered animation
+        gsap.from(".process-card-wrapper", {
+            y: isMobile ? 50 : 100,
+            opacity: 0,
+            duration: isMobile ? 0.6 : 0.8,
+            stagger: isMobile ? 0.1 : 0.05,
+            ease: "back.out(0.4)",
+            scrollTrigger: {
+                trigger: ".process-grid",
+                start: "top 80%",
+                toggleActions: "play none none none",
+            },
+        });
+
+        // Desktop-only animations
+        if (!isMobile) {
+            // Process flow line animation
+            gsap.from(".process-flow-line", {
+                scaleX: 0,
+                transformOrigin: "left center",
+                duration: 1.5,
+                ease: "power2.inOut",
+            });
+
+            // Numbers animation
+            gsap.from(".process-number", {
+                scale: 0,
+                rotation: -90,
+                opacity: 0,
+                duration: 0.6,
+                stagger: 0.15,
+                delay: 0.5,
+                ease: "back.out(1.7)",
+                scrollTrigger: {
+                    trigger: ".process-grid",
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                },
+            });
+
+            // Process connectors
+            gsap.from(".process-connector", {
+                width: 0,
+                duration: 1.2,
+                stagger: 0.25,
+                delay: 0.8,
+                ease: "power2.inOut",
+                scrollTrigger: {
+                    trigger: ".process-grid",
+                    start: "top 80%",
+                    toggleActions: "play none none none",
+                },
+            });
+        }
+
+        // Hover effects for cards (desktop only)
+        if (!isMobile) {
+            const cards = document.querySelectorAll(".process-card");
+
+            cards.forEach((card) => {
+                card.addEventListener("mouseenter", () => {
+                    gsap.to(card, {
+                        y: -15,
+                        scale: 1.05,
+                        boxShadow: "0 20px 40px rgba(128, 103, 206, 0.3)",
+                        duration: 0.3,
+                    });
+
+                    const icon = card.querySelector(".process-icon img");
+                    if (icon) {
+                        gsap.to(icon, {
+                            rotation: 10,
+                            scale: 1.1,
+                            duration: 0.5,
+                            ease: "elastic.out(1.2, 0.5)",
+                        });
+                    }
+                });
+
+                card.addEventListener("mouseleave", () => {
+                    gsap.to(card, {
+                        y: 0,
+                        scale: 1,
+                        boxShadow: "0 8px 20px rgba(128, 103, 206, 0.15)",
+                        duration: 0.5,
+                        ease: "power2.out",
+                    });
+
+                    const icon = card.querySelector(".process-icon img");
+                    if (icon) {
+                        gsap.to(icon, {
+                            rotation: 0,
+                            scale: 1,
+                            duration: 0.5,
+                            ease: "elastic.out(1, 0.5)",
+                        });
+                    }
+                });
+            });
+        }
+    });
+</script>
+
+<style>
+    .process-section {
+        position: relative;
+    }
+
+    /* Background decorative elements */
+    .process-bg-circle-1 {
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+            circle,
+            rgba(157, 126, 255, 0.1) 0%,
+            rgba(157, 126, 255, 0) 70%
+        );
+        top: -200px;
+        left: -200px;
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+    .process-bg-circle-2 {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+            circle,
+            rgba(157, 126, 255, 0.1) 0%,
+            rgba(157, 126, 255, 0) 70%
+        );
+        bottom: -100px;
+        right: -100px;
+        border-radius: 50%;
+        z-index: 0;
+    }
+
+    .process-bg-dots {
+        position: absolute;
+        top: 20%;
+        right: 5%;
+        width: 250px;
+        height: 250px;
+        background-image: radial-gradient(
+            rgba(157, 126, 255, 0.3) 1px,
+            transparent 1px
+        );
+        background-size: 20px 20px;
+        opacity: 0.3;
+        z-index: 0;
+    }
+
+    /* Card wrapper styling */
+    .process-card-wrapper {
+        position: relative;
+        /* ensure wrapper participates in equal-height layout */
+        display: flex;
+        align-items: stretch;
+    }
+
+    /* force grid rows to be equal height */
+    .process-grid {
+        grid-auto-rows: 1fr;
+    }
+
+    /* Number indicators - hidden on mobile */
+    .process-number {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #9d7eff, #6c45ff);
+        color: white;
+        font-weight: bold;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+        box-shadow: 0 5px 15px rgba(108, 69, 255, 0.3);
+    }
+
+    @media (min-width: 1280px) {
+        .process-card-wrapper {
+            padding-top: 45px;
+        }
+    }
+
+    /* Connectors between cards - desktop only */
+    .process-connector {
+        position: absolute;
+        top: 20px;
+        right: -50%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, #9d7eff, #6c45ff);
+        z-index: 1;
+        display: none;
+    }
+
+    @media (min-width: 1280px) {
+        .process-connector {
+            display: block;
+        }
+
+        .process-card-wrapper:last-child .process-connector {
+            display: none;
+        }
+    }
+
+    /* Card styling enhancements */
+    :global(.process-grid .process-card) {
+        border-radius: 12px;
+        padding: 20px 15px;
+        background: linear-gradient(145deg, #a788ff, #8e63ff);
+        box-shadow: 0 8px 20px rgba(128, 103, 206, 0.15);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+        overflow: hidden;
+        position: relative;
+        z-index: 2;
+    }
+
+    @media (min-width: 768px) {
+        :global(.process-grid .process-card) {
+            border-radius: 16px;
+            padding: 30px 25px;
+        }
+    }
+
+    /* Card inner elements styling */
+    :global(.process-card .process-icon) {
+        position: relative;
+        z-index: 2;
+        margin-bottom: 15px;
+    }
+
+    :global(.process-card .process-title) {
+        font-weight: bold;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 2;
+    }
+
+    :global(.process-card .process-description) {
+        position: relative;
+        z-index: 2;
+        line-height: 1.5;
+    }
+
+    /* Background art positioning */
+    :global(.process-card .process-bg-art) {
+        position: absolute;
+        right: -15px;
+        bottom: -15px;
+        width: 65%;
+        height: auto;
+        opacity: 0.2;
+        z-index: 1;
+        transition: all 0.5s ease;
+    }
+
+    :global(.process-card:hover .process-bg-art) {
+        opacity: 0.3;
+        transform: scale(1.1) rotate(5deg);
+    }
+</style>

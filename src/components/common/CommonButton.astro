@@ -1,0 +1,94 @@
+---
+const {
+    className,
+    typography = "text-xs lg:text-sm xl:text-base 2xl:text-lg",
+    href = null,
+} = Astro.props;
+---
+
+{
+    href ? (
+        <a href={href}>
+            <button
+                class={`animated-btn group bg-button-gradient relative cursor-pointer overflow-hidden rounded-3xl px-3 py-2 text-white capitalize sm:px-6 md:px-10 md:py-[10px] ${className} ${typography}`}
+            >
+                <span class="button-text flex items-center justify-center text-nowrap">
+                    <slot />
+                </span>
+            </button>
+        </a>
+    ) : (
+        <button
+            class={`animated-btn group bg-button-gradient relative cursor-pointer overflow-hidden rounded-3xl px-3 py-2 text-white capitalize sm:px-6 md:px-10 md:py-[10px] ${className} ${typography}`}
+        >
+            <span class="button-text flex items-center justify-center text-nowrap">
+                <slot />
+            </span>
+        </button>
+    )
+}
+
+<script>
+    document.querySelectorAll(".animated-btn").forEach((btn) => {
+        btn.addEventListener("mouseenter", (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            btn.style.setProperty("--mouse-x", `${x}px`);
+            btn.style.setProperty("--mouse-y", `${y}px`);
+            btn.classList.add("hovered");
+        });
+        btn.addEventListener("mouseleave", (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            btn.style.setProperty("--mouse-x", `${x}px`);
+            btn.style.setProperty("--mouse-y", `${y}px`);
+            btn.classList.remove("hovered");
+        });
+    });
+</script>
+
+<style>
+    .button-text {
+        position: relative;
+        z-index: 2;
+        transition: color 0.4s;
+    }
+
+    button.relative {
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(90deg, #9d7eff, #8067ce);
+        color: white;
+        overflow: hidden;
+    }
+
+    /* Overlay for hover effect */
+    button.relative::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: white;
+        clip-path: circle(0% at var(--mouse-x, 50%) var(--mouse-y, 50%));
+        transition: clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1;
+        box-shadow: 0 2px 8px rgba(128, 103, 206, 0.08) inset;
+        border: 1.5px solid rgba(157, 126, 255, 0.18);
+    }
+
+    button.relative.hovered::before {
+        clip-path: circle(150% at var(--mouse-x, 50%) var(--mouse-y, 50%));
+    }
+
+    button.relative:hover {
+        filter: drop-shadow(1px 1px 5px #9d7eff88);
+        scale: 1.01;
+    }
+    /* Text switches to gradient when hovered */
+    button.relative.hovered .button-text {
+        background: linear-gradient(90deg, #9d7eff, #8067ce);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+</style>

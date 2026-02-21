@@ -1,0 +1,499 @@
+---
+import Image from "astro/components/Image.astro";
+import Logo from "../../assets/logo-without-text.png";
+import Diamond from "../../assets/logo-design/diamond.png";
+import Icon2 from "../../assets/logo-design/2.png";
+import Icon3 from "../../assets/logo-design/3.png";
+import Icon4 from "../../assets/logo-design/4.png";
+import Icon5 from "../../assets/logo-design/5.png";
+import Icon6 from "../../assets/logo-design/6.png";
+---
+
+<section
+    class="internal-padding flex flex-col gap-y-4 md:flex-row md:gap-y-0"
+    id="why-logo-section"
+>
+    <div class="logo-heading md:min-w-1/4">
+        <h2 class="mb-8 text-4xl font-semibold text-[#000047] md:text-[54px]">
+            Why Logo Designs Matter?
+        </h2>
+        <Image
+            src={Logo}
+            alt="Nixxon Australia Logo"
+            class="logo-image mx-auto h-32 w-auto md:mx-0"
+        />
+    </div>
+    <div
+        class="logo-cards-grid grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3"
+    >
+        <article
+            class="logo-card cursor-pointer rounded-lg bg-[#F5F5F5] p-6 text-[#3A3939]"
+        >
+            <div class="card-icon-wrapper">
+                <Image
+                    src={Diamond}
+                    alt="Diamond Icon"
+                    class="card-icon mb-3 h-12 w-12"
+                />
+                <div class="icon-glow"></div>
+            </div>
+            <h3
+                class="card-title mb-4 text-base font-semibold md:text-lg lg:text-[22px] xl:mb-6 xl:text-[28px]"
+            >
+                Define Your Brand
+            </h3>
+            <p class="card-text text-xs md:text-sm xl:text-base">
+                A Logo that represents your company and what you stand for
+                creates a brand persona that leaves a lasting impression.
+            </p>
+        </article>
+        <article
+            class="logo-card cursor-pointer rounded-lg bg-[#F5F5F5] p-6 text-[#3A3939]"
+        >
+            <div class="card-icon-wrapper">
+                <Image
+                    src={Icon2}
+                    alt="Brand Trust Icon"
+                    class="card-icon mb-3 h-12 w-12"
+                />
+                <div class="icon-glow"></div>
+            </div>
+            <h3
+                class="card-title mb-4 text-base font-semibold md:text-lg lg:text-[22px] xl:mb-6 xl:text-[28px]"
+            >
+                Inspire Instant Trust
+            </h3>
+            <p class="card-text text-xs md:text-sm xl:text-base">
+                A Logo that represents your company and what you stand for
+                creates a brand persona that leaves a lasting impression.
+            </p>
+        </article>
+        <article
+            class="logo-card cursor-pointer rounded-lg bg-[#F5F5F5] p-6 text-[#3A3939]"
+        >
+            <div class="card-icon-wrapper">
+                <Image
+                    src={Icon3}
+                    alt="Elevate Icon"
+                    class="card-icon mb-3 h-12 w-12"
+                />
+                <div class="icon-glow"></div>
+            </div>
+            <h3
+                class="card-title mb-4 text-base font-semibold md:text-lg lg:text-[22px] xl:mb-6 xl:text-[28px]"
+            >
+                Elevate Every Interaction
+            </h3>
+            <p class="card-text text-xs md:text-sm xl:text-base">
+                A Logo that represents your company and what you stand for
+                creates a brand persona that leaves a lasting impression.
+            </p>
+        </article>
+        <article
+            class="logo-card cursor-pointer rounded-lg bg-[#F5F5F5] p-6 text-[#3A3939]"
+        >
+            <div class="card-icon-wrapper">
+                <Image
+                    src={Icon4}
+                    alt="Consistency Icon"
+                    class="card-icon mb-3 h-12 w-12"
+                />
+                <div class="icon-glow"></div>
+            </div>
+            <h3
+                class="card-title mb-4 text-base font-semibold md:text-lg lg:text-[22px] xl:mb-6 xl:text-[28px]"
+            >
+                Build Unshakable Consistency
+            </h3>
+            <p class="card-text text-xs md:text-sm xl:text-base">
+                A Logo that represents your company and what you stand for
+                creates a brand persona that leaves a lasting impression.
+            </p>
+        </article>
+        <article
+            class="logo-card cursor-pointer rounded-lg bg-[#F5F5F5] p-6 text-[#3A3939]"
+        >
+            <div class="card-icon-wrapper">
+                <Image
+                    src={Icon5}
+                    alt="Consistency Icon"
+                    class="card-icon mb-3 h-12 w-12"
+                />
+                <div class="icon-glow"></div>
+            </div>
+            <h3
+                class="card-title mb-4 text-base font-semibold md:text-lg lg:text-[22px] xl:mb-6 xl:text-[28px]"
+            >
+                Build Unshakable Consistency
+            </h3>
+            <p class="card-text text-xs md:text-sm xl:text-base">
+                A Logo that represents your company and what you stand for
+                creates a brand persona that leaves a lasting impression.
+            </p>
+        </article>
+        <article
+            class="logo-card cursor-pointer rounded-lg bg-[#F5F5F5] p-6 text-[#3A3939]"
+        >
+            <div class="card-icon-wrapper">
+                <Image
+                    src={Icon6}
+                    alt="Legacy Icon"
+                    class="card-icon mb-3 h-12 w-12"
+                />
+                <div class="icon-glow"></div>
+            </div>
+            <h3
+                class="card-title mb-4 text-base font-semibold md:text-lg lg:text-[22px] xl:mb-6 xl:text-[28px]"
+            >
+                Leave a Legacy
+            </h3>
+            <p class="card-text text-xs md:text-sm xl:text-base">
+                A Logo that represents your company and what you stand for
+                creates a brand persona that leaves a lasting impression.
+            </p>
+        </article>
+    </div>
+</section>
+
+<script>
+    import { gsap, ScrollTrigger } from "../../utils/gsapUtils.js";
+
+    // Only run animations if user hasn't requested reduced motion
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (!prefersReducedMotion) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate heading and logo on scroll into view
+        gsap.from("#why-logo-section .logo-heading", {
+            y: 30,
+            opacity: 0,
+            duration: 0.7,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: "#why-logo-section",
+                start: "top 85%",
+            },
+        });
+
+        // Animate the logo image with a slight delay
+        gsap.from(".logo-image", {
+            scale: 0.85,
+            opacity: 0,
+            duration: 0.6,
+            delay: 0.2,
+            ease: "back.out(1.2)",
+            scrollTrigger: {
+                trigger: "#why-logo-section",
+                start: "top 85%",
+            },
+        });
+
+        // ENHANCED: Staggered entry animations for cards
+        gsap.from(".logo-card", {
+            y: 50,
+            opacity: 0,
+            scale: 0.9,
+            stagger: 0.1,
+            duration: 0.7,
+            ease: "back.out(1.2)",
+            scrollTrigger: {
+                trigger: ".logo-cards-grid",
+                start: "top 85%",
+            },
+        });
+
+        // ENHANCED: Continuous subtle animations for all icons
+        const iconTimelines = [];
+
+        document.querySelectorAll(".card-icon").forEach((icon, index) => {
+            // Create a unique floating animation for each icon
+            const tl = gsap.timeline({
+                repeat: -1,
+                yoyo: true,
+                defaults: { ease: "sine.inOut" },
+            });
+
+            // Randomize the animation slightly for each icon
+            const floatDuration = 2.5 + Math.random() * 1.5;
+            const rotationAmount = 5 + Math.random() * 3;
+            const delay = index * 0.2;
+
+            tl.to(icon, {
+                y: -5 - Math.random() * 3,
+                rotation:
+                    Math.random() > 0.5 ? rotationAmount : -rotationAmount,
+                duration: floatDuration,
+                delay: delay,
+            }).to(icon, {
+                y: 0,
+                rotation: 0,
+                duration: floatDuration,
+            });
+
+            iconTimelines.push(tl);
+
+            // Animate the glow effect
+            const glowEl = icon
+                .closest(".card-icon-wrapper")
+                .querySelector(".icon-glow");
+            gsap.to(glowEl, {
+                opacity: 0.5 + Math.random() * 0.3,
+                scale: 1.1 + Math.random() * 0.2,
+                duration: 1.5 + Math.random() * 1,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: delay,
+            });
+        });
+
+        // ENHANCED: Hover effects for cards
+        document.querySelectorAll(".logo-card").forEach((card) => {
+            const icon = card.querySelector(".card-icon");
+            const iconWrapper = card.querySelector(".card-icon-wrapper");
+            const title = card.querySelector(".card-title");
+            const text = card.querySelector(".card-text");
+            const glow = card.querySelector(".icon-glow");
+
+            // Find the associated timeline for this card's icon
+            const cardIndex = [
+                ...document.querySelectorAll(".logo-card"),
+            ].indexOf(card);
+            const iconTimeline = iconTimelines[cardIndex];
+
+            // Setup hover animations
+            card.addEventListener("mouseenter", () => {
+                // Pause the floating animation
+                if (iconTimeline) iconTimeline.pause();
+
+                // Create hover animation
+                gsap.to(card, {
+                    y: -10,
+                    scale: 1.02,
+                    boxShadow:
+                        "0 15px 30px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05)",
+                    backgroundColor: "#FFFFFF",
+                    duration: 0.4,
+                    ease: "power2.out",
+                });
+
+                gsap.to(icon, {
+                    rotation: 15,
+                    scale: 1.2,
+                    duration: 0.5,
+                    ease: "back.out(1.7)",
+                });
+
+                gsap.to(glow, {
+                    opacity: 0.8,
+                    scale: 1.5,
+                    duration: 0.4,
+                });
+
+                gsap.to(title, {
+                    y: -2,
+                    color: "#4B00A3",
+                    duration: 0.3,
+                    ease: "power2.out",
+                });
+
+                gsap.to(text, {
+                    y: -1,
+                    opacity: 0.9,
+                    duration: 0.3,
+                    ease: "power2.out",
+                });
+            });
+
+            card.addEventListener("mouseleave", () => {
+                // Resume the floating animation
+                if (iconTimeline) iconTimeline.resume();
+
+                gsap.to(card, {
+                    y: 0,
+                    scale: 1,
+                    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.05)",
+                    backgroundColor: "#F5F5F5",
+                    duration: 0.5,
+                    ease: "power2.out",
+                });
+
+                gsap.to(icon, {
+                    rotation: 0,
+                    scale: 1,
+                    duration: 0.5,
+                    ease: "power2.out",
+                });
+
+                gsap.to(glow, {
+                    opacity: 0.3,
+                    scale: 1,
+                    duration: 0.5,
+                });
+
+                gsap.to(title, {
+                    y: 0,
+                    color: "#3A3939",
+                    duration: 0.3,
+                    ease: "power2.out",
+                });
+
+                gsap.to(text, {
+                    y: 0,
+                    opacity: 0.8,
+                    duration: 0.3,
+                    ease: "power2.out",
+                });
+            });
+
+            // Add click animation
+            card.addEventListener("click", () => {
+                gsap.to(card, {
+                    scale: 0.97,
+                    duration: 0.1,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        gsap.to(card, {
+                            scale: 1.02,
+                            duration: 0.2,
+                            ease: "back.out(1.5)",
+                        });
+                    },
+                });
+
+                gsap.to(icon, {
+                    scale: 0.9,
+                    duration: 0.1,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        gsap.to(icon, {
+                            scale: 1.2,
+                            duration: 0.2,
+                            ease: "back.out(1.5)",
+                        });
+                    },
+                });
+            });
+        });
+
+        // Subtle parallax scroll effect on cards
+        gsap.to(".logo-card", {
+            y: -15,
+            stagger: 0.05,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#why-logo-section",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.5,
+            },
+        });
+    }
+</script>
+
+<style>
+    .logo-card {
+        transition:
+            transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+            box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+            background-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .card-icon-wrapper {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .card-icon {
+        position: relative;
+        z-index: 2;
+        transition: transform 0.3s ease;
+        will-change: transform;
+        filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
+    }
+
+    .icon-glow {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: radial-gradient(
+            circle,
+            rgba(75, 0, 163, 0.2) 0%,
+            rgba(75, 0, 163, 0) 70%
+        );
+        top: 0;
+        left: 0;
+        z-index: 1;
+        opacity: 0.3;
+        transform: scale(1);
+        will-change: opacity, transform;
+    }
+
+    .card-title,
+    .card-text {
+        position: relative;
+        will-change: transform, opacity;
+    }
+
+    /* Add animated background shine effect */
+    .logo-card::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            to bottom right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(30deg);
+        opacity: 0;
+        transition: opacity 0.6s ease;
+        pointer-events: none;
+    }
+
+    .logo-card:hover::after {
+        animation: shine 1.5s forwards;
+    }
+
+    .logo-image {
+        animation: linear spin 15s infinite;
+    }
+
+    @keyframes shine {
+        0% {
+            opacity: 0;
+            transform: translateX(-100%) rotate(30deg);
+        }
+        20% {
+            opacity: 0.2;
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(100%) rotate(30deg);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .logo-card,
+        .card-icon,
+        .icon-glow,
+        .card-title,
+        .card-text {
+            transition: none !important;
+            animation: none !important;
+        }
+    }
+</style>

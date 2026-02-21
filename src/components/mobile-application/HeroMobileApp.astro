@@ -1,0 +1,154 @@
+---
+import HeroArt from "../../assets/mobile-application.png";
+import CommonButton from "../common/CommonButton.astro";
+import Image from "astro/components/Image.astro";
+---
+
+<section
+    class="hero-section relative overflow-hidden bg-[#4B00A3] pt-20 text-white md:min-h-screen lg:ml-[65px] lg:rounded-l-3xl lg:pt-0 xl:ml-[88px]"
+>
+    <div
+        class="flex h-full flex-col pt-8 pl-4 md:min-h-screen lg:mt-0 lg:flex-row lg:items-end lg:justify-between lg:pt-0 lg:pb-12 lg:pl-8 2xl:pb-16 2xl:pl-12"
+    >
+        <!-- Left -->
+        <div
+            class="z-10 w-full lg:w-[75%] lg:px-0 xl:w-[70%] xl:pb-12 2xl:w-[65%] 2xl:pb-0"
+        >
+            <h1
+                class="3xl:text-[86px] 3xl:leading-[100px] mb-2 text-[32px] font-medium capitalize md:text-[42px] lg:mb-4 lg:text-[56px] lg:leading-[60px] xl:text-[66px] xl:leading-[70px] 2xl:text-[76px] 2xl:leading-[85px]"
+            >
+                Turning complex challenges into beautifully engineered
+                <span class="font-bold">applications</span>.
+            </h1>
+            <p
+                class="mb-2 text-[10px] font-medium tracking-[1px] md:text-xs lg:mb-4 xl:mb-8 xl:text-sm 2xl:text-base 2xl:leading-6"
+            >
+                We build intuitive iOS and Android applications that drive
+                business growth and scalability. By combining the latest
+                technologies with real user insights, our skilled developers
+                craft apps that deliver seamless functionality and exceptional
+                user experiences. From concept to launch, our solutions are
+                designed to accelerate your digital journey and empower your
+                business in the competitive marketplace.
+            </p>
+            <div class="flex items-center space-x-4">
+                <CommonButton
+                    className="text-xs font-semibold md:text-sm lg:text-base"
+                >
+                    Lets Talk
+                </CommonButton>
+            </div>
+        </div>
+
+        <!-- Right -->
+        <div
+            class="z-0 ml-auto w-auto lg:absolute lg:right-0 lg:bottom-12 lg:w-[80%] xl:bottom-12 xl:w-[70%] 2xl:bottom-4 2xl:w-[65%]"
+        >
+            <Image
+                id="hand-tilt"
+                src={HeroArt}
+                alt="Mobile Application Hero Image"
+                class="w-full cursor-pointer"
+            />
+        </div>
+    </div>
+</section>
+
+<script>
+    // import { gsap, ScrollTrigger } from "../../utils/gsapUtils.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Hand tilt effect (keep your existing code)
+        const hand = document.getElementById("hand-tilt");
+        if (hand) {
+            hand.style.transition = "transform 0.3s";
+            hand.addEventListener("mouseenter", () => {
+                hand.style.transform = "scale(1.08)";
+            });
+            hand.addEventListener("mousemove", (e) => {
+                const rect = hand.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * 18;
+                const rotateY = ((x - centerX) / centerX) * 18;
+                hand.style.transform = `scale(1.08) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            hand.addEventListener("mouseleave", () => {
+                hand.style.transition = "transform 0.5s";
+                hand.style.transform = "scale(1) rotateX(0deg) rotateY(0deg)";
+                setTimeout(() => {
+                    hand.style.transition = "transform 0.3s";
+                }, 500);
+            });
+        }
+
+        // GSAP entrance animation for hero content
+        // gsap.from(".hero-section .z-10", {
+        //   y: 60,
+        //   opacity: 0,
+        //   duration: 1,
+        //   ease: "power3.out",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top 80%",
+        //   },
+        // });
+
+        // gsap.from("#hand-tilt", {
+        //   x: 80,
+        //   opacity: 0,
+        //   duration: 1.1,
+        //   ease: "power3.out",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top 80%",
+        //   },
+        // });
+
+        // gsap.to("#hand-tilt", {
+        //   y: -40,
+        //   ease: "none",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top top",
+        //     end: "bottom top",
+        //     scrub: true,
+        //   },
+        // });
+    });
+</script>
+
+<style>
+    .animated-gradient-text {
+        background: linear-gradient(
+            90deg,
+            #fff 0%,
+            #7f5cff 25%,
+            #00e0ff 50%,
+            #ff6bcb 75%,
+            #fff 100%
+        );
+        background-size: 200% 100%;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        animation: gradient-move 3s linear infinite;
+        background-repeat: repeat;
+    }
+    @keyframes gradient-move {
+        0% {
+            background-position: 0% 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+</style>
+
+<!-- cubic-bezier(.22,1,.36,1), box-shadow 0.3s cubic-bezier(.22,1,.36,1) 
+ 
+ cubic-bezier(.22,1,.36,1), box-shadow 0.5s cubic-bezier(.22,1,.36,1)
+  cubic-bezier(.22,1,.36,1), box-shadow 0.3s cubic-bezier(.22,1,.36,1)
+-->

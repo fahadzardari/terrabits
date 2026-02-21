@@ -1,0 +1,529 @@
+---
+import Logo from "../../assets/logo.png";
+import Image from "astro/components/Image.astro";
+import CommonButton from "./CommonButton.astro";
+
+// Get current URL to determine active page
+const currentPath = Astro.url.pathname;
+
+// Navigation items configuration
+const navItems = [
+    { label: "Home", href: "/" },
+    { label: "About Us", href: "/about" },
+    {
+        label: "Services",
+        href: "/services",
+        dropdown: [
+            {
+                label: "Web Development",
+                href: "/services/web-development",
+                icon: "M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z",
+            },
+            {
+                label: "Logo Design",
+                href: "/services/logo-design",
+                icon: "M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z",
+            },
+            {
+                label: "Branding",
+                href: "/services/branding",
+                icon: "M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z",
+            },
+            {
+                label: "Digital Marketing",
+                href: "/services/digital-marketing",
+                icon: "M3 3h14v2H3V3zm2 4h10v2H5V7zm-2 4h14v6H3v-6z",
+            },
+            {
+                label: "Mobile Application",
+                href: "/services/mobile-application",
+                icon: "M7 2h6v1H7V2zm6 15H7V4h6v13zM9 18h2v1H9v-1z",
+            },
+            {
+                label: "Video Animation",
+                href: "/services/video-animation",
+                icon: "M4 4h8v12H4zM14 7l4 3-4 3V7z",
+            },
+        ],
+    },
+    { label: "Work", href: "/case-studies" },
+];
+---
+
+<aside id="wrapper-sidebar">
+    <div
+        id="sidebar"
+        class="fixed top-0 left-0 z-50 hidden h-screen w-[65px] bg-[#f8f8f8] lg:block xl:w-[88px]"
+    >
+        <svg
+            width="13"
+            height="52"
+            viewBox="0 0 13 52"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="mx-auto mt-4"
+        >
+            <line x1="0.5" y1="0" x2="0.5" y2="52" stroke="#000047"></line>
+            <line x1="12.5" y1="0" x2="12.5" y2="52" stroke="#000047"></line>
+        </svg>
+        <div class="absolute right-2 h-[95%] w-[1px] bg-[#DADEFF]"></div>
+        <div class="absolute top-4 right-2 h-[10%] w-[1.5px] bg-[#606DD1]">
+        </div>
+    </div>
+</aside>
+
+<!-- Desktop Navigation -->
+<nav
+    class="fixed top-0 right-0 left-0 z-50 flex w-full lg:left-[65px] lg:w-[calc(100vw-65px)] xl:left-[88px] xl:w-[calc(100vw-88px)]"
+>
+    <div class="flex w-full justify-between">
+        <div
+            id="nav-container"
+            class="flex w-full items-center bg-[#f8f8f8] px-4 py-3 shadow-xs transition-all duration-300 md:px-4 md:py-2 lg:w-auto lg:rounded-br-[1.5rem] lg:px-4 lg:py-2"
+        >
+            <div
+                class="flex max-w-[100px] min-w-[100px] items-center md:mr-6 lg:mr-8 xl:mr-10 xl:min-w-[120px] 2xl:mr-12 2xl:min-w-[170px]"
+            >
+                <a href="/">
+                    <Image
+                        src={Logo}
+                        alt="Nixxon Australia Logo"
+                        class="h-auto w-full max-w-[150px] min-w-[150px] lg:max-w-[100px] lg:min-w-[100px] xl:min-w-[120px] 2xl:min-w-[170px]"
+                    />
+                </a>
+            </div>
+
+            <ul
+                class="3xl:text-xl hidden items-center gap-x-2 text-sm font-medium text-nowrap text-[#000000] md:gap-x-4 md:text-base lg:flex lg:gap-x-6 lg:text-[15px] xl:gap-x-10 2xl:gap-x-12 2xl:text-lg"
+            >
+                {
+                    navItems.map((item) => (
+                        <li class={item.dropdown ? "group relative" : ""}>
+                            {item.dropdown ? (
+                                <div>
+                                    <a
+                                        href={item.href}
+                                        class={`flex items-center space-x-1 rounded-full px-2.5 py-1.5 text-sm transition-all duration-200 md:text-base xl:px-3 xl:py-2 ${
+                                            currentPath === item.href ||
+                                            currentPath.startsWith(
+                                                item.href + "/",
+                                            )
+                                                ? "bg-[#9D7EFF] text-white shadow-md"
+                                                : "group-hover:bg-[#9D7EFF]/10 group-hover:text-[#9D7EFF] hover:bg-[#9D7EFF]/10 hover:text-[#9D7EFF]"
+                                        }`}
+                                    >
+                                        <span>{item.label}</span>
+                                        <svg
+                                            class="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180 md:h-4 md:w-4"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M19 9l-7 7-7-7"
+                                            />
+                                        </svg>
+                                    </a>
+                                    <ul class="animate-fade-in absolute left-0 hidden w-56 overflow-hidden rounded-xl border border-gray-200 bg-white pt-2 text-sm shadow-xl group-hover:block md:w-64 md:text-base">
+                                        {item.dropdown.map((subItem) => (
+                                            <li>
+                                                <a
+                                                    href={subItem.href}
+                                                    class={`block border-l-4 px-4 py-3 transition-all duration-150 ${
+                                                        currentPath ===
+                                                        subItem.href
+                                                            ? "border-l-[#9D7EFF] bg-[#9D7EFF]/10 font-semibold text-[#9D7EFF]"
+                                                            : "border-l-transparent hover:border-l-[#9D7EFF]/50 hover:bg-[#9D7EFF]/5 hover:pl-5 hover:text-[#9D7EFF]"
+                                                    }`}
+                                                >
+                                                    <div class="flex items-center space-x-3">
+                                                        <svg
+                                                            class="h-4 w-4"
+                                                            fill="currentColor"
+                                                            viewBox="0 0 20 20"
+                                                        >
+                                                            <path
+                                                                d={subItem.icon}
+                                                                fill-rule="evenodd"
+                                                                clip-rule="evenodd"
+                                                            />
+                                                        </svg>
+                                                        <span>
+                                                            {subItem.label}
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ) : (
+                                <a
+                                    href={item.href}
+                                    class={`rounded-full px-2.5 py-1.5 text-sm transition-all duration-200 md:text-base xl:px-3 xl:py-2 ${
+                                        currentPath === item.href
+                                            ? "bg-[#9D7EFF] text-white shadow-md"
+                                            : "hover:bg-[#9D7EFF]/10 hover:text-[#9D7EFF]"
+                                    }`}
+                                >
+                                    {item.label}
+                                </a>
+                            )}
+                        </li>
+                    ))
+                }
+            </ul>
+
+            <div
+                id="inner-button"
+                class="pointer-events-none my-auto ml-auto hidden opacity-0 transition-opacity duration-300 md:block"
+            >
+                <CommonButton
+                    className="chat-cta my-auto mr-2 px-2.5 py-1.5 text-sm md:mr-4 xl:px-4 xl:py-2 xl:text-base"
+                >
+                    Book A discovery call
+                </CommonButton>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button
+                id="mobile-menu-button"
+                class="ml-auto block lg:hidden"
+                aria-label="Open menu"
+            >
+                <svg
+                    width="52"
+                    height="13"
+                    viewBox="0 0 52 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <line
+                        x1="52"
+                        y1="0.5"
+                        x2="-4.37114e-08"
+                        y2="0.499995"
+                        stroke="#000047"></line>
+                    <line
+                        x1="52"
+                        y1="12.5"
+                        x2="-4.37114e-08"
+                        y2="12.5"
+                        stroke="#000047"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div
+            id="outer-button"
+            class="my-auto hidden transition-opacity duration-300 lg:block"
+        >
+            <CommonButton
+                className="chat-cta my-4 mr-2 px-2.5 py-1.5 text-sm md:mr-8 md:px-3 md:py-2 md:text-base lg:px-4 xl:px-6"
+            >
+                Book A discovery call
+            </CommonButton>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div
+    id="mobile-menu"
+    class="fixed inset-0 z-[100] translate-x-full transform bg-white transition-transform duration-300 ease-in-out"
+>
+    <div class="flex items-center justify-between p-4">
+        <a href="/" class="block">
+            <Image
+                src={Logo}
+                alt="Nixxon Australia Logo"
+                class="h-auto w-[100px]"
+            />
+        </a>
+        <button
+            id="close-menu-button"
+            class="text-black"
+            aria-label="Close menu"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+
+    <div class="px-4 py-8">
+        <ul class="space-y-4">
+            {
+                navItems.map((item) => (
+                    <li class={item.dropdown ? "relative" : ""}>
+                        {item.dropdown ? (
+                            <>
+                                <a
+                                    href={item.href}
+                                    class={`flex items-center justify-between rounded-full px-4 py-2 text-base ${
+                                        currentPath === item.href ||
+                                        currentPath.startsWith(item.href + "/")
+                                            ? "bg-[#9D7EFF] text-white"
+                                            : "text-black"
+                                    }`}
+                                >
+                                    <span>{item.label}</span>
+                                    <button
+                                        class="mobile-services-toggle p-2"
+                                        data-dropdown-id={`mobile-${item.label.toLowerCase().replace(/\s+/g, "-")}-dropdown`}
+                                    >
+                                        <svg
+                                            class="h-4 w-4 transition-transform duration-200"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M19 9l-7 7-7-7"
+                                            />
+                                        </svg>
+                                    </button>
+                                </a>
+                                <ul
+                                    id={`mobile-${item.label.toLowerCase().replace(/\s+/g, "-")}-dropdown`}
+                                    class="mt-2 hidden space-y-2 px-4"
+                                >
+                                    {item.dropdown.map((subItem) => (
+                                        <li>
+                                            <a
+                                                href={subItem.href}
+                                                class={`flex items-center gap-3 px-1 py-2 ${
+                                                    currentPath === subItem.href
+                                                        ? "font-semibold text-[#9D7EFF]"
+                                                        : "text-black"
+                                                }`}
+                                            >
+                                                <svg
+                                                    class="h-4 w-4"
+                                                    fill="currentColor"
+                                                    viewBox="0 0 20 20"
+                                                >
+                                                    <path
+                                                        d={subItem.icon}
+                                                        fill-rule="evenodd"
+                                                        clip-rule="evenodd"
+                                                    />
+                                                </svg>
+                                                {subItem.label}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </>
+                        ) : (
+                            <a
+                                href={item.href}
+                                class={`block rounded-full px-4 py-2 text-base ${
+                                    currentPath === item.href
+                                        ? "bg-[#9D7EFF] text-white"
+                                        : "text-black"
+                                }`}
+                            >
+                                {item.label}
+                            </a>
+                        )}
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+
+    <div
+        class="absolute right-0 bottom-8 left-0 flex w-full justify-center px-4"
+    >
+        <CommonButton className="chat-cta mx-auto w-fit py-2 text-center">
+            Book a Discovery Call
+        </CommonButton>
+    </div>
+</div>
+
+<script>
+    import { gsap, ScrollTrigger } from "../../utils/gsapUtils.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Desktop navigation functionality
+        const navContainer = document.getElementById("nav-container");
+        const innerButton = document.getElementById("inner-button");
+        const outerButton = document.getElementById("outer-button");
+        const sidebar = document.getElementById("wrapper-sidebar");
+        const nav = document.querySelector("nav");
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const closeMenuButton = document.getElementById("close-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        // Mobile menu toggle
+        if (mobileMenuButton && closeMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener("click", () => {
+                mobileMenu.classList.remove("translate-x-full");
+            });
+
+            closeMenuButton.addEventListener("click", () => {
+                mobileMenu.classList.add("translate-x-full");
+            });
+
+            // Close menu when clicking a link
+            const mobileLinks = mobileMenu.querySelectorAll("a");
+            mobileLinks.forEach((link) => {
+                link.addEventListener("click", (e) => {
+                    // Don't close if clicking the services parent link with dropdown
+                    if (!e.target.closest(".mobile-services-toggle")) {
+                        mobileMenu.classList.add("translate-x-full");
+                    }
+                });
+            });
+        }
+
+        // Mobile services dropdown toggles
+        const mobileServicesToggles = document.querySelectorAll(
+            ".mobile-services-toggle",
+        );
+        mobileServicesToggles.forEach((toggle) => {
+            toggle.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const dropdownId = toggle.getAttribute("data-dropdown-id");
+                const dropdown = document.getElementById(dropdownId);
+                const svg = toggle.querySelector("svg");
+
+                if (dropdown) {
+                    if (dropdown.classList.contains("hidden")) {
+                        dropdown.classList.remove("hidden");
+                        svg?.classList.add("rotate-180");
+                    } else {
+                        dropdown.classList.add("hidden");
+                        svg?.classList.remove("rotate-180");
+                    }
+                }
+            });
+        });
+
+        // Desktop navigation animations
+        if (
+            navContainer &&
+            innerButton &&
+            outerButton &&
+            window.innerWidth >= 1024
+        ) {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".hero-section",
+                    start: "bottom 5%",
+                    end: "bottom top",
+                    scrub: 0.01,
+                    toggleActions: "play none none reverse",
+                },
+            });
+
+            tl.fromTo(
+                navContainer,
+                { width: "60%" },
+                {
+                    width: "100%",
+                    borderRadius: 0,
+                    ease: "power2.inOut",
+                    duration: 0.3,
+                    borderBottom: "1px",
+                    borderBottomColor: "black",
+                },
+            )
+                .fromTo(
+                    outerButton,
+                    { opacity: 1, pointerEvents: "auto" },
+                    {
+                        opacity: 0,
+                        pointerEvents: "none",
+                        duration: 0.18,
+                        display: "none",
+                    },
+                    "<",
+                )
+                .fromTo(
+                    innerButton,
+                    { opacity: 0, pointerEvents: "none" },
+                    {
+                        opacity: 1,
+                        pointerEvents: "auto",
+                        duration: 0.18,
+                        marginTop: "1rem",
+                        marginBottom: "1rem",
+                    },
+                    ">",
+                );
+        }
+
+        // Sidebar pinning
+        if (sidebar && nav && window.innerWidth >= 1024) {
+            ScrollTrigger.create({
+                trigger: sidebar,
+                start: "top top",
+                endTrigger: ".our-services",
+                end: "bottom top",
+                pin: true,
+                anticipatePin: 1,
+                onLeave: () => {
+                    const isXL = window.innerWidth >= 1280;
+                    nav.style.left = "0";
+                    nav.style.width = "100vw";
+                    nav.classList.remove(
+                        isXL ? "left-[88px]" : "left-[65px]",
+                        isXL ? "w-[calc(100vw-88px)]" : "w-[calc(100vw-65px)]",
+                    );
+                    nav.classList.add("w-full");
+                    sidebar.style.display = "none";
+                },
+                onEnterBack: () => {
+                    const isXL = window.innerWidth >= 1280;
+                    nav.style.left = isXL ? "88px" : "65px";
+                    nav.style.width = "";
+                    nav.classList.remove("w-full");
+                    nav.classList.add(
+                        isXL ? "left-[88px]" : "left-[65px]",
+                        isXL ? "w-[calc(100vw-88px)]" : "w-[calc(100vw-65px)]",
+                    );
+                    sidebar.style.display = "";
+                },
+            });
+        }
+    });
+</script>
+
+<style>
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in {
+        animation: fade-in 0.2s ease-out;
+    }
+</style>

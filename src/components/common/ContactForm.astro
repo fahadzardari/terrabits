@@ -1,0 +1,170 @@
+---
+import CommonButton from "./CommonButton.astro";
+import InputBox from "./InputBox.astro";
+---
+
+<form
+    class="m-6 grid grid-cols-2 gap-x-4 gap-y-3 lg:m-14 lg:gap-x-6 lg:gap-y-5"
+>
+    <InputBox label="Full Name*" placeholder="First Name" className="w-full" />
+    <InputBox
+        label="Email Address*"
+        placeholder="name@company.co.uk"
+        className="w-full"
+    />
+    <InputBox
+        label="Telehone Number*"
+        placeholder="+44 1234 567890"
+        className="w-full"
+    />
+    <InputBox label="Budget" placeholder="Company Name" className="w-full" />
+
+    <div class="col-span-2">
+        <p
+            class="font-manrope mb-[2px] text-xs leading-5 font-medium text-[#1F2937] md:text-sm"
+        >
+            Select project type(s)
+        </p>
+        <div
+            class="font-manrope mt-2 flex flex-wrap gap-3 text-xs font-medium md:text-sm lg:gap-4 lg:text-base lg:leading-6"
+        >
+            <label class="project-type-checkbox">
+                Logo Design
+                <input
+                    type="checkbox"
+                    name="projectTypes"
+                    value="Logo Design"
+                />
+                <span class="custom-check"></span>
+            </label>
+            <label class="project-type-checkbox">
+                Website Development
+                <input
+                    type="checkbox"
+                    name="projectTypes"
+                    value="Website Development"
+                />
+                <span class="custom-check"></span>
+            </label>
+            <label class="project-type-checkbox">
+                Branding
+                <input type="checkbox" name="projectTypes" value="Branding" />
+                <span class="custom-check"></span>
+            </label>
+            <label class="project-type-checkbox">
+                Digital Marketing
+                <input
+                    type="checkbox"
+                    name="projectTypes"
+                    value="Digital Marketing"
+                />
+                <span class="custom-check"></span>
+            </label>
+            <label class="project-type-checkbox">
+                Video Animation
+                <input
+                    type="checkbox"
+                    name="projectTypes"
+                    value="Video Animation"
+                />
+                <span class="custom-check"></span>
+            </label>
+            <label class="project-type-checkbox">
+                Application Development
+                <input
+                    type="checkbox"
+                    name="projectTypes"
+                    value="Application Development"
+                />
+                <span class="custom-check"></span>
+            </label>
+            <label class="project-type-checkbox">
+                Unsure
+                <input type="checkbox" name="projectTypes" value="Unsure" />
+                <span class="custom-check"></span>
+            </label>
+        </div>
+    </div>
+    <div class="col-span-2">
+        <p
+            class="font-manrope mb-[4px] text-sm leading-5 font-medium text-[#1F2937]"
+        >
+            Project details
+        </p>
+        <textarea
+            rows="4"
+            placeholder={"Tell us about your project"}
+            class={`w-full font-manrope bg-white border focus:outline-none border-[#E5E7EB] placeholder:text-[#6B7280] text-black text-base leading-6 px-4 py-3 rounded-xl `}
+        ></textarea>
+    </div>
+
+    <CommonButton className="col-span-2 w-full">
+        Confirm & book discovery call <svg
+            width="16"
+            height="17"
+            viewBox="0 0 16 17"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="ml-2 inline"
+        >
+            <path
+                d="M14.5395 7.08984L15.313 7.86328C15.6294 8.21484 15.6294 8.74219 15.313 9.05859L8.49265 15.8789C8.14108 16.2305 7.61374 16.2305 7.29733 15.8789L0.441864 9.05859C0.125458 8.74219 0.125458 8.17969 0.441864 7.86328L1.2153 7.08984C1.56686 6.73828 2.09421 6.77344 2.44577 7.08984L6.48874 11.3438V1.21875C6.48874 0.761719 6.8403 0.375 7.33249 0.375H8.45749C8.91452 0.375 9.30124 0.761719 9.30124 1.21875V11.3438L13.3091 7.08984C13.6606 6.77344 14.188 6.73828 14.5395 7.08984Z"
+                fill="white"></path>
+        </svg></CommonButton
+    >
+    <p
+        class="col-span-2 text-center text-xs leading-5 text-[#6B7280] md:text-sm"
+    >
+        or, press Enter ⏎
+    </p>
+</form>
+
+<style>
+    /* Customized project type checkboxes */
+    .project-type-checkbox {
+        color: black;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #fff;
+        border: 2px solid #e5e7eb;
+        border-radius: 2rem;
+        padding: 0.5rem 1.4rem 0.5rem 1.1rem;
+        font-size: 1rem;
+        font-family: inherit;
+        font-weight: 500;
+        cursor: pointer;
+        position: relative;
+        transition:
+            border 0.2s,
+            box-shadow 0.2s;
+        user-select: none;
+    }
+
+    .project-type-checkbox input[type="checkbox"] {
+        display: none;
+    }
+
+    .project-type-checkbox .custom-check {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        border: 2px solid #d1d5db;
+        border-radius: 50%;
+        margin-left: 0.7rem;
+        background: #fff;
+        transition: border 0.2s;
+        position: relative;
+    }
+
+    .project-type-checkbox input[type="checkbox"]:checked + .custom-check {
+        border: 6px solid #9d7eff;
+        background: #fff;
+    }
+
+    .project-type-checkbox:hover,
+    .project-type-checkbox input[type="checkbox"]:focus + .custom-check {
+        border-color: #9d7eff;
+        box-shadow: 0 0 0 2px #ede9fe;
+    }
+</style>

@@ -1,0 +1,25 @@
+---
+import Footer from "../components/common/Footer.astro";
+
+const { title = "Nixxon Australia", bg = "#f8f8f8" } = Astro.props;
+import "../index.css";
+import Navbar from "../components/common/Navbar.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body
+        class={`m-0 flex min-h-screen min-w-screen flex-col gap-y-0 overflow-x-hidden p-0 bg-[${bg}]`}
+    >
+        <Navbar />
+        <slot />
+        <Footer />
+    </body>
+</html>

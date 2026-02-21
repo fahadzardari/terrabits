@@ -1,0 +1,355 @@
+---
+const { projects = [] } = Astro.props;
+import Image from "astro/components/Image.astro";
+import Logo1 from "../../assets/branding/portfolio/1.png";
+import Logo2 from "../../assets/branding/portfolio/2.png";
+import Logo3 from "../../assets/branding/portfolio/3.png";
+import Logo4 from "../../assets/branding/portfolio/4.png";
+import Logo5 from "../../assets/branding/portfolio/5.png";
+import Logo6 from "../../assets/branding/portfolio/6.png";
+import Logo7 from "../../assets/branding/portfolio/7.png";
+import Logo8 from "../../assets/branding/portfolio/8.png";
+import Logo9 from "../../assets/branding/portfolio/9.png";
+
+import CommonButton from "../common/CommonButton.astro";
+
+// Enhanced brand project data with colors from actual brand applications
+const brandProjects = [
+  {
+    image: Logo1,
+    title: "Coffee & Snacks",
+    industry: "Food & Beverage",
+    colors: ["#23201D", "#D4A950"],
+    description: "Premium packaging design for artisanal snack brand.",
+    assets: ["Packaging", "Logo", "Visual Identity"],
+  },
+  {
+    image: Logo2,
+    title: "3WE Studio",
+    industry: "Design Agency",
+    colors: ["#1555C2", "#7928FF"],
+    description: "Corporate identity for creative design studio.",
+    assets: ["Stationery", "Business Cards", "Brand Guidelines"],
+  },
+  {
+    image: Logo3,
+    title: "Bonafide",
+    industry: "Apparel",
+    colors: ["#161616", "#FFFFFF"],
+    description: "Custom apparel design for streetwear brand.",
+    assets: ["T-Shirts", "Merchandise", "Logo Design"],
+  },
+  {
+    image: Logo4,
+    title: "Doña",
+    industry: "Gourmet Foods",
+    colors: ["#BB6244", "#361D16"],
+    description: "Luxurious packaging for premium chocolate brand.",
+    assets: ["Packaging", "Product Cards", "Brand Identity"],
+  },
+  {
+    image: Logo5,
+    title: "Futura Studio",
+    industry: "Technology",
+    colors: ["#0F0F0F", "#1EA4E1"],
+    description: "Modern identity for forward-thinking tech studio.",
+    assets: ["Stationery", "Digital Assets", "Brand System"],
+  },
+  {
+    image: Logo6,
+    title: "Gamership",
+    industry: "Gaming & eSports",
+    colors: ["#000000", "#E635A5"],
+    description: "Vibrant branding for gaming community platform.",
+    assets: ["Apparel", "Merchandise", "Logo Design"],
+  },
+  {
+    image: Logo7,
+    title: "Bean & Brew",
+    industry: "Coffee",
+    colors: ["#2E2820", "#E84C3D"],
+    description: "Distinctive packaging for specialty coffee roaster.",
+    assets: ["Packaging", "Visual Identity", "Point of Sale"],
+  },
+  {
+    image: Logo8,
+    title: "Red Circle",
+    industry: "Marketing Agency",
+    colors: ["#DE1F26", "#FFFFFF"],
+    description: "Bold visual identity for marketing consultancy.",
+    assets: ["Stationery", "Business Cards", "Brand Collateral"],
+  },
+  {
+    image: Logo9,
+    title: "Gamership Alt",
+    industry: "Gaming & eSports",
+    colors: ["#FFFFFF", "#E635A5"],
+    description: "Alternative colorway for gaming brand.",
+    assets: ["Apparel", "Merchandise", "Brand Extensions"],
+  },
+];
+---
+
+<section class="internal-padding py-20">
+  <header class="relative mb-12">
+    <div class="mb-6 flex items-center justify-between">
+      <h2 class="mb-3 text-4xl font-semibold text-[#000047] md:text-[54px]">
+        Brands That Make an Impact
+      </h2>
+      <CommonButton className="chat-cta">
+        View Our Process <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+          class="text ml-2 transition-transform duration-300 ease-in-out group-hover:translate-x-1 group-hover:text-[#9D7EFF]"
+        >
+          <path
+            d="M0.321289 8.9375L12.2213 8.9375L6.73379 14.425L8.07129 15.75L15.8213 8L8.07129 0.25L6.73379 1.575L12.2213 7.0625L0.321289 7.0625L0.321289 8.9375Z"
+            fill="currentColor"></path>
+        </svg>
+      </CommonButton>
+    </div>
+    <p class="text-base leading-6 text-[#2B2B2B]">
+      Every brand tells a story. Our comprehensive branding solutions transform ideas into visual experiences that resonate with your audience. From packaging and print to digital applications, we create cohesive brand systems that work across all touchpoints.
+    </p>
+  </header>
+
+  <div class="mx-auto">
+    <div
+      id="brand-grid"
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      {
+        brandProjects.map((project, index) => (
+          <div
+            class="brand-card group relative overflow-hidden rounded-xl shadow-lg transition-all duration-500"
+            data-color1={project.colors[0]}
+            data-color2={project.colors[1]}
+            style={`background: linear-gradient(135deg, ${project.colors[0]}F2 0%, ${project.colors[1]}F2 100%);`}
+          >
+            <!-- Brand application showcase -->
+            <div class="brand-showcase-wrapper relative aspect-[4/3] overflow-hidden">
+              <!-- 3D tilting container -->
+              <div class="brand-showcase-inner relative h-full w-full transition-transform duration-300">
+                <!-- Main brand display -->
+                <div class="absolute inset-0 z-10 flex items-center justify-center overflow-hidden p-6">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    class="brand-asset max-h-full max-w-full object-contain shadow-lg transition-transform duration-500 ease-out group-hover:scale-105"
+                  />
+                </div>
+
+                <!-- Decorative background elements -->
+                <div class="absolute inset-0 z-0">
+                  <!-- Pattern overlay -->
+                  <div
+                    class="absolute inset-0 opacity-10"
+                    style={`background-image: radial-gradient(circle at 30% 20%, ${project.colors[1]}40 1%, transparent 10%), radial-gradient(circle at 70% 60%, ${project.colors[0]}40 1%, transparent 10%); background-size: 30px 30px;`}
+                  ></div>
+
+                  <!-- Color accent blobs -->
+                  <div
+                    class="absolute top-0 right-0 h-40 w-40 rounded-full blur-3xl opacity-20"
+                    style={`background: ${project.colors[1]}; transform: translate(30%, -30%);`}
+                  ></div>
+                  <div
+                    class="absolute bottom-0 left-0 h-40 w-40 rounded-full blur-3xl opacity-20"
+                    style={`background: ${project.colors[0]}; transform: translate(-30%, 30%);`}
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Brand info panel -->
+            <div class="brand-info relative z-20 bg-white p-6">
+              <div class="mb-2 flex items-center justify-between">
+                <h3 class="text-lg font-semibold text-[#000047]">
+                  {project.title}
+                </h3>
+                <div class="brand-colors flex gap-2">
+                  {project.colors.map((color) => (
+                    <div
+                      class="color-dot h-5 w-5 rounded-full transition-transform duration-300 group-hover:scale-110"
+                      style={`background: ${color}; box-shadow: 0 2px 5px ${color}80;`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <p class="text-sm text-[#2B2B2B]">{project.industry}</p>
+              <p class="mt-2 text-xs text-[#707070] opacity-0 transition-all duration-300 group-hover:opacity-100">
+                {project.description}
+              </p>
+
+              <!-- Brand assets tags -->
+              <div class="mt-3 flex flex-wrap gap-2">
+                {project.assets.map((asset) => (
+                  <span
+                    class="rounded-full px-2 py-1 text-xs font-medium transition-all duration-300"
+                    style={`background: ${project.colors[0]}20; color: ${project.colors[0]}; opacity: 0.7; transform: translateY(5px); opacity: 0;`}
+                  >
+                    {asset}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- View full case study button -->
+            <div
+              class="absolute bottom-4 right-4 z-20 flex h-12 w-12 items-center justify-center rounded-full opacity-0 transition-all duration-300 group-hover:opacity-100"
+              style={`background: ${project.colors[1]}; transform: translateY(10px) scale(0.8); box-shadow: 0 5px 15px ${project.colors[1]}80;`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="#FFFFFF"
+              >
+                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+              </svg>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Set up animations and effects for brand cards
+    const brandCards = document.querySelectorAll(".brand-card");
+
+    brandCards.forEach((card) => {
+      const showcaseInner = card.querySelector(".brand-showcase-inner");
+      const tags = card.querySelectorAll(".mt-3 span");
+      const viewButton = card.querySelector(".absolute.bottom-4.right-4");
+
+      // Animate in asset tags on hover with stagger
+      card.addEventListener("mouseenter", () => {
+        tags.forEach((tag, index) => {
+          setTimeout(() => {
+            tag.style.transform = "translateY(0)";
+            tag.style.opacity = "1";
+          }, 100 + index * 50);
+        });
+
+        // Animate in view button
+        if (viewButton) {
+          viewButton.style.transform = "translateY(0) scale(1)";
+        }
+      });
+
+      // Reset animations on mouse leave
+      card.addEventListener("mouseleave", () => {
+        tags.forEach((tag) => {
+          tag.style.transform = "translateY(5px)";
+          tag.style.opacity = "0";
+        });
+
+        if (viewButton) {
+          viewButton.style.transform = "translateY(10px) scale(0.8)";
+        }
+      });
+
+      // 3D tilt effect on mousemove
+      if (showcaseInner) {
+        card.addEventListener("mousemove", (e) => {
+          const cardRect = card.getBoundingClientRect();
+          const cardWidth = cardRect.width;
+          const cardHeight = cardRect.height;
+
+          // Calculate mouse position relative to card center
+          const centerX = cardRect.left + cardWidth / 2;
+          const centerY = cardRect.top + cardHeight / 2;
+          const mouseX = e.clientX - centerX;
+          const mouseY = e.clientY - centerY;
+
+          // Calculate rotation (keep subtle)
+          const rotateY = (mouseX / cardWidth) * 5;
+          const rotateX = -(mouseY / cardHeight) * 5;
+
+          // Apply transform
+          showcaseInner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        // Reset transform on mouse leave
+        card.addEventListener("mouseleave", () => {
+          showcaseInner.style.transform = "";
+        });
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Base card styling */
+  .brand-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .brand-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Showcase section styling */
+  .brand-showcase-wrapper {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+  }
+
+  .brand-showcase-inner {
+    transform-style: preserve-3d;
+    transform-origin: center;
+  }
+
+  .brand-asset {
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
+  }
+
+  /* Info panel styling */
+  .brand-info {
+    position: relative;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .brand-card:hover .brand-info {
+    transform: translateY(-5px);
+  }
+
+  /* Color dots styling */
+  .color-dot {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .color-dot:hover {
+    transform: scale(1.3) !important;
+  }
+
+  /* Animation for elements */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .brand-card:hover .mt-3 span {
+    animation: fadeIn 0.3s forwards;
+  }
+</style>

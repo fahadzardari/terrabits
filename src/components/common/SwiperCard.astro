@@ -1,0 +1,20 @@
+---
+const { title, description, textColor, serialBg, background, serialNo } =
+    Astro.props;
+---
+
+<article
+    class={`p-6 rounded-4xl cursor-pointer  h-full flex flex-col w-[220px] xl:w-[260px] 2xl:w-[350px] 3xl:w-[400px] ${background} ${textColor}`}
+>
+    <div
+        class={`aspect-square w-[26px] flex items-center justify-center rounded-full mb-4 font-semibold ${serialBg} text-white`}
+    >
+        {serialNo}
+    </div>
+    <h3
+        class="3xl:text-[26px] mb-6 leading-6 font-semibold lg:text-lg xl:text-xl 2xl:text-2xl"
+    >
+        {title}
+    </h3>
+    <p class="3xl:text-base text-xs xl:text-sm">{description}</p>
+</article>

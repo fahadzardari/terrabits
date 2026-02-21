@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Experience from "../components/home/Experience.astro";
+import Testimonials from "../components/common/Testimonials.astro";
+import HeroAbout from "../components/about/HeroAbout.astro";
+import CommonButton from "../components/common/CommonButton.astro";
+import Stats from "../components/about/Stats.astro";
+import OurMission from "../components/about/OurMission.astro";
+---
+
+<Layout title="About Us - Nixxon Australia">
+    <HeroAbout />
+
+    <Experience
+        typewriter="Firm Overview     "
+        experience="We Specialize in Transforming Your Idea or Business in the Current Digital Era."
+        actionButton={false}
+    />
+    <div
+        class="internal-padding mt-2 mb-8 flex flex-col md:mb-12 lg:mb-16 2xl:mb-24"
+    >
+        <p
+            class="mb-4 text-sm text-[#2A2111] md:mb-8 md:text-base lg:mb-12 lg:text-lg xl:text-xl 2xl:text-[22px]"
+        >
+            Our goal in the modern digital world is to make enterprises
+            possible.With the help of our innovative technologies and tailored
+            programs, your company will have all it needs to succeed and keep
+            one step ahead of the competition.
+        </p>
+        <CommonButton className="chat-cta w-full md:ml-auto md:w-fit">
+            Let's Talk
+        </CommonButton>
+    </div>
+
+    <span class="our-services h-0 w-0"> </span>
+    <Stats />
+    <OurMission />
+</Layout>
+
+<Testimonials />

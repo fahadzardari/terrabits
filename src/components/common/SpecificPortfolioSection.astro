@@ -1,0 +1,266 @@
+---
+const { projects = [] } = Astro.props;
+import Image from "astro/components/Image.astro";
+import Logo1 from "../../assets/home/portfolio/logos/1.png";
+import Logo2 from "../../assets/home/portfolio/logos/2.png";
+import Logo3 from "../../assets/home/portfolio/logos/3.png";
+import Logo4 from "../../assets/home/portfolio/logos/4.png";
+
+const logos = [Logo1, Logo2, Logo3, Logo4, Logo1, Logo2, Logo3, Logo4, Logo4];
+const filters = ["Logo Design", "Website", "Mobile App", "Video Animation"];
+
+import Website1 from "../../assets/home/portfolio/websites/1.webp";
+
+const websites = [Website1, Website1, Website1, Website1, Website1];
+
+const {
+    title = "Award Winning Portfolio",
+    subtitle = "Our Project Collection",
+    description = "Most of our customers give us a call promptly after going through our professional portfolio",
+    images = logos,
+} = Astro.props;
+---
+
+<section class="internal-padding py-20">
+    <header class="relative mx-auto mb-12 max-w-6xl text-center">
+        <h1
+            class="portfolio-bg-title absolute top-[0px] left-[30%] -z-100 mx-auto transform text-[60px] font-semibold text-[#9D7EFF] opacity-10 md:left-[35%] lg:left-0 lg:translate-x-1/2 lg:text-[144px]"
+            id="portfolio-bg-title"
+        >
+            Portfolio
+        </h1>
+        <p
+            class="text-gradient-start mb-2 text-xl font-semibold tracking-wider uppercase"
+        >
+            {subtitle}
+        </p>
+        <h2 class="mb-3 text-4xl font-semibold text-black md:text-[54px]">
+            {title}
+        </h2>
+        <p class="mx-auto max-w-2xl text-base leading-6 text-[#707070]">
+            {description}
+        </p>
+    </header>
+
+    <div class="mx-auto">
+        <div
+            id="portfolio-grid"
+            class="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-3"
+        >
+            {
+                // Default: show logos (Logo Design)
+                images.map((image, index) => (
+                    <Image
+                        src={image}
+                        alt={`Project Logo ${index + 1}`}
+                        class="portfolio-item aspect-square w-full max-w-[220px] rounded-lg md:max-w-[480px]"
+                        data-category="Logo Design"
+                    />
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    import { gsap } from "../../utils/gsapUtils.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Animate filter buttons on scroll in
+
+        // Animate portfolio items on scroll in
+        gsap.from(".portfolio-item", {
+            opacity: 0,
+            scale: 0.92,
+            y: 40,
+            stagger: 0.08,
+            duration: 0.7,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: "#portfolio-grid",
+                start: "top 85%",
+            },
+        });
+
+        // Animate items on filter change
+        const nav = document.getElementById("portfolio-filters");
+        const grid = document.getElementById("portfolio-grid");
+        if (!nav || !grid) return;
+
+        nav.addEventListener("click", (e) => {
+            const btn = e.target.closest(".portfolio-filter-btn");
+            if (!btn) return;
+            nav.querySelectorAll(".portfolio-filter-btn").forEach((b) =>
+                b.classList.remove("selected"),
+            );
+            btn.classList.add("selected");
+
+            const filter = btn.dataset.filter;
+            const items = Array.from(grid.querySelectorAll(".portfolio-item"));
+            const toHide = items.filter(
+                (item) =>
+                    item.style.display !== "none" &&
+                    item.dataset.category !== filter,
+            );
+            const toShow = items.filter(
+                (item) => item.dataset.category === filter,
+            );
+
+            // Animate out current items
+            gsap.to(toHide, {
+                opacity: 0,
+                scale: 0.92,
+                y: 40,
+                stagger: 0.05,
+                duration: 0.3,
+                ease: "power2.in",
+                onComplete: () => {
+                    toHide.forEach((item) => (item.style.display = "none"));
+                    // Animate in new items
+                    toShow.forEach((item) => {
+                        item.style.display = "";
+                        item.style.opacity = 0;
+                        item.style.transform = "scale(0.92) translateY(40px)";
+                    });
+                    gsap.to(toShow, {
+                        opacity: 1,
+                        scale: 1,
+                        y: 0,
+                        stagger: 0.07,
+                        duration: 0.5,
+                        ease: "power3.out",
+                    });
+                },
+            });
+        });
+
+        // Show only logos by default (with animation)
+        const allItems = Array.from(grid.querySelectorAll(".portfolio-item"));
+        const toShow = allItems.filter(
+            (item) => item.dataset.category === "Logo Design",
+        );
+        const toHide = allItems.filter(
+            (item) => item.dataset.category !== "Logo Design",
+        );
+        toHide.forEach((item) => (item.style.display = "none"));
+        toShow.forEach((item) => {
+            item.style.display = "";
+            item.style.opacity = 0;
+            item.style.transform = "scale(0.92) translateY(40px)";
+        });
+        gsap.to(toShow, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            stagger: 0.07,
+            duration: 0.5,
+            ease: "power3.out",
+        });
+
+        const bgTitle = document.getElementById("portfolio-bg-title");
+        const section = document.querySelector(".internal-padding.py-20");
+        if (bgTitle && section) {
+            function onScroll() {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.7) {
+                    bgTitle.classList.add("visible");
+                } else {
+                    bgTitle.classList.remove("visible");
+                }
+            }
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+        }
+    });
+</script>
+
+<style>
+    :root {
+        --gradient-start: #9d7eff;
+        --gradient-end: #8067ce;
+        --btn-inactive-bg: #ece6ff;
+        --btn-inactive-text: #8067ce;
+    }
+
+    .portfolio-filter-btn {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        padding: 0.625rem 1.5rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+        background: var(--btn-inactive-bg);
+        color: var(--btn-inactive-text);
+        transition:
+            background 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+            color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+        position: relative;
+        z-index: 1;
+        border-radius: 1.5rem;
+    }
+
+    .portfolio-filter-btn.selected {
+        background: linear-gradient(
+            90deg,
+            var(--gradient-start),
+            var(--gradient-end)
+        );
+        color: #fff;
+        box-shadow: 0 8px 30px rgba(157, 126, 255, 0.12);
+    }
+
+    .portfolio-filter-btn:not(.selected):hover {
+        background: #e0d6fa;
+        color: var(--gradient-end);
+        transform: translateY(-2px) scale(1.01);
+    }
+
+    .website-scroll-container {
+        position: relative;
+        overflow: hidden;
+        height: 410px;
+        width: 100%;
+        max-width: 480px;
+        border-radius: 0.75rem;
+        background: #fff;
+    }
+
+    .website-scroll-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        /* Make sure the image is tall enough to scroll */
+        min-height: 100%;
+        transition: transform 4s linear;
+        will-change: transform;
+    }
+
+    /* On hover, scroll the image up to reveal the bottom */
+    .website-scroll-container:hover .website-scroll-img {
+        transform: translateY(calc(-100% + 410px));
+    }
+
+    .portfolio-bg-title {
+        opacity: 0;
+        filter: blur(12px);
+        transform: translateY(40px) scale(1.08);
+        transition:
+            opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+            filter 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        pointer-events: none;
+        user-select: none;
+        z-index: 0; /* Lower than header content */
+        opacity: 0.13; /* Subtle! */
+    }
+
+    .portfolio-bg-title.visible {
+        opacity: 0.13; /* Keep it subtle when visible */
+        filter: blur(0);
+        transform: translateY(0) scale(1);
+    }
+</style>

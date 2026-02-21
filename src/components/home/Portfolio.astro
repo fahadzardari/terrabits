@@ -1,0 +1,340 @@
+---
+import CaseStudyCard from "../work/CaseStudyCard.astro";
+import GreenNest from "../../assets/work/green-nest.png";
+import BrewYouBranding from "../../assets/work/brewyou-branding.png";
+import DebbysPlace from "../../assets/work/debbys-place.png";
+import BrewYouWebsite from "../../assets/work/brewyou-website.png";
+import HalalFood from "../../assets/work/halal-foods.jpeg";
+import Genragous from "../../assets/work/genragous.png";
+import ZingFitness from "../../assets/work/zing.png";
+
+type CardType = "logo" | "website" | "mobile-app" | "video-animation";
+type Card = {
+    type: CardType;
+    title: string;
+    description: string;
+    tags: string[];
+    image: any;
+    url: string;
+};
+
+const { header = true, filterType, hideFilters = false, pageTitle } = Astro.props;
+
+let cards: Card[] = [
+    {
+        type: "logo",
+        title: "Green Nest Organic Hygiene & Skincare",
+        description:
+            "In A World Filled With Chemical-Heavy Cleaning Products, Green Nest Was Born To Offer A Gentle, Plant-Based Alternative. The Brand Focuses On Hygiene Products Infused With Organic Ingredients Like Aloe Vera, Tea Tree, And Lime.",
+        tags: ["FMCG", "Personal Care", "Herbal Handwash"],
+        image: GreenNest,
+        url: "/case-studies/green-nest",
+    },
+    {
+        type: "logo",
+        title: "Brew You Coffee Co. Branding For The Mindful Drinker",
+        description:
+            "Brew You Coffee Co. isn't just about waking up; it's about waking up right. It bridges the gap between the robust kick of artisanal coffee and the calming benefits of herbal infusions.",
+        tags: ["Logo", "Coffee Brand"],
+        image: BrewYouBranding,
+        url: "/case-studies/brew-you-coffee-branding",
+    },
+    {
+        type: "website",
+        title: "Debby's Place A Vibrant Digital Salon Experience",
+        description:
+            "Debby's Place is a premier hair studio specializing in intricate braiding, wigs, and protective hair styles. Based in Australia, they are known for their creativity and ability to transform looks. They needed a digital essence that matched the boldness and artistry of their services.",
+        tags: ["Website", "UI/UX"],
+        image: DebbysPlace,
+        url: "/case-studies/debbys-place",
+    },
+    {
+        type: "website",
+        title: "Brew You Coffee Co. A Sensory Digital Experience",
+        description:
+            "Brew You Coffee Co. is a trendy, artisanal coffee brand that blends traditional roasting with modern herbal wellness. After finalizing their visual identity (logo), they needed a website that wasn't just an information page, but a digital extension of their physical cafe vibe—warm, inviting, and full of energy.",
+        tags: ["Website", "UI/UX"],
+        image: BrewYouWebsite,
+        url: "/case-studies/brew-you-coffee-website",
+    },
+    {
+        type: "mobile-app",
+        title: "Halal Food: The All-In-One Lifestyle Super App",
+        description:
+            "Halal Food is a modern super app that blends food delivery, lifestyle, and community features for the global halal market. The app needed a clean, intuitive UI/UX and a strong mobile presence.",
+        tags: ["Mobile App", "UI/UX"],
+        image: HalalFood,
+        url: "/case-studies/halal-food-app",
+    },
+    {
+        type: "website",
+        title: "Genragous: The Next-Gen Social Community Platform",
+        description:
+            "Genragous is a cutting-edge web app designed to foster social connections and community engagement. The platform offers a seamless, intuitive user experience with a focus on authenticity and trust.",
+        tags: ["Web App", "UI/UX design"],
+        image: Genragous,
+        url: "/case-studies/genragous",
+    },
+    {
+        type: "mobile-app",
+        title: "Zing Fitness: The Next-Gen Social Fitness App",
+        description:
+            "Zing Fitness is a cutting-edge mobile app designed to foster social connections and community engagement. The platform offers a seamless, intuitive user experience with a focus on authenticity and trust.",
+        tags: ["Mobile App", "UI/UX design"],
+        image: ZingFitness,
+        url: "/case-studies/zing-fitness",
+    },
+];
+
+// Filter cards by type if filterType prop is provided
+if (filterType) {
+    cards = cards.filter((card) => card.type === filterType);
+}
+---
+
+<section class="internal-padding py-20">
+    <header class="relative mx-auto mb-12 max-w-6xl text-center">
+        {
+            header && (
+                <>
+                    {pageTitle ? (
+                        <h2 class="mb-8 text-4xl font-semibold text-black md:text-[54px]">
+                            {pageTitle}
+                        </h2>
+                    ) : (
+                        <>
+                            <p class="text-gradient-start mb-2 text-xl font-semibold tracking-wider uppercase">
+                                Our Recent Work
+                            </p>
+                            <h2 class="mb-8 text-4xl font-semibold text-black md:text-[54px]">
+                                Case Studies
+                            </h2>
+                            <p class="mx-auto max-w-2xl text-base leading-6 text-[#707070]">
+                                Explore our latest case studies and discover how we've helped brands transform through design and strategy.
+                            </p>
+                        </>
+                    )}
+                </>
+            )
+        }
+
+        <!-- Filter buttons -->
+        {
+            !hideFilters && (
+                <nav class="mt-8 flex flex-wrap items-center justify-center gap-3" id="portfolio-filters">
+                    {
+                        (() => {
+                            const filterTypes = [
+                                { label: "All", value: "all" },
+                                { label: "Logo", value: "logo" },
+                                { label: "Website", value: "website" },
+                                { label: "Mobile App", value: "mobile-app" },
+                            ];
+                            const counts = {
+                                all: cards.length,
+                                logo: cards.filter((c) => c.type === "logo").length,
+                                website: cards.filter((c) => c.type === "website").length,
+                                "mobile-app": cards.filter((c) => c.type === "mobile-app").length,
+                            };
+                            return filterTypes.map((filter, idx) => (
+                                <button
+                                    class={`portfolio-filter-btn ${idx === 0 ? "selected" : ""}`}
+                                    data-filter={filter.value}
+                                >
+                                    <span>{filter.label}</span>
+                                    <sup>{String(counts[filter.value]).padStart(2, "0")}</sup>
+                                </button>
+                            ));
+                        })()
+                    }
+                </nav>
+            )
+        }
+    </header>
+
+    <!-- Portfolio grid -->
+    <div id="portfolio-grid" class="mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 ">
+        {
+            cards.map((card) => (
+                <div class="portfolio-item" data-category={card.type}>
+                    <CaseStudyCard {...card} />
+                </div>
+            ))
+        }
+    </div>
+
+    <!-- View All Button -->
+    <div class="mt-16 flex justify-center">
+        <a
+            href="/case-studies"
+            class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-[#9d7eff] to-[#8067ce] px-8 py-4 font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#9d7eff]/30 hover:scale-105"
+        >
+            View All Case Studies
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                ></path>
+            </svg>
+        </a>
+    </div>
+</section>
+
+<script>
+    import { gsap, ScrollTrigger } from "../../utils/gsapUtils";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const filters = document.querySelectorAll(".portfolio-filter-btn");
+        const grid = document.getElementById("portfolio-grid");
+        const items = document.querySelectorAll(".portfolio-item");
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        // Register ScrollTrigger
+        if (!prefersReducedMotion) {
+            gsap.registerPlugin(ScrollTrigger);
+        }
+
+        // Initial animation on load
+        if (!prefersReducedMotion) {
+            items.forEach((item, idx) => {
+                gsap.from(item, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.7,
+                    delay: idx * 0.08,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top 85%",
+                        toggleActions: "play none none none",
+                    },
+                });
+            });
+        }
+
+        // Filter button click handler
+        filters.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                // Update active button
+                filters.forEach((b) => b.classList.remove("selected"));
+                btn.classList.add("selected");
+
+                // Get filter value
+                const filterValue = btn.dataset.filter;
+
+                // Filter and animate items
+                const visibleItems: HTMLElement[] = [];
+                const hiddenItems: HTMLElement[] = [];
+
+                items.forEach((item) => {
+                    const category = (item as HTMLElement).dataset.category;
+                    if (filterValue === "all" || category === filterValue) {
+                        visibleItems.push(item as HTMLElement);
+                    } else {
+                        hiddenItems.push(item as HTMLElement);
+                    }
+                });
+
+                // Animate out hidden items
+                if (!prefersReducedMotion && hiddenItems.length > 0) {
+                    gsap.to(hiddenItems, {
+                        opacity: 0,
+                        y: 40,
+                        duration: 0.3,
+                        ease: "power2.in",
+                        onComplete: () => {
+                            hiddenItems.forEach((item) => {
+                                item.style.display = "none";
+                            });
+                        },
+                    });
+                } else {
+                    hiddenItems.forEach((item) => {
+                        item.style.display = "none";
+                    });
+                }
+
+                // Animate in visible items
+                visibleItems.forEach((item) => {
+                    item.style.display = "";
+                    item.style.opacity = "";
+                    item.style.transform = "";
+                });
+
+                if (!prefersReducedMotion) {
+                    gsap.from(visibleItems, {
+                        opacity: 0,
+                        y: 40,
+                        duration: 0.5,
+                        delay: (index) => index * 0.08,
+                        ease: "power3.out",
+                    });
+                } else {
+                    visibleItems.forEach((item) => {
+                        item.style.opacity = "1";
+                        item.style.transform = "";
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    :root {
+        --gradient-start: #9d7eff;
+        --gradient-end: #8067ce;
+    }
+
+    .portfolio-filter-btn {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        padding: 0.625rem 1.25rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        background: #d2d7ff;
+        color: #8067ce;
+        transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+        border-radius: 0.3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .portfolio-filter-btn:hover:not(.selected) {
+        background: #e0d6fa;
+        color: var(--gradient-end);
+        transform: translateY(-2px) scale(1.01);
+    }
+
+    .portfolio-filter-btn.selected {
+        background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+        color: #fff;
+        box-shadow: 0 8px 30px rgba(157, 126, 255, 0.12);
+    }
+
+    .portfolio-filter-btn span {
+        transition: color 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .portfolio-filter-btn sup {
+        font-size: 0.75rem;
+        transition: color 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+        color: #8e8e8e;
+    }
+
+    .portfolio-filter-btn.selected sup {
+        color: #fff;
+    }
+</style>

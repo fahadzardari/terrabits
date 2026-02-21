@@ -1,0 +1,306 @@
+---
+import { Image } from "astro:assets";
+import WebDevGIF from "../../assets/services/web-developer.gif";
+import VideoEditingGif from "../../assets/services/video-editing.gif";
+import VideoAdvertisingGif from "../../assets/services/video-advertising.gif";
+import ResponsiveDesignGif from "../../assets/services/responsive-design.gif";
+import LogoDesignGif from "../../assets/services/logo-design.gif";
+import BrandingIdentityGif from "../../assets/services/branding-identity.gif";
+
+const services = [
+    {
+        title: "Website Development",
+        description:
+            "At Nixxon Australia, we're a creative agency driven by passion, innovation, and expertise. We help businesses across Australia get the most out of print, graphic design, web development, and smart digital media — delivering solutions that inspire, engage, and perform.",
+        image: WebDevGIF,
+        href: "/services/web-development",
+    },
+    {
+        title: "Logo Design",
+        description:
+            "At Nixxon Australia, we're a creative agency driven by passion, innovation, and expertise. We help businesses across Australia get the most out of print, graphic design, web development, and smart digital media — delivering solutions that inspire, engage, and perform.",
+        image: LogoDesignGif,
+        href: "/services/logo-design",
+    },
+    {
+        title: "Branding",
+        description:
+            "At Nixxon Australia, we're a creative agency driven by passion, innovation, and expertise. We help businesses across Australia get the most out of print, graphic design, web development, and smart digital media — delivering solutions that inspire, engage, and perform.",
+        image: BrandingIdentityGif,
+        href: "/services/branding",
+    },
+    {
+        title: "Digital Marketing",
+        description:
+            "At Nixxon Australia, we're a creative agency driven by passion, innovation, and expertise. We help businesses across Australia get the most out of print, graphic design, web development, and smart digital media — delivering solutions that inspire, engage, and perform.",
+        image: VideoAdvertisingGif,
+        href: "/services/digital-marketing",
+    },
+    {
+        title: "Video Animation",
+        description:
+            "Our video editing services transform raw footage into compelling stories that captivate audiences. We combine creativity with technical expertise to deliver high-quality videos that align with your brand and message.",
+        image: VideoEditingGif,
+        href: "/services/video-animation",
+    },
+    {
+        title: "Mobile Application",
+        description:
+            "We create impactful video advertisements that drive engagement and conversions. Our team crafts tailored video content designed to resonate with your target audience across various platforms.",
+        image: ResponsiveDesignGif,
+        href: "/services/mobile-application",
+    },
+];
+---
+
+<div
+    class="services-header mx-[8dvw] my-16 flex flex-col justify-between lg:mx-[10dvw] lg:my-20 lg:flex-row lg:gap-x-20 xl:gap-x-20 2xl:gap-x-40"
+>
+    <h1
+        class="services-title 3xl:text-[60px] 3xl:leading-[70px] mb-4 text-[35px] leading-tight font-bold text-[#9D7EFF] sm:text-[40px] md:mb-8 md:text-[45px] lg:mb-0 lg:w-1/4 xl:text-[50px]"
+    >
+        Our Services
+    </h1>
+    <p
+        class="services-description 3xl:text-[32px] 3xl:leading-[38px] w-full text-[16px] leading-[24px] text-[#3C3C3C] lg:text-[20px] lg:leading-[26px] xl:text-[24px] xl:leading-[30px] 2xl:text-[28px] 2xl:leading-[34px]"
+    >
+        At Nixxon Australia, we're a creative agency driven by passion,
+        innovation, and expertise. We help businesses across Australia get the
+        most out of print, graphic design, web development, and smart digital
+        media — delivering solutions that inspire, engage, and perform.
+    </p>
+</div>
+
+<div
+    class="mx-[8dvw] mt-4 flex flex-col gap-y-12 pb-28 sm:gap-y-16 md:mt-4 md:gap-y-20 lg:mx-[10dvw] lg:mt-20 lg:gap-y-24 xl:mt-24 xl:gap-y-28 2xl:mt-28 2xl:gap-y-32"
+>
+    {
+        services.map((service, index) => (
+            <div
+                class={`service-card 3xl:max-h-[650px] flex flex-col justify-between gap-y-6 md:max-h-[602px] md:flex-row md:gap-x-4 md:gap-y-0 2xl:max-h-[602px] ${index % 2 === 1 ? "md:flex-row-reverse" : ""}`}
+                data-index={index}
+            >
+                <div class="service-image-wrapper aspect-[4/3] w-full overflow-hidden rounded-3xl md:aspect-auto md:w-1/2 md:max-w-[700px]">
+                    <Image
+                        src={service.image}
+                        alt={`${service.title} GIF`}
+                        class="service-image h-full w-full object-cover"
+                    />
+                </div>
+
+                <div class="service-content relative flex w-full flex-col justify-between gap-y-4 overflow-hidden rounded-3xl bg-gradient-to-r from-[#9D7EFF] to-[#8067CE] p-6 text-white md:w-1/2 md:max-w-[700px] md:gap-y-6 lg:p-8 2xl:p-10">
+                    {/* Animated background gradient orbs */}
+                    <div class="absolute top-0 right-0 h-32 w-32 animate-pulse rounded-full bg-white/10 blur-3xl" />
+                    <div class="absolute bottom-0 left-0 h-40 w-40 animate-pulse rounded-full bg-white/10 blur-3xl delay-700" />
+
+                    <div class="relative z-10">
+                        <h1 class="service-title mb-3 text-[20px] leading-tight font-semibold sm:text-[25px] md:mb-4 md:text-[28px] lg:mb-6 lg:text-[32px] xl:text-[38px] 2xl:text-[50px]">
+                            {service.title}
+                        </h1>
+                        <p class="service-description text-[13px] leading-[22px] sm:text-[14px] sm:leading-[24px] md:text-[14px] md:leading-[26px] lg:text-[16px] lg:leading-[28px] xl:text-[18px] xl:leading-[30px] 2xl:text-[20px] 2xl:leading-[34px]">
+                            {service.description}
+                        </p>
+                    </div>
+
+                    <a
+                        href={service.href}
+                        class="service-link group relative z-10 flex items-center text-[14px] leading-[26px] font-semibold sm:text-[15px] sm:leading-[28px] md:text-[16px] md:leading-[30px] lg:text-[18px] lg:leading-[30px] xl:text-[20px] xl:leading-[32px] 2xl:text-[24px] 2xl:leading-[34px]"
+                    >
+                        <span class="relative">
+                            Read More
+                            <span class="absolute bottom-0 left-0 h-0.5 w-0 bg-white transition-all duration-300 group-hover:w-full" />
+                        </span>
+                        <svg
+                            width="24"
+                            height="12"
+                            viewBox="0 0 29 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="service-arrow ml-2 transition-transform duration-300 group-hover:translate-x-2 md:h-[14px] md:w-[29px]"
+                        >
+                            <path
+                                d="M1 7H28"
+                                stroke="white"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <path
+                                d="M22 13L28 7"
+                                stroke="white"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                            <path
+                                d="M22 1L28 7"
+                                stroke="white"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        ))
+    }
+</div>
+
+<script>
+    import { gsap, ScrollTrigger } from "../../utils/gsapUtils";
+
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    // Check if mobile
+    const isMobile = window.innerWidth < 768;
+
+    if (!prefersReducedMotion) {
+        // Header animation
+        gsap.from(".services-title", {
+            x: isMobile ? -50 : -100,
+            opacity: 0,
+            duration: isMobile ? 0.6 : 1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".services-header",
+                start: "top 80%",
+            },
+        });
+
+        gsap.from(".services-description", {
+            x: isMobile ? 50 : 100,
+            opacity: 0,
+            duration: isMobile ? 0.6 : 1,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".services-header",
+                start: "top 80%",
+            },
+        });
+
+        // Service cards animation
+        document.querySelectorAll(".service-card").forEach((card, index) => {
+            const isReversed = index % 2 === 1;
+            const imageWrapper = card.querySelector(".service-image-wrapper");
+            const image = card.querySelector(".service-image");
+            const content = card.querySelector(".service-content");
+
+            if (isMobile) {
+                // Simpler mobile animations
+                gsap.set([imageWrapper, content], {
+                    y: 30,
+                    opacity: 0,
+                });
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none none",
+                    },
+                });
+
+                tl.to([imageWrapper, content], {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: "power2.out",
+                    stagger: 0.15,
+                });
+
+                // Simple hover effect for mobile
+                card.addEventListener("click", () => {
+                    gsap.to(image, {
+                        scale: 1.05,
+                        duration: 0.3,
+                        ease: "power2.out",
+                        yoyo: true,
+                        repeat: 1,
+                    });
+                });
+            } else {
+                // Desktop animations (existing code)
+                gsap.set(imageWrapper, {
+                    x: isReversed ? 80 : -80,
+                    opacity: 0,
+                });
+                gsap.set(content, {
+                    x: isReversed ? -80 : 80,
+                    opacity: 0,
+                });
+                gsap.set(image, {
+                    scale: 1.15,
+                });
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 70%",
+                        toggleActions: "play none none none",
+                    },
+                });
+
+                tl.to([imageWrapper, content], {
+                    x: 0,
+                    opacity: 1,
+                    duration: 0.7,
+                    ease: "power2.out",
+                    stagger: 0.1,
+                }).to(
+                    image,
+                    {
+                        scale: 1,
+                        duration: 0.9,
+                        ease: "power2.out",
+                    },
+                    "-=0.5",
+                );
+
+                // Hover effect for desktop
+                card.addEventListener("mouseenter", () => {
+                    gsap.to(image, {
+                        scale: 1.08,
+                        duration: 0.5,
+                        ease: "power2.out",
+                    });
+                });
+
+                card.addEventListener("mouseleave", () => {
+                    gsap.to(image, {
+                        scale: 1,
+                        duration: 0.5,
+                        ease: "power2.out",
+                    });
+                });
+
+                // Parallax effect on desktop only
+                gsap.to(content, {
+                    y: -20,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1,
+                    },
+                });
+            }
+        });
+    }
+</script>
+
+<style>
+    .delay-700 {
+        animation-delay: 700ms;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+</style>

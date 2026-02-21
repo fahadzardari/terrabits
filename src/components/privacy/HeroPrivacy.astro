@@ -1,0 +1,106 @@
+---
+const { title = "Privacy Policy" } = Astro.props;
+---
+
+<section
+    class="hero-section relative overflow-hidden bg-[#4B00A3] pt-20 text-white lg:ml-[65px] lg:rounded-l-3xl xl:ml-[88px]"
+>
+    <h1
+        class="py-8 text-center text-[36px] text-nowrap sm:px-16 sm:text-[50px] md:px-24 md:py-12 md:text-left md:text-[60px] lg:px-0 lg:py-16 lg:pl-8 lg:text-[80px] xl:text-[100px] 2xl:pl-12 2xl:text-[120px]"
+    >
+        {title}
+    </h1>
+</section>
+
+<script>
+    // import { gsap, ScrollTrigger } from "../../utils/gsapUtils.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Hand tilt effect (keep your existing code)
+        const hand = document.getElementById("hand-tilt");
+        if (hand) {
+            hand.style.transition = "transform 0.3s";
+            hand.addEventListener("mouseenter", () => {
+                hand.style.transform = "scale(1.08)";
+            });
+            hand.addEventListener("mousemove", (e) => {
+                const rect = hand.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * 18;
+                const rotateY = ((x - centerX) / centerX) * 18;
+                hand.style.transform = `scale(1.08) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            hand.addEventListener("mouseleave", () => {
+                hand.style.transition = "transform 0.5s";
+                hand.style.transform = "scale(1) rotateX(0deg) rotateY(0deg)";
+                setTimeout(() => {
+                    hand.style.transition = "transform 0.3s";
+                }, 500);
+            });
+        }
+
+        // GSAP entrance animation for hero content
+        // gsap.from(".hero-section .z-10", {
+        //   y: 60,
+        //   opacity: 0,
+        //   duration: 1,
+        //   ease: "power3.out",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top 80%",
+        //   },
+        // });
+
+        // gsap.from("#hand-tilt", {
+        //   x: 80,
+        //   opacity: 0,
+        //   duration: 1.1,
+        //   ease: "power3.out",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top 80%",
+        //   },
+        // });
+
+        // gsap.to("#hand-tilt", {
+        //   y: -40,
+        //   ease: "none",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top top",
+        //     end: "bottom top",
+        //     scrub: true,
+        //   },
+        // });
+    });
+</script>
+
+<style>
+    .animated-gradient-text {
+        background: linear-gradient(
+            90deg,
+            #fff 0%,
+            #7f5cff 25%,
+            #00e0ff 50%,
+            #ff6bcb 75%,
+            #fff 100%
+        );
+        background-size: 200% 100%;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        animation: gradient-move 3s linear infinite;
+        background-repeat: repeat;
+    }
+    @keyframes gradient-move {
+        0% {
+            background-position: 0% 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+</style>

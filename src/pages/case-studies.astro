@@ -1,0 +1,30 @@
+---
+import Collaborate from "../components/common/Collaborate.astro";
+import Portfolio from "../components/home/Portfolio.astro";
+import HeroPortfolio from "../components/portfolios/HeroPortfolio.astro";
+import Layout from "../layouts/Layout.astro";
+import CollabPic from "../assets/collab-mobile.png";
+import Image from "astro/components/Image.astro";
+import WorkGrid from "../components/work/WorkGrid.astro";
+import Testimonials from "../components/common/Testimonials.astro";
+---
+
+<Layout title="Case Studies - Nixxon Australia">
+    <div class="our-services h-20 md:h-40 lg:h-60"></div>
+    <div class="internal-padding overflow-hidden border-none py-8">
+        <WorkGrid />
+    </div>
+    <Image
+        src={CollabPic}
+        alt="Collaborate Background"
+        class={"rounded-t-4xl block md:hidden w-full"}
+    />
+
+    <div class="overflow-hidden border-none bg-[#B5B1DE]">
+        <div class="rounded-t-[2rem] md:rounded-none">
+            <Collaborate />
+        </div>
+    </div>
+    <span class="mt-24"></span>
+    <Testimonials />
+</Layout>

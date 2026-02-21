@@ -1,0 +1,238 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaseStudyHeader from "../../components/work/case-study/CaseStudyHeader.astro";
+import CaseStudyIntro from "../../components/work/case-study/CaseStudyIntro.astro";
+import CoverZing from "../../assets/work/zing.png";
+import DesignApproach from "../../components/work/case-study/DesignApproach.astro";
+
+import RewardIcon from "../../assets/icons/reward-icon.svg";
+import RecycleIcon from "../../assets/icons/recycle-icon.svg";
+import EyeIcon from "../../assets/icons/eye-icon.svg";
+import ImageOne from "../../assets/work/zing/1.png";
+import ImageTwo from "../../assets/work/zing/2.png";
+
+import CaseStudyChallenge from "../../components/work/case-study/CaseStudyChallenge.astro";
+import Image from "astro/components/Image.astro";
+import Location from "../../assets/icons/location.png";
+import Plus from "../../assets/icons/plus.png";
+import Filter from "../../assets/icons/filter.png";
+import Check from "../../assets/icons/check.png";
+---
+
+<Layout title="Zing Fitness - Case Study  - Nixxon Australia">
+    <div class="our-services h-20"></div>
+    <CaseStudyHeader
+        title="Zing Fitness"
+        tags={["Mobile App", "UI/UX design"]}
+        image={CoverZing}
+        url="/case-studies/zing-fitness"
+        subtitle="The Next-Gen Social Fitness App"
+    />
+
+    <CaseStudyIntro
+        title="Client Overview:"
+        heading="Fitness on Your Terms"
+        paragraph="Zing Fitness approached us with a bold vision: to disrupt the traditional gym model that locks users into long-term contracts. Their goal was to create a flexible, 'pay-as-you-go' ecosystem.<br><br>The platform needed to serve two distinct user groups simultaneously: fitness enthusiasts looking for variety without commitment, and independent personal trainers seeking to fill their schedules and manage payments seamlessly."
+    />
+
+    <CaseStudyChallenge
+        title="The Challenge"
+        heading="Bridging the Gap"
+        paragraph="The fitness industry suffers from a lack of transparency. Trainers hide rates, and gyms hide cancellation policies. Zing needed to be the antithesis of this: radical transparency wrapped in a high-energy, motivational interface. The core UX challenge was designing a dual-sided marketplace (User vs. Trainer) within a single app architecture without cluttering the experience."
+    />
+
+    <DesignApproach
+        title="Design Approach"
+        heading="Strategic Design Solutions"
+        paragraph="We approached the redesign with three core pillars."
+        cards={[
+            {
+                title: "Dark Mode First",
+                paragraph:
+                    'Gyms are often dimly lit with focused spot lighting. We adopted a "Dark Mode First" approach using Charcoal (#1a1f2e) and deep blacks to match the user\'s physical environment and reduce battery drain during long workouts.',
+
+                icon: EyeIcon,
+            },
+            {
+                title: "'Power Red' Accent",
+                paragraph:
+                    'To convey energy and urgency, we utilized an Electric Red (#E62117) for primary CTAS. This color guides the eye to the most critical actions: "Book Now," "Start Session," and "Online Status."',
+                icon: RecycleIcon,
+            },
+            {
+                title: "Dual-Gateway Onboarding",
+                paragraph:
+                    'We simplified the complex registration flow by splitting the user journey immediately at the splash screen. "I am a User" vs "I am a Trainer" sets the context for the entire subsequent UI customization.',
+                icon: RewardIcon,
+            },
+        ]}
+    />
+
+    <div class="internal-padding flex flex-col gap-y-4 bg-[#4B00A3]">
+        <div
+            class="flex flex-col gap-y-8 py-8 text-white md:flex md:flex-row md:items-center md:gap-x-8 md:gap-y-0 lg:py-16"
+        >
+            <div class="relative order-2 md:order-1 md:w-2/5">
+                <Image
+                    src={ImageOne}
+                    alt="Zing Fitness feature highlight"
+                    class="relative"
+                />
+            </div>
+            <div class="order-1 flex flex-col gap-x-2 md:order-2 md:w-3/5">
+                <h1
+                    class="mb-4 text-[30px] font-semibold md:leading-tight lg:text-[36px] xl:text-[44px] 2xl:text-[50px]"
+                >
+                    Transparent Trainer Marketplace
+                </h1>
+                <p class="mb-4 max-w-[600px] text-sm leading-8 lg:text-lg">
+                    Users can browse trainers by specialty (Crossfit, Aerobics,
+                    Strength), view real-time pricing per minute or session, and
+                    see exact distance. We prioritized information density
+                    without clutter, using card-based layouts to group critical
+                    decision-making data.
+                </p>
+                <ul class="flex flex-col gap-y-4">
+                    <li class="inline-flex gap-4">
+                        <Image src={Check} alt="Check icon" class="w-8" />
+
+                        <h3
+                            class="text-base font-semibold lg:text-lg xl:text-xl"
+                        >
+                            Instant Booking Capability
+                        </h3>
+                    </li>
+                    <li class="inline-flex gap-4">
+                        <Image src={Check} alt="Check icon" class="w-8" />
+
+                        <h3
+                            class="text-base font-semibold lg:text-lg xl:text-xl"
+                        >
+                            Upfront Pricing (No Hidden Fees)
+                        </h3>
+                    </li>
+                    <li class="inline-flex gap-4">
+                        <Image src={Check} alt="Check icon" class="w-8" />
+
+                        <h3
+                            class="text-base font-semibold lg:text-lg xl:text-xl"
+                        >
+                            Verified User Ratings
+                        </h3>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div
+            class="flex flex-col gap-y-8 py-8 text-white md:flex md:flex-row md:items-center md:gap-x-8 md:gap-y-0 lg:py-16"
+        >
+            <div class="flex flex-col gap-x-2 md:w-3/5">
+                <h1
+                    class="mb-4 text-[30px] font-semibold md:leading-tight lg:text-[36px] xl:text-[44px] 2xl:text-[50px]"
+                >
+                    Smart Dashboard & Scheduling
+                </h1>
+                <p class="mb-4 max-w-[600px] text-sm leading-8 lg:text-lg">
+                    For trainers, the app serves as a business manager. The
+                    profile screen acts as a dashboard showing appointments,
+                    active trainees, and online status. The "Manage Classes" and
+                    "Edit Profile" buttons are prominent, allowing trainers to
+                    update their availability on the fly.
+                </p>
+                <ul class="flex flex-col gap-y-4">
+                    <li class="inline-flex gap-4">
+                        <Image src={Check} alt="Check icon" class="w-8" />
+
+                        <h3
+                            class="text-base font-semibold lg:text-lg xl:text-xl"
+                        >
+                            One-Tap Online/Offline Status
+                        </h3>
+                    </li>
+                    <li class="inline-flex gap-4">
+                        <Image src={Check} alt="Check icon" class="w-8" />
+
+                        <h3
+                            class="text-base font-semibold lg:text-lg xl:text-xl"
+                        >
+                            Automated Session Tracking
+                        </h3>
+                    </li>
+                </ul>
+            </div>
+            <div class="relative md:w-2/5">
+                <Image
+                    src={ImageTwo}
+                    alt="Zing Fitness feature highlight"
+                    class="relative"
+                />
+            </div>
+        </div>
+    </div>
+
+    <div class="internal-padding flex flex-col py-8 lg:py-16">
+        <span
+            class="mb-2 text-center text-lg font-semibold text-[#643DB4] md:text-xl"
+        >
+            The Result
+        </span>
+        <h1
+            class="mb-4 text-center text-5xl font-semibold text-black md:text-4xl md:leading-tight lg:text-5xl xl:text-6xl 2xl:text-[68px]"
+        >
+            Empowering the Fitness Community
+        </h1>
+        <div class="mx-auto flex flex-col gap-4 md:flex-row">
+            <article class="p-4 py-4 text-center">
+                <h2
+                    class="text-[50px] font-semibold text-[#643DB4] md:text-[60px] lg:text-[70px] 2xl:text-[82px]"
+                >
+                    200+
+                </h2>
+                <h3
+                    class="mb-2 text-lg font-semibold text-black capitalize lg:text-xl xl:text-2xl"
+                >
+                    TRAINER SIGN-UPS
+                </h3>
+                <p class="text-sm text-black capitalize lg:text-base">
+                    Achieved within the first month of beta launch, validating
+                    the marketplace demand.
+                </p>
+            </article>
+            <article
+                class="border-x-0 p-4 py-4 text-center md:border-x-2 md:border-x-[#643DB4]"
+            >
+                <h2
+                    class="text-[50px] font-semibold text-[#643DB4] md:text-[60px] lg:text-[70px] 2xl:text-[82px]"
+                >
+                    {"<"} 2 Mins
+                </h2>
+                <h3
+                    class="mb-2 text-lg font-semibold text-black capitalize lg:text-xl xl:text-2xl"
+                >
+                    BOOKING TIME
+                </h3>
+                <p class="text-sm text-black capitalize lg:text-base">
+                    Streamlined 3-click booking system drastically reduced
+                    friction for users.
+                </p>
+            </article>
+
+            <article class="p-4 py-4 text-center">
+                <h2
+                    class="text-[50px] font-semibold text-[#643DB4] md:text-[60px] lg:text-[70px] 2xl:text-[82px]"
+                >
+                    4.8/5
+                </h2>
+                <h3
+                    class="mb-2 text-lg font-semibold text-black capitalize lg:text-xl xl:text-2xl"
+                >
+                    PLAY STORE RATING
+                </h3>
+                <p class="text-sm text-black capitalize lg:text-base">
+                    Strong brand recall and intuitive dark mode UI praised by
+                    early adopters.
+                </p>
+            </article>
+        </div>
+    </div>
+</Layout>

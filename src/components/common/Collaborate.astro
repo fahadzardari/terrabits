@@ -1,0 +1,79 @@
+---
+// ...existing imports...
+import CommonButton from "./CommonButton.astro";
+---
+
+<section
+    id="collaborate-section"
+    class="internal-padding overflow-hidden bg-cover bg-no-repeat py-12 text-white md:flex md:items-center md:gap-6 lg:py-60 2xl:py-72"
+>
+    <div class="flex flex-col sm:w-1/2 md:max-w-[580px]">
+        <h1
+            class="3xl:text-[90px] 3xl:leading-24 mb-1 text-[20px] leading-10 font-medium text-[#4B00A3] sm:mb-3 sm:text-[28px] md:mb-7 md:text-[50px] md:leading-10 lg:text-[60px] lg:leading-12 xl:text-[70px] xl:leading-16 2xl:text-[80px] 2xl:leading-20"
+        >
+            Collaborate with Us
+        </h1>
+        <p
+            class="mb-4 text-lg sm:mb-4 md:mb-8 lg:mb-14 lg:text-xl xl:text-2xl 2xl:text-3xl"
+        >
+            Share your tech-related business ideas with us. We'll support you
+            transform your dreams into reality!
+        </p>
+        <CommonButton className="w-full md:w-fit" href="/about">
+            Learn More
+        </CommonButton>
+    </div>
+</section>
+
+<!-- <script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const section = document.getElementById("collaborate-section");
+    const content = section.querySelector(".flex-col");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            content.classList.add("fade-in");
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 },
+    );
+    observer.observe(content);
+  });
+</script> -->
+
+<style>
+    #collaborate-section {
+    }
+
+    @media (min-width: 768px) {
+        #collaborate-section {
+            background-image: url("../../assets/home/colloborate-bg-compressed.webp");
+            background-size: 102%;
+            transition: background-size 2s cubic-bezier(0.4, 0, 0.2, 1);
+            background-position: center;
+        }
+    }
+
+    #collaborate-section:hover {
+        background-size: 100%;
+    }
+
+    /* @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #collaborate-section .flex-col {
+    opacity: 0;
+    animation: fadeUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+  } */
+</style>

@@ -1,0 +1,84 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Experience from "../../components/home/Experience.astro";
+import VerticalSwiper from "../../components/common/VerticalSwiper.astro";
+import Testimonials from "../../components/common/Testimonials.astro";
+import HeroBranding from "../../components/branding/HeroBranding.astro";
+import WonderfulBranding from "../../components/branding/WonderfulBranding.astro";
+import VerticalImage1 from "../../assets/branding/1.png";
+import VerticalImage2 from "../../assets/branding/2.png";
+import VerticalImage3 from "../../assets/branding/3.png";
+import VerticalImage4 from "../../assets/branding/4.png";
+import VerticalImage5 from "../../assets/branding/5.png";
+import VerticalImage6 from "../../assets/branding/6.png";
+import PresentBrandingPortfolio from "../../components/branding/PresentBrandingPortfolio.astro";
+
+// Create array of data for swiper slides
+const brandingSlides = [
+    {
+        id: "01",
+        title: "Stationery Design",
+        description:
+            "Every detail matters when it comes to brand perception. Our stationery designs transform ordinary items like business cards, letterheads, and envelopes into powerful brand touchpoints. <br><br> With a perfect balance of creativity and professionalism, we craft stationery that not only carries your message but also reflects your values, leaving a lasting impression long after the first exchange.",
+        image: VerticalImage1,
+    },
+    {
+        id: "02",
+        title: "Packaging and Branding",
+        description:
+            "Packaging is more than protection; it’s the first conversation your brand has with your audience. We design packaging that tells your story, combining functionality with striking visuals to create experiences that excite, inspire, and build trust. From sleek minimalism to bold statements, our designs ensure your product stands out on every shelf.",
+        image: VerticalImage2,
+    },
+    {
+        id: "03",
+        title: "Brochures and Flyers",
+        description:
+            "A brochure or flyer should be more than information on paper it should be a story your audience wants to explore. We craft designs that balance compelling visuals with clear messaging, turning simple handouts into powerful marketing tools. Whether for promotions, events, or storytelling, our brochures and flyers leave a lasting mark.",
+        image: VerticalImage3,
+    },
+    {
+        id: "04",
+        title: "Merchandise Design",
+        description:
+            "Wear your brand with pride. From t-shirts and caps to mugs and tote bags, we create merchandise designs that make your brand feel personal, relatable, and memorable. With fresh concepts and stylish layouts, we turn everyday items into walking ambassadors that spread your brand’s identity wherever they go.",
+        image: VerticalImage4,
+    },
+    {
+        id: "05",
+        title: "Invoices and Documents",
+        description:
+            "Even the smallest details count when building a professional brand presence. Our document designs bring clarity, consistency, and brand identity into invoices, contracts, and forms. With a clean and branded layout, your documents do more than just inform — they reinforce trust, professionalism, and credibility with every interaction.",
+        image: VerticalImage5,
+    },
+    {
+        id: "06",
+        title: "Vinyl Wraps",
+        description:
+            "Transform vehicles, walls, or spaces into bold moving advertisements with our custom vinyl wrap designs. We merge creativity with precision to deliver wraps that amplify your brand’s visibility wherever they go. Each design is tailored to turn everyday surfaces into impactful brand experiences that people notice, remember, and talk about.",
+        image: VerticalImage6,
+    },
+];
+---
+
+<Layout title="Branding - Nixxon Australia">
+    <HeroBranding />
+    <div class="overflow-hidden border-none bg-[#4B00A3]">
+        <div class="rounded-t-[2rem] bg-[#f8f8f8] md:rounded-none">
+            <Experience
+                typewriter="Eye catching Branding   "
+                experience="We create impactful brand identities that go beyond the logo, capturing your business essence across every touchpoint. With creative precision, we craft visuals that build trust, recognition, and lasting impact."
+            />
+            <span class="our-services h-0 w-0"> </span>
+            <VerticalSwiper
+                title="Branding Services That Set Us Apart"
+                description="With our potent branding services, we aim to stand out from the competitors. For accomplishing this aim, an innovative and well-planned strategy is used. This aids in the development of outstanding brand identities that embody the company's essential principles."
+                slides={brandingSlides}
+            />
+            <WonderfulBranding />
+        </div>
+    </div>
+
+    <!-- <PresentBrandingPortfolio /> -->
+
+    <Testimonials />
+</Layout>

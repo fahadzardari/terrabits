@@ -1,0 +1,311 @@
+---
+import webdevimage from "../../assets/digital-marketing/hero.png";
+import CommonButton from "../common/CommonButton.astro";
+import Image from "astro/components/Image.astro";
+---
+
+<section
+    class="hero-section relative overflow-hidden bg-[#4B00A3] pt-20 text-white md:min-h-screen lg:ml-[65px] lg:rounded-l-3xl lg:pt-0 xl:ml-[88px]"
+>
+    <div
+        class="flex h-full flex-col pt-8 pl-4 md:min-h-screen lg:mt-0 lg:flex-row lg:items-end lg:justify-between lg:pt-0 lg:pb-12 lg:pl-8 2xl:pb-16 2xl:pl-12"
+    >
+        <!-- Left -->
+        <div
+            class="z-10 mb-8 w-full sm:mb-0 lg:w-[50%] lg:px-0 xl:w-[50%] xl:pb-4 2xl:pb-12"
+        >
+            <!-- <span class="mb-4 block h-[2px] w-10 bg-white"></span> -->
+            <h1
+                class="hero-title 3xl:text-[86px] 3xl:leading-[100px] mb-2 text-[32px] font-medium md:text-[42px] lg:mb-4 lg:text-[56px] lg:leading-[60px] xl:text-[66px] xl:leading-[70px] 2xl:text-[76px] 2xl:leading-[85px]"
+            >
+                Not Just Marketing, We Shape Tomorrow's
+                <span class="font-bold">Market Giants</span>
+            </h1>
+            <p
+                class="hero-text mb-4 text-sm font-medium tracking-[1px] lg:mb-8 lg:text-sm xl:text-base 2xl:text-xl 2xl:leading-6"
+            >
+                With tailored strategies and data-backed precision, we move
+                brands from competition to category leadership, redefining how
+                performance marketing drives influence, growth, and enduring
+                market presence.
+            </p>
+            <div class="hero-btn flex items-center space-x-4">
+                <CommonButton
+                    className="pulse-btn text-xs font-semibold md:text-sm lg:text-lg"
+                >
+                    Lets Talk
+                </CommonButton>
+            </div>
+        </div>
+
+        <!-- Right -->
+        <div
+            class="z-0 ml-auto w-auto lg:absolute lg:right-0 lg:bottom-12 lg:w-[52%] xl:bottom-8 xl:w-[50%] 2xl:bottom-4 2xl:w-[49%]"
+        >
+            <div class="hero-image-wrap">
+                <Image
+                    id="hand-tilt"
+                    src={webdevimage}
+                    alt="Digital Marketing Hero Image"
+                    class="hero-image w-full cursor-pointer"
+                />
+            </div>
+        </div>
+    </div>
+
+    <!-- Simple floating shapes for visual interest -->
+    <div class="floating-shape shape-1 absolute top-[20%] left-[5%]"></div>
+    <div class="floating-shape shape-2 absolute bottom-[35%] left-[15%]"></div>
+    <div class="floating-shape shape-3 absolute top-[15%] right-[25%]"></div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Check if user prefers reduced motion
+        const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        // Hand tilt effect with performance optimizations
+        const hand = document.getElementById("hand-tilt");
+        if (hand && !prefersReducedMotion) {
+            // Use will-change for better performance
+            hand.style.willChange = "transform";
+            let raf = null;
+            let last = { x: 0, y: 0 };
+
+            hand.addEventListener("mouseenter", () => {
+                hand.style.transition =
+                    "transform 0.3s cubic-bezier(.22,1,.36,1)";
+            });
+
+            hand.addEventListener("mousemove", (e) => {
+                const rect = hand.getBoundingClientRect();
+                last.x = (e.clientX - rect.left) / rect.width - 0.5;
+                last.y = (e.clientY - rect.top) / rect.height - 0.5;
+
+                // Use requestAnimationFrame for better performance
+                if (raf) return;
+                raf = requestAnimationFrame(() => {
+                    const rx = -last.y * 15; // rotateX
+                    const ry = last.x * 15; // rotateY
+                    hand.style.transform = `scale(1.06) rotateX(${rx}deg) rotateY(${ry}deg)`;
+                    raf = null;
+                });
+            });
+
+            hand.addEventListener("mouseleave", () => {
+                if (raf) cancelAnimationFrame(raf);
+                hand.style.transition =
+                    "transform 0.5s cubic-bezier(.22,1,.36,1)";
+                hand.style.transform = "scale(1) rotateX(0deg) rotateY(0deg)";
+            });
+
+            // Simple parallax effect on scroll using Intersection Observer
+            const section = document.querySelector(".hero-section");
+            const imageWrap = document.querySelector(".hero-image-wrap");
+
+            if (section && imageWrap) {
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                document.addEventListener(
+                                    "scroll",
+                                    handleScroll,
+                                    {
+                                        passive: true,
+                                    },
+                                );
+                            } else {
+                                document.removeEventListener(
+                                    "scroll",
+                                    handleScroll,
+                                );
+                            }
+                        });
+                    },
+                    { threshold: 0.1 },
+                );
+
+                observer.observe(section);
+
+                function handleScroll() {
+                    const scrollPos = window.scrollY;
+                    const maxScroll = window.innerHeight;
+                    const scrollRatio = Math.min(scrollPos / maxScroll, 1);
+
+                    // Simple transform that doesn't cause repaints
+                    imageWrap.style.transform = `translateY(${scrollRatio * -30}px)`;
+                }
+            }
+        }
+
+        // Only load GSAP if needed and when section is in view
+        if (!prefersReducedMotion) {
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    observer.disconnect();
+                    import("../../utils/gsapUtils.js")
+                        .then(({ gsap }) => {
+                            // Animate title, text, and button with staggered timing
+                            const elements = [
+                                ".hero-title",
+                                ".hero-text",
+                                ".hero-btn",
+                            ];
+
+                            elements.forEach((selector, index) => {
+                                gsap.fromTo(
+                                    selector,
+                                    { y: 30, opacity: 0 },
+                                    {
+                                        y: 0,
+                                        opacity: 1,
+                                        duration: 0.8,
+                                        delay: index * 0.15,
+                                        ease: "power2.out",
+                                    },
+                                );
+                            });
+
+                            // Simple animation for the hero image
+                            gsap.fromTo(
+                                ".hero-image",
+                                { x: 60, opacity: 0 },
+                                {
+                                    x: 0,
+                                    opacity: 1,
+                                    duration: 1,
+                                    ease: "power2.out",
+                                },
+                            );
+
+                            // Floating shapes animation
+                            gsap.to(".shape-1", {
+                                y: -15,
+                                rotation: 5,
+                                duration: 2.5,
+                                repeat: -1,
+                                yoyo: true,
+                                ease: "sine.inOut",
+                            });
+
+                            gsap.to(".shape-2", {
+                                y: 12,
+                                rotation: -3,
+                                duration: 3.2,
+                                repeat: -1,
+                                yoyo: true,
+                                delay: 0.5,
+                                ease: "sine.inOut",
+                            });
+
+                            gsap.to(".shape-3", {
+                                y: -10,
+                                rotation: 8,
+                                duration: 2.8,
+                                repeat: -1,
+                                yoyo: true,
+                                delay: 0.2,
+                                ease: "sine.inOut",
+                            });
+                        })
+                        .catch(() => {
+                            // Fail gracefully - animations are non-critical
+                        });
+                }
+            });
+
+            observer.observe(document.querySelector(".hero-section"));
+        }
+    });
+</script>
+
+<style>
+    /* Animated gradient text effect */
+    .animated-gradient-text {
+        background: linear-gradient(
+            90deg,
+            #fff 0%,
+            #7f5cff 25%,
+            #00e0ff 50%,
+            #ff6bcb 75%,
+            #fff 100%
+        );
+        background-size: 200% 100%;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        animation: gradient-move 3s linear infinite;
+        background-repeat: repeat;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            background-position: 0% 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+
+    /* Subtle button pulse animation */
+    .pulse-btn {
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(157, 126, 255, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(157, 126, 255, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(157, 126, 255, 0);
+        }
+    }
+
+    /* Floating shapes */
+    .floating-shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.2;
+        background: linear-gradient(45deg, #00e0ff, #7f5cff);
+    }
+
+    .shape-1 {
+        width: 60px;
+        height: 60px;
+    }
+
+    .shape-2 {
+        width: 40px;
+        height: 40px;
+    }
+
+    .shape-3 {
+        width: 25px;
+        height: 25px;
+    }
+
+    /* CSS-only simple float animation for reduced motion */
+    @media (prefers-reduced-motion: no-preference) {
+        .hero-image-wrap {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    }
+</style>

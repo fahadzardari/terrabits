@@ -1,0 +1,107 @@
+/* import font poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Quicksand:wght@300..700&display=swap");
+/* import monteserrat */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+@theme {
+    --color-primary: #2563eb;
+    --color-footer-bg: #40326b;
+    --color-contact-blue: #000047;
+    --font-primary: "Poppins", sans-serif;
+    --font-roboto: "Roboto", sans-serif;
+    --font-manrope: "Manrope", sans-serif;
+    --font-montserrat: "Montserrat", sans-serif;
+    --color-gradient-start: #9d7eff;
+    --color-gradient-end: #8067ce;
+    --breakpoint-3xl: 118rem;
+    --color-primary-purple: #8067ce;
+}
+
+.internal-padding {
+    padding-left: 4dvw;
+    padding-right: 4dvw;
+}
+
+.left-padding {
+    padding-left: 4dvw;
+}
+
+.bg-button-gradient {
+    background: linear-gradient(90deg, #9d7eff 0%, #8067ce 100%);
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #9d7eff 0%, #8067ce 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@media screen and (min-width: 800px) {
+    .internal-padding {
+        padding-left: 8dvw;
+        padding-right: 8dvw;
+    }
+
+    .left-padding {
+        padding-left: 8dvw;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .internal-padding {
+        padding-left: 11dvw;
+        padding-right: 11dvw;
+    }
+    .left-padding {
+        padding-left: 11dvw;
+    }
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+    cursor: default;
+    user-select: none; /* Prevent text selection */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+a,
+button {
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Prevent video download and right-click */
+video {
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+@font-face {
+    font-family: "Coral Candy";
+    src: url("../public/fonts/coral-candy.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-coral-candy {
+    font-family: "Coral Candy", sans-serif;
+}

@@ -1,0 +1,509 @@
+---
+import Paragraph from "../common/Paragraph.astro";
+import ContactModal from "../common/ContactModal.astro";
+const menuLinks = [
+    { label: "Home", href: "/" },
+    { label: "About Us", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Portfolios", href: "/portfolios" },
+    { label: "Contact Us", href: "/contact" },
+    { label: "Work", href: "/case-studies" },
+];
+
+const serviceLinks = [
+    { label: "Web Development", href: "/services/web-development" },
+    { label: "Video Animations", href: "/services/video-animation" },
+    { label: "Logo Designs", href: "/services/logo-design" },
+    { label: "Digital Marketing", href: "/services/digital-marketing" },
+    { label: "Video Animations", href: "/services/video-animation" },
+    { label: "App Development", href: "/services/mobile-application" },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+    class="flex-col gap-y-4 overflow-x-hidden rounded-t-[1.5rem] bg-[#372962] px-4 pt-8 pb-11 text-white md:gap-y-14 md:rounded-t-[3rem] md:px-8 md:pt-24 lg:rounded-t-[4rem] lg:px-[90px]"
+>
+    <div
+        class="flex flex-col items-center justify-between gap-y-4 pb-6 text-sm md:flex-row md:pb-14 2xl:text-base"
+    >
+        <p class="order-2 list-disc md:order-1">
+            <span class="sm:mr-1 md:mr-2">•</span> Share your creative ideas with
+            us and get back beautiful designs that impress and engage.
+        </p>
+        <div
+            class="order-1 ml-auto hidden flex-row items-center gap-x-6 md:order-2 md:flex"
+        >
+            <a href="https://www.facebook.com/Nixxontech/" class="social-icon"
+                ><svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M31.9906 16.0006C31.99 16.0006 31.9895 16.0011 31.9895 16.0017C31.9889 24.0822 26.0007 30.7623 18.2217 31.8464C17.4943 31.9473 16.7501 32 15.9947 32C15.1228 32 14.2665 31.9305 13.4326 31.796C5.81688 30.5695 0 23.9638 0 16.0006C0 7.16393 7.16182 0 15.9959 0C24.8295 0 31.9911 7.16332 31.9917 15.9994C31.9917 16 31.9912 16.0006 31.9906 16.0006Z"
+                        fill="url(#paint0_linear_1_1567)"></path>
+                    <path
+                        d="M18.2217 12.8482V16.3337H22.5322L21.8497 21.029H18.2217V31.8466C17.4943 31.9475 16.7501 32.0002 15.9947 32.0002C15.1227 32.0002 14.2664 31.9307 13.4326 31.7961V21.029H9.45715V16.3337H13.4326V12.069C13.4326 9.42316 15.5766 7.27734 18.2228 7.27734V7.27959C18.2307 7.27959 18.2374 7.27734 18.2452 7.27734H22.5334V11.338H19.7314C18.8987 11.338 18.2228 12.0141 18.2228 12.8471L18.2217 12.8482Z"
+                        fill="white"></path>
+                    <defs>
+                        <linearGradient
+                            id="paint0_linear_1_1567"
+                            x1="0"
+                            y1="16"
+                            x2="31.9917"
+                            y2="16"
+                            gradientUnits="userSpaceOnUse"
+                        >
+                            <stop stop-color="#9D7EFF"></stop>
+                            <stop offset="1" stop-color="#8067CE"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/nixxontech/" class="social-icon">
+                <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M16.0234 0H15.9506C7.13673 0 -0.00830078 7.14713 -0.00830078 15.9636V16.0364C-0.00830078 24.8529 7.13673 32 15.9506 32H16.0234C24.8372 32 31.9823 24.8529 31.9823 16.0364V15.9636C31.9823 7.14713 24.8372 0 16.0234 0Z"
+                        fill="url(#paint0_linear_1_1561)"></path>
+                    <path
+                        d="M20.937 6.51074H11.0382C8.30349 6.51074 6.07874 8.73616 6.07874 11.4717V20.5303C6.07874 23.2658 8.30349 25.4912 11.0382 25.4912H20.937C23.6717 25.4912 25.8965 23.2658 25.8965 20.5303V11.4717C25.8965 8.73616 23.6717 6.51074 20.937 6.51074ZM7.82828 11.4717C7.82828 9.70144 9.26849 8.2608 11.0382 8.2608H20.937C22.7067 8.2608 24.1469 9.70144 24.1469 11.4717V20.5303C24.1469 22.3005 22.7067 23.7412 20.937 23.7412H11.0382C9.26849 23.7412 7.82828 22.3005 7.82828 20.5303V11.4717Z"
+                        fill="white"></path>
+                    <path
+                        d="M15.9875 20.6148C18.5306 20.6148 20.6007 18.5452 20.6007 16.0003C20.6007 13.4553 18.5317 11.3857 15.9875 11.3857C13.4434 11.3857 11.3744 13.4553 11.3744 16.0003C11.3744 18.5452 13.4434 20.6148 15.9875 20.6148ZM15.9875 13.1369C17.5667 13.1369 18.8512 14.4217 18.8512 16.0014C18.8512 17.581 17.5667 18.8658 15.9875 18.8658C14.4084 18.8658 13.1239 17.581 13.1239 16.0014C13.1239 14.4217 14.4084 13.1369 15.9875 13.1369Z"
+                        fill="white"></path>
+                    <path
+                        d="M21.0277 12.1312C21.7125 12.1312 22.2707 11.574 22.2707 10.8879C22.2707 10.2017 21.7137 9.64453 21.0277 9.64453C20.3418 9.64453 19.7848 10.2017 19.7848 10.8879C19.7848 11.574 20.3418 12.1312 21.0277 12.1312Z"
+                        fill="white"></path>
+                    <defs>
+                        <linearGradient
+                            id="paint0_linear_1_1561"
+                            x1="-0.00830078"
+                            y1="16"
+                            x2="31.9823"
+                            y2="16"
+                            gradientUnits="userSpaceOnUse"
+                        >
+                            <stop stop-color="#9D7EFF"></stop>
+                            <stop offset="1" stop-color="#8067CE"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </a>
+            <a href="https://twitter.com/nixxontech" class="social-icon">
+                <svg
+                    width="33"
+                    height="32"
+                    viewBox="0 0 33 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M32.9729 16.0006C32.9722 16.0006 32.9717 16.0011 32.9717 16.0017C32.9712 24.0822 26.983 30.7623 19.204 31.8464C18.4766 31.9473 17.7324 32 16.977 32C16.1051 32 15.2488 31.9305 14.4149 31.796C6.79917 30.5695 0.9823 23.9638 0.9823 16.0006C0.9823 7.16393 8.14412 0 16.9781 0C25.8118 0 32.9734 7.16332 32.974 15.9994C32.974 16 32.9735 16.0006 32.9729 16.0006Z"
+                        fill="url(#paint0_linear_1_1570)"></path>
+                    <path
+                        d="M7.46942 7.05762L14.8464 16.9234L7.42346 24.945H9.09456L15.594 17.9223L20.8449 24.945H26.5306L18.7389 14.5242L25.6486 7.05762H23.9775L17.9925 13.5253L13.1563 7.05762H7.47053H7.46942ZM9.92617 8.2886H12.5376L24.0716 23.714H21.4602L9.92617 8.2886Z"
+                        fill="white"></path>
+                    <defs>
+                        <linearGradient
+                            id="paint0_linear_1_1570"
+                            x1="0.9823"
+                            y1="16"
+                            x2="32.974"
+                            y2="16"
+                            gradientUnits="userSpaceOnUse"
+                        >
+                            <stop stop-color="#9D7EFF"></stop>
+                            <stop offset="1" stop-color="#8067CE"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </a>
+            <a href="#" class="social-icon">
+                <svg
+                    width="33"
+                    height="32"
+                    viewBox="0 0 33 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M17.0057 0H16.9329C8.11904 0 0.973999 7.14713 0.973999 15.9636V16.0364C0.973999 24.8529 8.11904 32 16.9329 32H17.0057C25.8195 32 32.9646 24.8529 32.9646 16.0364V15.9636C32.9646 7.14713 25.8195 0 17.0057 0Z"
+                        fill="url(#paint0_linear_1_1556)"></path>
+                    <path
+                        d="M8.60316 10.6356C8.18174 10.2444 7.97217 9.76006 7.97217 9.1838C7.97217 8.60755 8.18286 8.10192 8.60316 7.70953C9.02457 7.31826 9.56704 7.12207 10.2317 7.12207C10.8963 7.12207 11.4175 7.31826 11.8378 7.70953C12.2592 8.1008 12.4687 8.59298 12.4687 9.1838C12.4687 9.77463 12.258 10.2444 11.8378 10.6356C11.4163 11.0269 10.8817 11.2231 10.2317 11.2231C9.58161 11.2231 9.02457 11.0269 8.60316 10.6356ZM12.1146 12.8801V24.876H8.3252V12.8801H12.1146Z"
+                        fill="white"></path>
+                    <path
+                        d="M24.7291 14.0651C25.5551 14.962 25.9676 16.193 25.9676 17.7603V24.6641H22.3687V18.2468C22.3687 17.4564 22.1636 16.8421 21.7545 16.4048C21.3455 15.9676 20.794 15.7479 20.1036 15.7479C19.4132 15.7479 18.8618 15.9665 18.4527 16.4048C18.0436 16.8421 17.8385 17.4564 17.8385 18.2468V24.6641H14.2184V12.8464H17.8385V14.4137C18.205 13.8913 18.6993 13.4787 19.3202 13.1749C19.9411 12.8711 20.6394 12.7197 21.4161 12.7197C22.7991 12.7197 23.9042 13.1682 24.7291 14.0639V14.0651Z"
+                        fill="white"></path>
+                    <defs>
+                        <linearGradient
+                            id="paint0_linear_1_1556"
+                            x1="0.973999"
+                            y1="16"
+                            x2="32.9646"
+                            y2="16"
+                            gradientUnits="userSpaceOnUse"
+                        >
+                            <stop stop-color="#9D7EFF"></stop>
+                            <stop offset="1" stop-color="#8067CE"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <div
+        class="group chat-cta mb-2 flex cursor-pointer items-center gap-x-4 md:mb-8"
+    >
+        <a
+            class="chat-cta-text border-b-[2px] border-b-white pb-2 text-[26px] font-medium text-nowrap transition-all duration-300 sm:text-[40px] md:text-[50px] lg:border-b-[5px] xl:text-[80px] 2xl:text-[110px]"
+        >
+            Hey, let's Have a Chat
+        </a>
+        <svg
+            width="70"
+            height="70"
+            viewBox="0 0 70 70"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="chat-cta-arrow -mt-2 aspect-square h-10 transition-transform duration-300 md:h-16 md:w-16 lg:h-[70px] lg:w-[70px] xl:h-[90px] xl:w-[90px] 2xl:h-[110px] 2xl:w-[110px]"
+        >
+            <path
+                d="M62.6083 0.0546875C63.452 0.0488774 64.2886 0.211063 65.0692 0.53125C65.8499 0.851474 66.5594 1.32326 67.1561 1.91992C67.7528 2.51658 68.2246 3.22617 68.5448 4.00684C68.865 4.78746 69.0272 5.62407 69.0214 6.46777L68.6542 56.0039C68.6229 57.341 68.0666 58.612 67.1063 59.543C66.1459 60.474 64.8579 60.9908 63.5204 60.9805C62.1829 60.9701 60.9028 60.434 59.9569 59.4883C59.011 58.5424 58.4751 57.2615 58.4647 55.9238L58.7528 17.5518L9.51648 66.7881C8.56089 67.7436 7.26431 68.2803 5.91296 68.2803C4.56181 68.2802 3.26593 67.7434 2.31042 66.7881C1.35483 65.8325 0.81727 64.536 0.817261 63.1846C0.817261 61.8331 1.35483 60.5367 2.31042 59.5811L51.5643 10.3271L13.1552 10.6084C12.4797 10.6241 11.8078 10.5052 11.1786 10.2588C10.5494 10.0124 9.97534 9.64319 9.49011 9.17285C9.00486 8.70246 8.61831 8.13987 8.35242 7.51855C8.08655 6.89727 7.94654 6.22947 7.94128 5.55371C7.93603 4.87791 8.06498 4.20741 8.32117 3.58203C8.57734 2.95679 8.95571 2.38893 9.43347 1.91113C9.91134 1.43325 10.48 1.05503 11.1053 0.798828C11.7306 0.542744 12.4004 0.413719 13.076 0.418945L13.0721 0.421875L62.6083 0.0546875Z"
+                fill="white"></path>
+        </svg>
+    </div>
+
+    <div
+        class="flex flex-col gap-x-12 gap-y-12 sm:flex-row lg:justify-end lg:gap-y-0"
+    >
+        <div
+            class="mt-4 flex flex-col gap-x-4 gap-y-2 text-sm md:flex-row md:gap-y-0 md:text-base lg:gap-x-12 lg:text-lg xl:text-[22px]"
+        >
+            <div class="items-c flex flex-row justify-between">
+                <div class="">
+                    <p class="gradient-text">Drop a message</p>
+                    <a
+                        class="text-xs sm:text-sm md:text-base lg:text-xl xl:text-[28px] 2xl:text-[32px]"
+                        href="mailto:info@nixxonaustralia.com"
+                    >
+                        info@nixxonaustralia.com
+                    </a>
+                </div>
+                <div
+                    class="order-1 ml-auto flex flex-row items-center gap-x-2 md:hidden"
+                >
+                    <a
+                        href="https://www.facebook.com/Nixxontech/"
+                        class="mobile-social-icon social-icon"
+                        ><svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M31.9906 16.0006C31.99 16.0006 31.9895 16.0011 31.9895 16.0017C31.9889 24.0822 26.0007 30.7623 18.2217 31.8464C17.4943 31.9473 16.7501 32 15.9947 32C15.1228 32 14.2665 31.9305 13.4326 31.796C5.81688 30.5695 0 23.9638 0 16.0006C0 7.16393 7.16182 0 15.9959 0C24.8295 0 31.9911 7.16332 31.9917 15.9994C31.9917 16 31.9912 16.0006 31.9906 16.0006Z"
+                                fill="url(#paint0_linear_1_1567)"></path>
+                            <path
+                                d="M18.2217 12.8482V16.3337H22.5322L21.8497 21.029H18.2217V31.8466C17.4943 31.9475 16.7501 32.0002 15.9947 32.0002C15.1227 32.0002 14.2664 31.9307 13.4326 31.7961V21.029H9.45715V16.3337H13.4326V12.069C13.4326 9.42316 15.5766 7.27734 18.2228 7.27734V7.27959C18.2307 7.27959 18.2374 7.27734 18.2452 7.27734H22.5334V11.338H19.7314C18.8987 11.338 18.2228 12.0141 18.2228 12.8471L18.2217 12.8482Z"
+                                fill="white"></path>
+                            <defs>
+                                <linearGradient
+                                    id="paint0_linear_1_1567"
+                                    x1="0"
+                                    y1="16"
+                                    x2="31.9917"
+                                    y2="16"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop stop-color="#9D7EFF"></stop>
+                                    <stop offset="1" stop-color="#8067CE"
+                                    ></stop>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </a>
+                    <a
+                        href="https://www.instagram.com/nixxontech/"
+                        class="mobile-social-icon social-icon"
+                    >
+                        <svg
+                            width="32"
+                            height="32"
+                            viewBox="0 0 32 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M16.0234 0H15.9506C7.13673 0 -0.00830078 7.14713 -0.00830078 15.9636V16.0364C-0.00830078 24.8529 7.13673 32 15.9506 32H16.0234C24.8372 32 31.9823 24.8529 31.9823 16.0364V15.9636C31.9823 7.14713 24.8372 0 16.0234 0Z"
+                                fill="url(#paint0_linear_1_1561)"></path>
+                            <path
+                                d="M20.937 6.51074H11.0382C8.30349 6.51074 6.07874 8.73616 6.07874 11.4717V20.5303C6.07874 23.2658 8.30349 25.4912 11.0382 25.4912H20.937C23.6717 25.4912 25.8965 23.2658 25.8965 20.5303V11.4717C25.8965 8.73616 23.6717 6.51074 20.937 6.51074ZM7.82828 11.4717C7.82828 9.70144 9.26849 8.2608 11.0382 8.2608H20.937C22.7067 8.2608 24.1469 9.70144 24.1469 11.4717V20.5303C24.1469 22.3005 22.7067 23.7412 20.937 23.7412H11.0382C9.26849 23.7412 7.82828 22.3005 7.82828 20.5303V11.4717Z"
+                                fill="white"></path>
+                            <path
+                                d="M15.9875 20.6148C18.5306 20.6148 20.6007 18.5452 20.6007 16.0003C20.6007 13.4553 18.5317 11.3857 15.9875 11.3857C13.4434 11.3857 11.3744 13.4553 11.3744 16.0003C11.3744 18.5452 13.4434 20.6148 15.9875 20.6148ZM15.9875 13.1369C17.5667 13.1369 18.8512 14.4217 18.8512 16.0014C18.8512 17.581 17.5667 18.8658 15.9875 18.8658C14.4084 18.8658 13.1239 17.581 13.1239 16.0014C13.1239 14.4217 14.4084 13.1369 15.9875 13.1369Z"
+                                fill="white"></path>
+                            <path
+                                d="M21.0277 12.1312C21.7125 12.1312 22.2707 11.574 22.2707 10.8879C22.2707 10.2017 21.7137 9.64453 21.0277 9.64453C20.3418 9.64453 19.7848 10.2017 19.7848 10.8879C19.7848 11.574 20.3418 12.1312 21.0277 12.1312Z"
+                                fill="white"></path>
+                            <defs>
+                                <linearGradient
+                                    id="paint0_linear_1_1561"
+                                    x1="-0.00830078"
+                                    y1="16"
+                                    x2="31.9823"
+                                    y2="16"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop stop-color="#9D7EFF"></stop>
+                                    <stop offset="1" stop-color="#8067CE"
+                                    ></stop>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </a>
+                    <a
+                        href="https://twitter.com/nixxontech"
+                        class="mobile-social-icon social-icon"
+                    >
+                        <svg
+                            width="33"
+                            height="32"
+                            viewBox="0 0 33 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M32.9729 16.0006C32.9722 16.0006 32.9717 16.0011 32.9717 16.0017C32.9712 24.0822 26.983 30.7623 19.204 31.8464C18.4766 31.9473 17.7324 32 16.977 32C16.1051 32 15.2488 31.9305 14.4149 31.796C6.79917 30.5695 0.9823 23.9638 0.9823 16.0006C0.9823 7.16393 8.14412 0 16.9781 0C25.8118 0 32.9734 7.16332 32.974 15.9994C32.974 16 32.9735 16.0006 32.9729 16.0006Z"
+                                fill="url(#paint0_linear_1_1570)"></path>
+                            <path
+                                d="M7.46942 7.05762L14.8464 16.9234L7.42346 24.945H9.09456L15.594 17.9223L20.8449 24.945H26.5306L18.7389 14.5242L25.6486 7.05762H23.9775L17.9925 13.5253L13.1563 7.05762H7.47053H7.46942ZM9.92617 8.2886H12.5376L24.0716 23.714H21.4602L9.92617 8.2886Z"
+                                fill="white"></path>
+                            <defs>
+                                <linearGradient
+                                    id="paint0_linear_1_1570"
+                                    x1="0.9823"
+                                    y1="16"
+                                    x2="32.974"
+                                    y2="16"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop stop-color="#9D7EFF"></stop>
+                                    <stop offset="1" stop-color="#8067CE"
+                                    ></stop>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </a>
+                    <a href="#" class="mobile-social-icon social-icon">
+                        <svg
+                            width="33"
+                            height="32"
+                            viewBox="0 0 33 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M17.0057 0H16.9329C8.11904 0 0.973999 7.14713 0.973999 15.9636V16.0364C0.973999 24.8529 8.11904 32 16.9329 32H17.0057C25.8195 32 32.9646 24.8529 32.9646 16.0364V15.9636C32.9646 7.14713 25.8195 0 17.0057 0Z"
+                                fill="url(#paint0_linear_1_1556)"></path>
+                            <path
+                                d="M8.60316 10.6356C8.18174 10.2444 7.97217 9.76006 7.97217 9.1838C7.97217 8.60755 8.18286 8.10192 8.60316 7.70953C9.02457 7.31826 9.56704 7.12207 10.2317 7.12207C10.8963 7.12207 11.4175 7.31826 11.8378 7.70953C12.2592 8.1008 12.4687 8.59298 12.4687 9.1838C12.4687 9.77463 12.258 10.2444 11.8378 10.6356C11.4163 11.0269 10.8817 11.2231 10.2317 11.2231C9.58161 11.2231 9.02457 11.0269 8.60316 10.6356ZM12.1146 12.8801V24.876H8.3252V12.8801H12.1146Z"
+                                fill="white"></path>
+                            <path
+                                d="M24.7291 14.0651C25.5551 14.962 25.9676 16.193 25.9676 17.7603V24.6641H22.3687V18.2468C22.3687 17.4564 22.1636 16.8421 21.7545 16.4048C21.3455 15.9676 20.794 15.7479 20.1036 15.7479C19.4132 15.7479 18.8618 15.9665 18.4527 16.4048C18.0436 16.8421 17.8385 17.4564 17.8385 18.2468V24.6641H14.2184V12.8464H17.8385V14.4137C18.205 13.8913 18.6993 13.4787 19.3202 13.1749C19.9411 12.8711 20.6394 12.7197 21.4161 12.7197C22.7991 12.7197 23.9042 13.1682 24.7291 14.0639V14.0651Z"
+                                fill="white"></path>
+                            <defs>
+                                <linearGradient
+                                    id="paint0_linear_1_1556"
+                                    x1="0.973999"
+                                    y1="16"
+                                    x2="32.9646"
+                                    y2="16"
+                                    gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop stop-color="#9D7EFF"></stop>
+                                    <stop offset="1" stop-color="#8067CE"
+                                    ></stop>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="">
+                <p class="gradient-text text-nowrap">Start a Conversation</p>
+                <a
+                    class="text-xs sm:text-sm md:text-base lg:text-xl xl:text-[28px] 2xl:text-[32px]"
+                    href="phone:+112345678910"
+                >
+                    +61 480 854 472
+                </a>
+            </div>
+        </div>
+
+        <div class="flex md:gap-x-12 lg:ml-auto lg:gap-x-20">
+            <div class="w-1/2 md:w-auto">
+                <h4 class="text-base md:text-lg lg:text-xl">Menu</h4>
+                <ul class="mt-4 flex flex-col gap-y-1 lg:gap-y-2">
+                    {
+                        menuLinks.map((link) => (
+                            <li>
+                                <a
+                                    href={link.href}
+                                    class="text-xs text-white hover:underline sm:text-[10px] md:text-sm lg:text-base"
+                                >
+                                    {link.label}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            <div class="w-1/2 md:w-auto">
+                <h4 class="text-base md:text-lg lg:text-xl">Services</h4>
+                <ul class="mt-4 flex flex-col gap-y-1 lg:gap-y-2">
+                    {
+                        serviceLinks.map((link) => (
+                            <li>
+                                <a
+                                    href={link.href}
+                                    class="text-xs text-white hover:underline sm:text-[10px] md:text-sm lg:text-base"
+                                >
+                                    {link.label}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div
+        class="mt-7 flex flex-col justify-between gap-x-2 gap-y-4 border-t border-t-[#9b94b1] pt-11 text-sm md:flex-row lg:text-base xl:text-lg 2xl:text-[22px]"
+    >
+        <div class="">
+            <p class="gradient-text mb-1">
+                Copyright © Nixxon Australia {currentYear}. All Rights Reserved
+            </p>
+            <p class="">
+                <a class="cursor-pointer hover:underline" href="/privacy-policy"
+                    >Privacy Policy</a
+                > |
+                <a
+                    class="cursor-pointer hover:underline"
+                    href="/terms-conditions">Terms & Conditions</a
+                >
+            </p>
+        </div>
+        <div class="">
+            <p class="gradient-text mb-1">Payment Methods</p>
+            <p class="">
+                Visa | Mastercard | Discover | Paypal | American | Express
+            </p>
+        </div>
+    </div>
+
+    <ContactModal />
+</footer>
+
+<style>
+    /* Base styling for all social icons */
+    .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+        border-radius: 50%;
+        backdrop-filter: blur(4px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .social-icon svg {
+        width: 24px;
+        height: 24px;
+        transition:
+            fill 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .social-icon:hover,
+    .social-icon:focus {
+        background: rgba(157, 126, 255, 0.25);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(157, 126, 255, 0.3);
+    }
+
+    .social-icon:active {
+        transform: translateY(0) scale(0.98);
+    }
+
+    .social-icon:hover svg path:first-of-type {
+        transition: fill 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        fill: #fff !important;
+    }
+
+    .social-icon:hover svg path:not(:first-of-type) {
+        transition: fill 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        fill: url(#paint0_linear_1_1567) !important;
+    }
+
+    .social-icon:hover svg {
+        transition: filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        filter: drop-shadow(0 0 3px #9d7eff);
+    }
+
+    /* Remove duplicate mobile rules since both use .social-icon now */
+    .mobile-social-icon {
+        /* inherits from .social-icon */
+    }
+
+    .chat-cta-text {
+        letter-spacing: 2px;
+        transition:
+            background-position 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+            text-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+            transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background-size: 200% 100%;
+        background-position: 0% 50%;
+    }
+
+    .chat-cta:hover .chat-cta-text,
+    .chat-cta:focus .chat-cta-text,
+    .chat-cta:active .chat-cta-text {
+        background-position: 100% 50%;
+        text-shadow:
+            0 4px 24px #9d7eff55,
+            0 1px 0 #fff;
+        transform: scale(1.025) rotate(-1deg);
+    }
+
+    .chat-cta-arrow {
+        transition:
+            transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .chat-cta:hover .chat-cta-arrow,
+    .chat-cta:focus .chat-cta-arrow,
+    .chat-cta:active .chat-cta-arrow {
+        transform: translateX(18px) scale(1.12) rotate(8deg);
+        filter: drop-shadow(0 0 8px #9d7eff88);
+    }
+</style>

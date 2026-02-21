@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaseStudyHeader from "../../components/work/case-study/CaseStudyHeader.astro";
+import CaseStudyIntro from "../../components/work/case-study/CaseStudyIntro.astro";
+import CaseStudyChallenge from "../../components/work/case-study/CaseStudyChallenge.astro";
+import ResultSection from "../../components/work/case-study/ResultSection.astro";
+import PersonImage from "../../assets/icons/person-image.png";
+import LogoAnatomy from "../../components/work/case-study/LogoAnatomy.astro";
+import GreenNestLogo from "../../assets/work/green-nest-logo.png";
+import Pallete from "../../components/work/case-study/Pallete.astro";
+import Typography from "../../components/work/case-study/Typography.astro";
+import Visualize from "../../components/work/case-study/Visualize.astro";
+import Image1 from "../../assets/work/green-nest/1.png";
+import Image2 from "../../assets/work/green-nest/2.png";
+import Image3 from "../../assets/work/green-nest/3.png";
+import RewardIcon from "../../assets/icons/reward-icon.svg";
+import RecycleIcon from "../../assets/icons/recycle-icon.svg";
+import EyeIcon from "../../assets/icons/eye-icon.svg";
+---
+
+<Layout title="Green Nest - Case Study  - Nixxon Australia">
+    <div class="our-services h-20"></div>
+    <CaseStudyHeader />
+
+    <CaseStudyIntro title="Introduction" />
+
+    <CaseStudyChallenge
+        title="The Challenge"
+        cards={[
+            {
+                title: "Visual Fatigue",
+                paragraph:
+                    "Overcoming the generic leaf cliches prevalent in the eco-friendly sector.",
+                icon: EyeIcon,
+            },
+            {
+                title: "Education",
+                paragraph:
+                    "Communicating the refillable system clearly through packaging design.",
+                icon: RecycleIcon,
+            },
+            {
+                title: "Premium Feel",
+                paragraph:
+                    "balancing earth-friendly materials with a high-end luxury aesthetic.",
+                icon: RewardIcon,
+            },
+        ]}
+        ],
+    />
+
+    <LogoAnatomy
+        subheading="Constructed from Nature"
+        paragraph="The logo symbol combines the protective shape of a nest with the sprouting energy of a leaf. The circular motion implies the cycle of reuse and sustainability."
+        logoImage={GreenNestLogo}
+        featuresList={[
+            "Geometric Precision (Golden Ratio)",
+            "Minimalist Line Weight",
+            "Scalable for Small Print",
+        ]}
+    />
+
+    <Pallete
+        colors={[
+            { name: "Fresh Green", hex: "#7AC71F" },
+            { name: "Deep Forest", hex: "#05402E" },
+            { name: "Cloud White", hex: "#f8fcf8" },
+        ]}
+    />
+
+    <Typography />
+
+    <Visualize
+        title="Packaging"
+        heading="Visual Strategy"
+        images={[Image1, Image2, Image3]}
+    />
+
+    <ResultSection
+        title="Conclusion"
+        heading="The Result"
+        quote="The new identity perfectly captures the essence of our mission. it feels clean, trustworthy, and premium. since the rebrand, our direct-to-consumer sales have increased by 40%."
+        personName="Elena Rossi"
+        personTitle="Founder, Green Nest"
+        personImage={PersonImage}
+    />
+</Layout>

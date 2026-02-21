@@ -1,0 +1,77 @@
+---
+import Image from "astro/components/Image.astro";
+
+interface Props {
+    title?: string;
+    heading?: string;
+    quote?: string;
+    personName?: string;
+    personTitle?: string;
+    personImage?: any;
+}
+
+const {
+    title = "Conclusion",
+    heading = "The Result",
+    quote = "The new identity perfectly captures the essence of our mission. It feels clean, trustworthy, and premium. Since the rebrand, our sales have increased significantly.",
+    personName = "John Doe",
+    personTitle = "Founder, Brand Name",
+    personImage = null,
+} = Astro.props;
+---
+
+<section class="internal-padding py-12 md:py-16 lg:py-20">
+    <!-- Label -->
+    <span class="mb-4 text-lg font-semibold text-[#643DB4] md:text-xl">
+        {title}
+    </span>
+
+    <!-- Heading -->
+    <h2
+        class="mb-12 text-4xl font-semibold text-black md:text-5xl lg:text-6xl xl:text-7xl"
+    >
+        {heading}
+    </h2>
+
+    <!-- Quote Section -->
+    <div class="font-montserrat rounded-3xl bg-[#F0F2FF] p-8 md:p-12 lg:p-16">
+        <div class="mt-20 flex flex-col items-center gap-8 md:gap-12">
+            <!-- <span class="absolute z-10 -top-10 text-6xl font-bold text-[#9d7eff] opacity-20 md:-top-12 md:text-8xl lg:-top-16 lg:text-9xl">
+            ""
+          </span> -->
+            <div class="mx-auto flex max-w-[600px] items-center justify-center">
+                <!-- Quote Text -->
+                <p
+                    class="font-montserrat text-center text-xl leading-relaxed text-black md:text-2xl lg:text-3xl"
+                >
+                    " {quote} "
+                </p>
+            </div>
+
+            <!-- Person Details -->
+            <div class="mt-8 flex flex-col items-center gap-4 md:mt-12">
+                {
+                    personImage && (
+                        <div class="h-20 w-20 overflow-hidden rounded-full ring-4 ring-white md:h-24 md:w-24">
+                            <Image
+                                src={personImage}
+                                alt={personName}
+                                class="h-full w-full object-cover"
+                            />
+                        </div>
+                    )
+                }
+                <div class="text-center">
+                    <p class="text-lg font-semibold text-[#1C1C1C] md:text-xl">
+                        {personName}
+                    </p>
+                    <p
+                        class="text-sm font-semibold tracking-wider text-[#643DB4] uppercase md:text-base"
+                    >
+                        {personTitle}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

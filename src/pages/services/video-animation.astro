@@ -1,0 +1,110 @@
+---
+import "../../index.css";
+import Layout from "../../layouts/Layout.astro";
+import Experience from "../../components/home/Experience.astro";
+import SwiperSection from "../../components/common/SwiperSection.astro";
+import { videoAnimationCards } from "../../data/swipers";
+import VerticalSwiper from "../../components/common/VerticalSwiper.astro";
+import Testimonials from "../../components/common/Testimonials.astro";
+import HeroVideoAnimation from "../../components/video-animation/HeroVideoAnimation.astro";
+import VerticalImage1 from "../../assets/video-animation/1.png";
+import VerticalImage2 from "../../assets/video-animation/2.png";
+import VerticalImage3 from "../../assets/video-animation/3.png";
+import VerticalImage4 from "../../assets/video-animation/4.png";
+import VerticalImage5 from "../../assets/video-animation/5.png";
+import VerticalImage6 from "../../assets/video-animation/6.png";
+import PortfolioImage1 from "../../assets/video-animation/portfolio/1.png";
+import PortfolioImage2 from "../../assets/video-animation/portfolio/2.png";
+import PortfolioImage3 from "../../assets/video-animation/portfolio/3.png";
+import PortfolioImage4 from "../../assets/video-animation/portfolio/4.png";
+import PortfolioImage5 from "../../assets/video-animation/portfolio/5.png";
+import PortfolioImage6 from "../../assets/video-animation/portfolio/6.png";
+import PortfolioImage7 from "../../assets/video-animation/portfolio/7.png";
+import PortfolioImage8 from "../../assets/video-animation/portfolio/8.png";
+import PortfolioImage9 from "../../assets/video-animation/portfolio/9.png";
+import VideoAnimationPortfolio from "../../components/video-animation/VideoAnimationPortfolio.astro";
+
+const portfolioImages = [
+    PortfolioImage1,
+    PortfolioImage2,
+    PortfolioImage3,
+    PortfolioImage4,
+    PortfolioImage5,
+    PortfolioImage6,
+    PortfolioImage7,
+    PortfolioImage8,
+    PortfolioImage9,
+];
+
+// Create array of data for swiper slides
+const videoSlides = [
+    {
+        id: "01",
+        title: "Explainer Videos",
+        description:
+            "Turn complex products, services, or ideas into simple, compelling stories with explainer videos. Using clear visuals, engaging narratives, and purposeful motion, we help your audience not only understand your offering but also feel confident in choosing it. Whether it’s a product demo, service walkthrough, or concept introduction, our explainer videos make information accessible, memorable, and persuasive.",
+        image: VerticalImage1,
+    },
+    {
+        id: "02",
+        title: "2D Character Animation",
+        description:
+            "Bring your brand to life with characters that connect emotionally with your audience. Through expressive movements, storytelling, and design, we create 2D characters that embody your brand’s personality. Perfect for advertisements, social campaigns, training modules, or internal communications—character-driven animation adds a human touch that sparks engagement and builds lasting impressions.",
+        image: VerticalImage2,
+    },
+    {
+        id: "03",
+        title: "3D Animation",
+        description:
+            "Elevate your brand with immersive 3D animations that deliver depth, realism, and impact. From architectural visualizations to product showcases and cinematic storytelling, 3D animation creates experiences that feel tangible and dynamic. It’s not just animation—it’s a way to make your audience interact with your vision, pushing boundaries of imagination and leaving a lasting mark.",
+        image: VerticalImage3,
+    },
+    {
+        id: "04",
+        title: "Motion Graphics",
+        description:
+            "Transform static information into visually dynamic experiences with motion graphics. Animated typography, icons, and data visuals combine to communicate messages in a clear yet captivating way. Whether it’s for presentations, brand campaigns, or digital content, motion graphics ensure your communication is both professional and unforgettable.",
+        image: VerticalImage4,
+    },
+    {
+        id: "05",
+        title: "Whiteboard Animation",
+        description:
+            "Simplify, explain, and educate with the timeless appeal of whiteboard animation. With hand-drawn illustrations unfolding in real-time, whiteboard videos make even the most technical subjects engaging and approachable. Ideal for training, tutorials, or awareness campaigns, this style keeps viewers hooked while enhancing understanding and recall.",
+
+        image: VerticalImage5,
+    },
+    {
+        id: "06",
+        title: "Animated Brand Assets",
+        description:
+            "Strengthen your identity with custom-branded animated assets that go beyond static design. From animated logos and iconography to intros, outros, and branded transitions, these assets add polish and consistency across every digital platform. They don’t just reinforce recognition—they create a premium perception of your brand in every interaction.",
+        image: VerticalImage6,
+    },
+];
+---
+
+<Layout title="Video Animation - Nixxon Australia">
+    <HeroVideoAnimation />
+    <div class="overflow-hidden border-none bg-[#4B00A3]">
+        <div class="rounded-t-[2rem] bg-[#f8f8f8] md:rounded-none">
+            <Experience
+                typewriter="Your Story, In Motion  "
+                experience="Transform static concepts into motion that matters. Our video animations bring clarity, creativity, and impact to your brand’s story, ensuring your message is not just seen but remembered and acted upon."
+            />
+            <span class="our-services h-0 w-0"> </span>
+            <VerticalSwiper
+                title="Video Animation Services That Set Us Apart"
+                description="We pay great attention to every small detail and go above and beyond for our clients in order to produce visually spectacular experiences that attract viewers and leave a lasting impact. With the ideal balance of technical know-how and creative inspiration, every project we work on with our distinctive video animation services is of the highest caliber and inventiveness."
+                slides={videoSlides}
+            />
+            <SwiperSection
+                title="Our Video Animation process"
+                description="We transform ideas into powerful visuals through a streamlined process that ensures every animation is clear, creative, and impactful."
+                swiperCards={videoAnimationCards}
+            />
+        </div>
+    </div>
+    <!-- <VideoAnimationPortfolio /> -->
+    <Testimonials />
+</Layout>

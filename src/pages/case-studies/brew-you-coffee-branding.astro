@@ -1,0 +1,77 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CaseStudyHeader from "../../components/work/case-study/CaseStudyHeader.astro";
+import CaseStudyIntro from "../../components/work/case-study/CaseStudyIntro.astro";
+import CaseStudyChallenge from "../../components/work/case-study/CaseStudyChallenge.astro";
+import ResultSection from "../../components/work/case-study/ResultSection.astro";
+import PersonImage from "../../assets/icons/person-image.png";
+import LogoAnatomy from "../../components/work/case-study/LogoAnatomy.astro";
+import Pallete from "../../components/work/case-study/Pallete.astro";
+import Typography from "../../components/work/case-study/Typography.astro";
+import Visualize from "../../components/work/case-study/Visualize.astro";
+import Image1 from "../../assets/work/brew-you-coffee/1.png";
+import Image2 from "../../assets/work/brew-you-coffee/2.png";
+import Image3 from "../../assets/work/brew-you-coffee/3.png";
+import CoverBrew from "../../assets/work/brew-you-coffee/cover.png";
+import LogoBrew from "../../assets/work/brew-you-coffee/logo.png";
+---
+
+<Layout title="Brew You Coffee Branding - Case Study  - Nixxon Australia">
+    <div class="our-services h-20"></div>
+    <CaseStudyHeader
+        title="Brew You Coffee Co. Branding"
+        description="Brew You Coffee Co. isn't just about waking up; it's about waking up right. It bridges the gap between the robust kick of artisanal coffee and the calming benefits of herbal infusions."
+        tags={["Logo", "Coffee Brand"]}
+        image={CoverBrew}
+        url="/case-studies/brew-you-coffee-branding"
+        subtitle="Branding for the Mindful Drinker"
+    />
+
+    <CaseStudyIntro
+        title="Introduction"
+        heading="Coffee, Reimagined."
+        paragraph="Brew You Coffee Co. isn't just about waking up; it's about waking up right. It bridges the gap between the robust kick of artisanal coffee and the calming benefits of herbal infusions.<br><br> Targeting health-conscious professionals and creatives, the brand needed an identity that stepped away from the aggressive 'hustle culture' of traditional coffee shops and embraced a slower, more mindful ritual."
+    />
+
+    <CaseStudyChallenge
+        title="The Challenge"
+        heading="Breaking the Brown Stereotype."
+        paragraph="Most coffee brands use dark browns, blacks, and sharp, aggressive fonts to denote strength. However, Brew You is an herbal blend (gentle on the gut, anxiety-free).<br><br><span class='font-bold text-black'>The Goal:</span> Design a visual identity that feels 'Full-Bodied' and satisfying (like coffee) but also 'Calm and Organic' (like tea). The challenge was to blend these two opposing vibes into one cohesive mark."
+    />
+
+    <LogoAnatomy
+        subheading="Merging nature with the bean."
+        paragraph="The logo icon is a mathematical fusion of a coffee bean and a tea leaf. it represents the organic growth of the plant and the precision of the roast. the geometry is soft and circular, avoiding sharp eadges to maintain that “mindful” aesthetic."
+        logoImage={LogoBrew}
+        featuresList={[
+            "<strong>The Coffee Bean (Outline):</strong> The structural outline represents the foundation—high-quality roasted coffee beans.",
+            "<strong>The Leaf (Solid Fill):</strong> The blue leaf creates the core of the icon, symbolizing the herbal infusion (Mint, CBD, or Adaptogens) that cools down the caffeine 'jitters.'",
+            "<strong>The Connection:</strong> The leaf grows out of the bean, signifying that this is a natural evolution of traditional coffee.",
+        ]}
+    />
+
+    <Pallete
+        colors={[
+            { name: "Sage Green", hex: "#9DA773" },
+            { name: "Serene Blue", hex: "#BDD3E8" },
+            { name: "Cloud White", hex: "#f8fcf8" },
+        ]}
+    />
+
+    <Typography fontName="Coral Candy" fontTag="font-coral-candy" />
+
+    <Visualize
+        title="Packaging"
+        heading="Visual Strategy"
+        images={[Image1, Image2, Image3]}
+    />
+
+    <ResultSection
+        title="Conclusion"
+        heading="The Result"
+        quote="“Working with the design team transformed our business from a local roaster to a lifestyle brand. The ‘mindful’ aesthetic isn’t just a look it’s how our customers feel when they hold our bag.”"
+        personName="Marcus Chen"
+        personTitle="Founder, Brew You Coffee Co."
+        personImage={PersonImage}
+    />
+</Layout>

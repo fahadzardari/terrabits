@@ -1,0 +1,30 @@
+---
+interface Props {
+    icon?: any;
+    title?: string;
+    paragraph?: string;
+}
+
+import EyeIcon from "../../../assets/icons/eye-icon.svg";
+import Image from "astro/components/Image.astro";
+
+const {
+    icon = EyeIcon,
+    title = "Challenge Title",
+    paragraph = "Describe the challenge faced in this case study. Explain the problem that needed to be solved and any relevant context that helps understand the situation.",
+} = Astro.props;
+---
+
+<article
+    class="flex max-w-[440px] flex-col gap-4 rounded-2xl bg-white p-6 capitalize drop-shadow-lg md:p-8"
+>
+    <div class="w-fit rounded-full bg-[#ECE6FF] p-4">
+        <Image src={icon} alt="Challenge Icon" class="h-4 w-4" />
+    </div>
+    <h2 class="text-lg font-semibold text-black md:text-xl lg:text-2xl">
+        {title}
+    </h2>
+    <p class="text-sm leading-tight text-[#535353] md:text-base">
+        {paragraph}
+    </p>
+</article>

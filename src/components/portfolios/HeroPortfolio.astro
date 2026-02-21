@@ -1,0 +1,115 @@
+<section
+    class="hero-section relative overflow-hidden bg-[#4B00A3] pt-20 text-center text-white lg:ml-[65px] lg:rounded-l-3xl lg:text-left xl:ml-[88px]"
+>
+    <div class="pl-4 sm:pl-12 lg:pl-8 2xl:pl-12">
+        <h1
+            class="3xl:text-[280px] inline text-[56px] uppercase sm:text-[90px] md:text-[110px] lg:text-[150px] xl:text-[180px] 2xl:text-[220px]"
+        >
+            Portfolio
+        </h1>
+        <svg
+            viewBox="0 0 69 69"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            class="/* tiny / phones */ /* larger phones */ /* tablets */ /* small desktops */ /* large screens */ 3xl:w-[69px] 3xl:h-[69px] mb-8 ml-2 inline-block h-7 w-7 align-middle sm:h-10 sm:w-10 md:mb-12 md:ml-8 md:h-14 md:w-14 lg:h-16 lg:w-16 xl:h-20 xl:w-20 2xl:h-[56px] 2xl:w-[56px]"
+        >
+            <path
+                d="M68.2246 61.79C68.2304 62.6338 68.0692 63.4703 67.749 64.251C67.4288 65.0317 66.9561 65.7412 66.3594 66.3379C65.7627 66.9346 65.0532 67.4073 64.2725 67.7275C63.4918 68.0477 62.6552 68.209 61.8115 68.2031L12.2764 67.8359C10.939 67.8047 9.66741 67.2486 8.73633 66.2881C7.80534 65.3276 7.28942 64.0397 7.2998 62.7021C7.31021 61.3645 7.84609 60.0846 8.79199 59.1387C9.7379 58.1928 11.0178 57.6569 12.3555 57.6465L50.7285 57.9346L1.49219 8.69824C0.53659 7.74264 -2.8177e-07 6.44615 -2.22698e-07 5.09472C0.000121907 3.74348 0.536705 2.44767 1.49219 1.49218C2.44768 0.536697 3.74348 0.00012635 5.09473 -2.75954e-06C6.44615 -8.46004e-07 7.74264 0.536585 8.69824 1.49218L57.9521 50.7461L57.6719 12.3379C57.6561 11.6623 57.775 10.9896 58.0215 10.3604C58.2679 9.73117 58.6371 9.15706 59.1074 8.67187C59.5777 8.1868 60.1396 7.80002 60.7607 7.53418C61.3819 7.26835 62.0499 7.12837 62.7256 7.12305C63.4013 7.11779 64.0719 7.24679 64.6973 7.50293C65.3226 7.75912 65.8913 8.13736 66.3691 8.61523C66.847 9.0931 67.2243 9.66176 67.4805 10.2871C67.7366 10.9124 67.8665 11.5821 67.8613 12.2578L67.8574 12.2549L68.2246 61.79Z"
+                fill="white"></path>
+        </svg>
+    </div>
+</section>
+
+<script>
+    // import { gsap, ScrollTrigger } from "../../utils/gsapUtils.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Hand tilt effect (keep your existing code)
+        const hand = document.getElementById("hand-tilt");
+        if (hand) {
+            hand.style.transition = "transform 0.3s";
+            hand.addEventListener("mouseenter", () => {
+                hand.style.transform = "scale(1.08)";
+            });
+            hand.addEventListener("mousemove", (e) => {
+                const rect = hand.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * 18;
+                const rotateY = ((x - centerX) / centerX) * 18;
+                hand.style.transform = `scale(1.08) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            hand.addEventListener("mouseleave", () => {
+                hand.style.transition = "transform 0.5s";
+                hand.style.transform = "scale(1) rotateX(0deg) rotateY(0deg)";
+                setTimeout(() => {
+                    hand.style.transition = "transform 0.3s";
+                }, 500);
+            });
+        }
+
+        // GSAP entrance animation for hero content
+        // gsap.from(".hero-section .z-10", {
+        //   y: 60,
+        //   opacity: 0,
+        //   duration: 1,
+        //   ease: "power3.out",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top 80%",
+        //   },
+        // });
+
+        // gsap.from("#hand-tilt", {
+        //   x: 80,
+        //   opacity: 0,
+        //   duration: 1.1,
+        //   ease: "power3.out",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top 80%",
+        //   },
+        // });
+
+        // gsap.to("#hand-tilt", {
+        //   y: -40,
+        //   ease: "none",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top top",
+        //     end: "bottom top",
+        //     scrub: true,
+        //   },
+        // });
+    });
+</script>
+
+<style>
+    .animated-gradient-text {
+        background: linear-gradient(
+            90deg,
+            #fff 0%,
+            #7f5cff 25%,
+            #00e0ff 50%,
+            #ff6bcb 75%,
+            #fff 100%
+        );
+        background-size: 200% 100%;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        animation: gradient-move 3s linear infinite;
+        background-repeat: repeat;
+    }
+    @keyframes gradient-move {
+        0% {
+            background-position: 0% 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+</style>

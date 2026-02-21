@@ -1,0 +1,381 @@
+---
+const { projects = [] } = Astro.props;
+import Image from "astro/components/Image.astro";
+import Logo1 from "../../assets/video-animation/portfolio/1.png";
+import Logo2 from "../../assets/video-animation/portfolio/2.png";
+import Logo3 from "../../assets/video-animation/portfolio/3.png";
+import Logo4 from "../../assets/video-animation/portfolio/4.png";
+import Logo5 from "../../assets/video-animation/portfolio/5.png";
+import Logo6 from "../../assets/video-animation/portfolio/6.png";
+import Logo7 from "../../assets/video-animation/portfolio/7.png";
+import Logo8 from "../../assets/video-animation/portfolio/8.png";
+import Logo9 from "../../assets/video-animation/portfolio/9.png";
+
+// Video animation project data using the available logo images
+const videoProjects = [
+    {
+        image: Logo1,
+        title: "Brand Identity Animation",
+        client: "Quadrant Eye",
+        description: "Eye-catching logo reveal with dynamic motion graphics",
+        duration: "0:45",
+        category: "Logo Animation",
+    },
+    {
+        image: Logo2,
+        title: "Interactive Type Animation",
+        client: "Type Mouse Digital",
+        description: "Kinetic typography showcase with cursor interactions",
+        duration: "1:20",
+        category: "Typography",
+    },
+    {
+        image: Logo3,
+        title: "Design Process Showcase",
+        client: "MSHK Studio",
+        description: "Step-by-step reveal of the logo design journey",
+        duration: "2:15",
+        category: "Explainer",
+    },
+    {
+        image: Logo4,
+        title: "Product Introduction",
+        client: "Blade Works",
+        description: "Premium animated introduction for culinary product line",
+        duration: "1:05",
+        category: "Product Animation",
+    },
+    {
+        image: Logo5,
+        title: "Tech Explainer",
+        client: "Nixxon",
+        description: "Animated breakdown of technology services and solutions",
+        duration: "3:20",
+        category: "Corporate",
+    },
+    {
+        image: Logo6,
+        title: "Social Media Story",
+        client: "EcoWave",
+        description: "Short-form animation optimized for social platforms",
+        duration: "0:30",
+        category: "Social Media",
+    },
+    {
+        image: Logo7,
+        title: "App Tutorial Animation",
+        client: "FitPulse",
+        description: "Instructional animation showing key app features",
+        duration: "1:45",
+        category: "Tutorial",
+    },
+    {
+        image: Logo8,
+        title: "Destination Showcase",
+        client: "TravelNest",
+        description: "Animated travel experience highlights for promotion",
+        duration: "2:10",
+        category: "Promotional",
+    },
+    {
+        image: Logo9,
+        title: "Software Demo",
+        client: "ByteCraft",
+        description: "Animated walkthrough of software capabilities",
+        duration: "2:35",
+        category: "Product Demo",
+    },
+];
+
+import CommonButton from "../common/CommonButton.astro";
+---
+
+<section class="internal-padding py-20">
+    <header class="relative mx-auto mb-12 max-w-6xl text-center">
+        <h1
+            class="portfolio-bg-title absolute top-[0px] left-[30%] -z-100 mx-auto transform text-[60px] font-semibold text-[#9D7EFF] opacity-10 md:left-[35%] lg:left-0 lg:translate-x-1/2 lg:text-[144px]"
+            id="portfolio-bg-title"
+        >
+            Videos
+        </h1>
+        <p
+            class="text-gradient-start mb-2 text-xl font-semibold tracking-wider uppercase"
+        >
+            Our Animation Collection
+        </p>
+        <h2 class="mb-3 text-4xl font-semibold text-black md:text-[54px]">
+            Engaging Video Animations
+        </h2>
+        <p class="mx-auto max-w-2xl text-base leading-6 text-[#707070]">
+            Most of our customers give us a call promptly after going through
+            our professional portfolio.Have a look at it, and you will know why!
+        </p>
+    </header>
+
+    <div class="mx-auto">
+        <div
+            id="video-grid"
+            class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
+            {
+                videoProjects.map((project, index) => (
+                    <div class="video-card group relative aspect-video overflow-hidden rounded-xl shadow-lg transition-all duration-300">
+                        {/* Video thumbnail with gradient overlay */}
+                        <div class="video-thumbnail-container relative h-full w-full">
+                            {/* Thumbnail image */}
+                            <Image
+                                src={project.image}
+                                alt={project.title}
+                                class="video-thumbnail h-full w-full object-cover"
+                            />
+
+                            {/* Color overlay based on project */}
+                            <div class="absolute inset-0 bg-gradient-to-br from-[#9D7EFF40] to-[#4338CA80] mix-blend-multiply" />
+
+                            {/* Video duration badge */}
+                            <div class="absolute top-4 right-4 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                                {project.duration}
+                            </div>
+
+                            {/* Play button */}
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="play-button flex h-16 w-16 items-center justify-center rounded-full border border-white/40 bg-white/20 text-white backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-8 w-8"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                                        />
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            {/* Video category tag */}
+                            <div class="absolute top-4 left-4 rounded-full bg-indigo-600 px-3 py-1 text-xs font-medium text-white">
+                                {project.category}
+                            </div>
+
+                            {/* Video scrubber bar */}
+                            <div class="video-progress absolute bottom-0 left-0 h-1 w-full bg-white/20">
+                                <div class="video-progress-bar h-full w-0 bg-[#9D7EFF] transition-[width] duration-[1500ms] ease-in-out group-hover:w-full" />
+                            </div>
+                        </div>
+
+                        {/* Video info overlay */}
+                        <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent p-6 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+                            <h3 class="text-xl font-semibold text-white">
+                                {project.title}
+                            </h3>
+                            <p class="text-sm text-white/80">
+                                Client: {project.client}
+                            </p>
+                            <div class="mt-2 hidden text-sm text-white/70 md:block">
+                                {project.description}
+                            </div>
+                            <div class="mt-3 flex items-center justify-between">
+                                <span class="rounded-full bg-white/20 px-3 py-1 text-xs text-white">
+                                    {project.category}
+                                </span>
+                                <button class="video-button rounded-full px-3 py-1 text-xs font-medium text-white transition-colors">
+                                    View Project
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Set up hover effects for video cards
+        const videoCards = document.querySelectorAll(".video-card");
+
+        videoCards.forEach((card) => {
+            const playButton = card.querySelector(".play-button");
+            const progressBar = card.querySelector(".video-progress-bar");
+
+            // Reset progress bar when mouse leaves
+            card.addEventListener("mouseleave", () => {
+                if (progressBar) {
+                    progressBar.style.width = "0";
+                }
+            });
+
+            // Add pulse animation to play button
+            card.addEventListener("mouseenter", () => {
+                if (playButton) {
+                    playButton.classList.add("pulse");
+                }
+            });
+
+            card.addEventListener("mouseleave", () => {
+                if (playButton) {
+                    playButton.classList.remove("pulse");
+                }
+            });
+
+            // Simulate video loading when clicking play
+            playButton?.addEventListener("click", (e) => {
+                e.preventDefault();
+
+                // Prevent propagation to parent elements
+                e.stopPropagation();
+
+                // Add "loading" animation
+                playButton.classList.add("loading");
+                playButton.innerHTML = `
+          <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        `;
+
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    playButton.classList.remove("loading");
+                    playButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          `;
+                }, 2000);
+            });
+        });
+
+        // Add staggered animation for cards on page load
+        function animateCardsIn() {
+            videoCards.forEach((card, index) => {
+                // Set initial state
+                card.style.opacity = "0";
+                card.style.transform = "translateY(20px)";
+
+                // Animate in with a stagger
+                setTimeout(
+                    () => {
+                        card.style.transition =
+                            "opacity 0.5s ease, transform 0.5s ease";
+                        card.style.opacity = "1";
+                        card.style.transform = "translateY(0)";
+                    },
+                    100 + index * 100,
+                ); // 100ms delay between each card
+            });
+        }
+
+        // Run animation
+        animateCardsIn();
+    });
+</script>
+
+<style>
+    /* Video Card Base Styles */
+    .video-card {
+        background: #0f172a;
+        will-change: transform;
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .video-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-thumbnail {
+        transition: transform 0.7s ease;
+    }
+
+    .video-card:hover .video-thumbnail {
+        transform: scale(1.05);
+    }
+
+    /* Play Button Styles */
+    .play-button {
+        box-shadow: 0 0 30px rgba(157, 126, 255, 0.6);
+    }
+
+    .play-button.pulse {
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(157, 126, 255, 0.7);
+            transform: scale(1);
+        }
+
+        70% {
+            box-shadow: 0 0 0 15px rgba(157, 126, 255, 0);
+            transform: scale(1.1);
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(157, 126, 255, 0);
+            transform: scale(1);
+        }
+    }
+
+    /* Loading animation */
+    .play-button.loading {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Progress bar animation */
+    .video-progress-bar {
+        transition: width 1.5s ease-in-out;
+    }
+
+    /* Video Button Styles */
+    .video-button {
+        background: linear-gradient(90deg, #9d7eff 0%, #8067ce 100%);
+        transition: all 0.3s ease;
+    }
+
+    .video-button:hover {
+        background: linear-gradient(90deg, #8067ce 0%, #4338ca 100%);
+        box-shadow: 0 0 15px rgba(157, 126, 255, 0.5);
+    }
+
+    .bg-indigo-600 {
+        background: linear-gradient(90deg, #9d7eff 0%, #8067ce 100%);
+    }
+
+    /* Background title animation */
+    .portfolio-bg-title {
+        opacity: 0.1;
+        filter: blur(4px);
+        transition: all 0.8s ease;
+    }
+
+    /* Text gradient */
+    .text-gradient-start {
+        background: linear-gradient(to right, #9d7eff, #8067ce);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+
+    /* Ensure cards and images are visible */
+    .video-card,
+    .video-thumbnail {
+        opacity: 1 !important;
+    }
+</style>

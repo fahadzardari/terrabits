@@ -1,0 +1,180 @@
+<section id="stats-section" class="internal-padding my-12">
+    <div class="mb-12 flex items-center gap-16 lg:gap-28">
+        <div class="flex flex-col gap-2 md:gap-4">
+            <p
+                class="text-[60px] leading-[30px] font-semibold md:text-[70px] md:leading-[35px] lg:text-[80px] lg:leading-[40px] xl:text-[90px] xl:leading-[44px] 2xl:text-[102px] 2xl:leading-[52px]"
+            >
+                <span class="stat-number">8</span><span class="text-[#9D7EFF]"
+                    >+</span
+                >
+            </p>
+            <p class="text-lg xl:text-xl 2xl:text-[22px]">Years Experience</p>
+        </div>
+        <div
+            class="headline text-[22px] font-medium md:text-[26px] lg:text-[34px] lg:leading-10 xl:text-[42px] xl:leading-12 2xl:text-[50px] 2xl:leading-14"
+        >
+            <p>
+                We Run All Kinds of <span class="text-[#9D7EFF]"
+                    >IT Services</span
+                >
+            </p>
+            <p>That Vow Your <span class="text-[#9D7EFF]">Success</span></p>
+        </div>
+    </div>
+    <div
+        class="flex flex-col gap-y-4 md:flex-row md:items-center md:justify-between md:gap-y-0"
+    >
+        <p
+            class="text-lg text-[#2A2111] md:max-w-1/2 md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
+        >
+            Accelerate <span class="text-[#9D7EFF]">Innovation</span> with world
+            class tech teams We’ll match you to an entire <span
+                class="text-[#9D7EFF]">Remote Technology</span
+            >
+        </p>
+        <div
+            class="stats-grid grid grid-cols-1 gap-x-7 gap-y-6 lg:grid-cols-2 lg:gap-y-10"
+        >
+            <div class="stat-item relative flex w-full gap-2">
+                <span class="w-fit pb-1 text-[#9D7EFF]"
+                    ><span class="stat-number">16</span><span class="stat-plus"
+                        >+</span
+                    ></span
+                >
+                <span class="pb-1 text-black"> Software Development </span>
+                <div class="absolute bottom-0 left-0 h-[1px] w-5 bg-[#9D7EFF]">
+                </div>
+                <div
+                    class="absolute -right-4 bottom-0 h-[1px] w-[220px] bg-[#E1E1E1]"
+                >
+                </div>
+            </div>
+            <div class="stat-item relative flex w-full gap-2">
+                <span class="w-fit pb-1 text-[#9D7EFF]"
+                    ><span class="stat-number">3</span><span class="stat-plus"
+                        >+</span
+                    ></span
+                >
+                <span class="pb-1 text-black"> Years Client Engagement </span>
+                <div class="absolute bottom-0 left-0 h-[1px] w-5 bg-[#9D7EFF]">
+                </div>
+                <div
+                    class="absolute -right-4 bottom-0 h-[1px] w-[220px] bg-[#E1E1E1]"
+                >
+                </div>
+            </div>
+            <div class="stat-item relative flex w-full gap-2">
+                <span class="w-fit pb-1 text-[#9D7EFF]"
+                    ><span class="stat-number">360</span><span class="stat-plus"
+                        >+</span
+                    ></span
+                >
+                <span class="pb-1 text-black"> App Development </span>
+                <div class="absolute bottom-0 left-0 h-[1px] w-5 bg-[#9D7EFF]">
+                </div>
+                <div
+                    class="absolute -right-4 bottom-0 h-[1px] w-[220px] bg-[#E1E1E1]"
+                >
+                </div>
+            </div>
+            <div class="stat-item relative flex w-full gap-2">
+                <span class="w-fit pb-1 text-[#9D7EFF]"
+                    ><span class="stat-number">520</span><span class="stat-plus"
+                        >+</span
+                    ></span
+                >
+                <span class="pb-1 text-black"> Web Development </span>
+                <div class="absolute bottom-0 left-0 h-[1px] w-5 bg-[#9D7EFF]">
+                </div>
+                <div
+                    class="absolute -right-4 bottom-0 h-[1px] w-[220px] bg-[#E1E1E1]"
+                >
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import { gsap, ScrollTrigger } from "../../utils/gsapUtils";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // animate headline and left block when section scrolls into view
+    gsap.from("#stats-section .headline", {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#stats-section .headline",
+            start: "top 85%",
+        },
+    });
+
+    // animate the main big number (Years Experience)
+    const bigNumber = document.querySelector("#stats-section .stat-number");
+    if (bigNumber) {
+        const finalBig = parseInt(bigNumber.textContent, 10) || 0;
+        let obj = { val: 0 };
+        gsap.to(obj, {
+            val: finalBig,
+            duration: 1.2,
+            ease: "power1.out",
+            scrollTrigger: {
+                trigger: "#stats-section",
+                start: "top 80%",
+                toggleActions: "play none none none",
+            },
+            onUpdate() {
+                bigNumber.textContent = Math.ceil(obj.val);
+            },
+        });
+    }
+
+    // animate each stat item (slide in + counter)
+    const statItems = document.querySelectorAll("#stats-section .stat-item");
+    gsap.from(statItems, {
+        y: 20,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.7,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#stats-section .stats-grid",
+            start: "top 85%",
+        },
+    });
+
+    // individual number counters for grid stats
+    document.querySelectorAll("#stats-section .stat-number").forEach((el) => {
+        const final = parseInt(el.textContent.replace(/\D/g, ""), 10) || 0;
+        // skip the big header we already handled
+        if (el.closest(".stat-item")) {
+            const obj = { val: 0 };
+            gsap.to(obj, {
+                val: final,
+                duration: 1.1,
+                ease: "power1.out",
+                scrollTrigger: {
+                    trigger: el.closest(".stat-item"),
+                    start: "top 90%",
+                    toggleActions: "play none none none",
+                },
+                onUpdate() {
+                    el.textContent = Math.ceil(obj.val);
+                },
+            });
+        }
+    });
+
+    // subtle hover micro-interaction for stat items
+    statItems.forEach((item) => {
+        item.addEventListener("mouseenter", () => {
+            gsap.to(item, { scale: 1.02, duration: 0.2, ease: "power1.out" });
+        });
+        item.addEventListener("mouseleave", () => {
+            gsap.to(item, { scale: 1, duration: 0.2, ease: "power1.out" });
+        });
+    });
+</script>

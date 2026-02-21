@@ -1,0 +1,103 @@
+---
+import "../../index.css";
+import Layout from "../../layouts/Layout.astro";
+import HeroWebDev from "../../components/web-development/HeroWebDev.astro";
+import Experience from "../../components/home/Experience.astro";
+import Portfolio from "../../components/home/Portfolio.astro";
+import Accordion from "../../components/common/Accordion.astro";
+import SwiperSection from "../../components/common/SwiperSection.astro";
+import { webDevSwiperCards } from "../../data/swipers";
+import VerticalSwiper from "../../components/common/VerticalSwiper.astro";
+import Testimonials from "../../components/common/Testimonials.astro";
+import Acc1 from "../../assets/web-dev/accordion/1.1.png";
+import Acc2 from "../../assets/web-dev/accordion/1.2.png";
+import Acc3 from "../../assets/web-dev/accordion/1.3.png";
+import Acc4 from "../../assets/web-dev/accordion/1.4.png";
+import Acc5 from "../../assets/web-dev/accordion/2.1.png";
+import Acc6 from "../../assets/web-dev/accordion/2.2.png";
+import Acc7 from "../../assets/web-dev/accordion/2.3.png";
+import Acc8 from "../../assets/web-dev/accordion/2.4.png";
+import Acc9 from "../../assets/web-dev/accordion/3.1.png";
+import Acc10 from "../../assets/web-dev/accordion/3.2.png";
+import Acc11 from "../../assets/web-dev/accordion/3.3.png";
+import Acc12 from "../../assets/web-dev/accordion/3.4.png";
+import Acc13 from "../../assets/web-dev/accordion/4.1.png";
+import Acc14 from "../../assets/web-dev/accordion/4.2.png";
+import Acc15 from "../../assets/web-dev/accordion/4.3.png";
+import Acc16 from "../../assets/web-dev/accordion/4.4.png";
+import Acc17 from "../../assets/web-dev/accordion/5.1.png";
+import Acc18 from "../../assets/web-dev/accordion/5.2.png";
+import Acc19 from "../../assets/web-dev/accordion/5.3.png";
+import Acc20 from "../../assets/web-dev/accordion/5.4.png";
+import Acc21 from "../../assets/web-dev/accordion/6.1.png";
+import Acc22 from "../../assets/web-dev/accordion/6.2.png";
+import Acc23 from "../../assets/web-dev/accordion/6.3.png";
+import Acc24 from "../../assets/web-dev/accordion/6.4.png";
+import WebDevServices from "../../components/web-development/WebDevServices.astro";
+import WebDevPortfolio from "../../components/web-development/WebDevPortfolio.astro";
+
+const webDevPanels = [
+    {
+        title: "Corporate Websites",
+        body: "Each corporate website built by Candigitals is tailored to your company's specific demands and objectives. Our goal is to create a professional, branded website for your company that will set it out from the competition.",
+        cta: ["Get Started", "Live Chat"],
+        images: [Acc1, Acc2, Acc3, Acc4],
+    },
+    {
+        title: "E-Commerce Websites",
+        body: "The cornerstone of any online retail business is a strong E-commerce website, and we understand the value of leveraging cutting-edge technology and extensive knowledge to boost sales.",
+        cta: ["View Work"],
+        images: [Acc5, Acc6, Acc7, Acc8],
+    },
+    {
+        title: "Flat Design Website",
+        body: "For responsive design, where a website's content adapts smoothly depending on the device's screen size, flat design websites are highly recommended.",
+        cta: ["View Work"],
+        images: [Acc9, Acc10, Acc11, Acc12],
+    },
+
+    {
+        title: "Landing Pages",
+        body: "We provide customized services to create high-quality landing pages for a variety of internet marketing initiatives. Our team of highly qualified and experienced writers and designers collaborate to create high-quality, personalized landing pages for businesses of all sizes in the United States.",
+        cta: ["See Case Studies"],
+        images: [Acc13, Acc14, Acc15, Acc16],
+    },
+    {
+        title: "Responsive Websites",
+        body: "We offer fully responsive websites that are compatible with all electronic devices and screen sizes. These days, almost every new client wants a mobile version of their website.",
+        cta: ["Book a Call"],
+        images: [Acc17, Acc18, Acc19, Acc20],
+    },
+    {
+        title: "WordPress Websites",
+        body: "We are a reputable and result-oriented WordPress website design firm. We cater to all the needs to develop a beautiful E-commerce website on the CMS of WordPress. Our professionals will get you set up on the most user-friendly web platform available.",
+        cta: ["Discover More"],
+        images: [Acc21, Acc22, Acc23, Acc24],
+    },
+];
+---
+
+<Layout title="Web Development - Nixxon Australia">
+    <HeroWebDev />
+    <div class="overflow-hidden border-none bg-[#4B00A3]">
+        <div class="rounded-t-[2rem] bg-[#f8f8f8] md:rounded-none">
+            <Experience
+                typewriter="Engineering Digital Excellence"
+                experience="We create websites that embody elegance, performance, and precision. With every detail refined and every interaction seamless, Nixxon Australia turns your vision into a digital experience that endures and elevates."
+            />
+            <WebDevServices
+                title="Our Standard"
+                description="Crafting excellence across leading web platforms and technologies."
+            />
+            <VerticalSwiper />
+            <SwiperSection
+                title="The Art of Web Development"
+                description="We blend creativity with technology to build websites that are not only functional but also inspiring crafted to engage, perform, and grow with your business."
+                swiperCards={webDevSwiperCards}
+            />
+        </div>
+    </div>
+    <Portfolio filterType="website" header={true} hideFilters={true} pageTitle="Web Development Projects" />
+    <Accordion panels={webDevPanels} />
+    <Testimonials />
+</Layout>

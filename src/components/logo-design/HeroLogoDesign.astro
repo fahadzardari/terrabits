@@ -1,0 +1,153 @@
+---
+import webdevimage from "../../assets/logo-design.png";
+import CommonButton from "../common/CommonButton.astro";
+import Image from "astro/components/Image.astro";
+---
+
+<section
+    class="hero-section relative overflow-hidden bg-[#4B00A3] pt-20 text-white md:min-h-screen lg:ml-[65px] lg:rounded-l-3xl lg:pt-0 xl:ml-[88px]"
+>
+    <div
+        class="flex h-full flex-col md:min-h-screen lg:flex-row lg:items-end lg:justify-between lg:pb-20 lg:pl-8 2xl:pb-24 2xl:pl-12"
+    >
+        <!-- Left -->
+        <div
+            class="3xl:w-[55%] z-10 mb-8 w-full px-6 sm:mb-0 lg:mt-auto lg:w-[55%] xl:w-[50%] 2xl:w-[55%]"
+        >
+            <!-- <span class="mb-4 block h-[2px] w-10 bg-white"></span> -->
+            <h1
+                class="mb-2 text-[36px] font-medium capitalize md:mb-4 md:text-[42px] md:leading-[56px] lg:text-[56px] lg:leading-[70px] xl:text-[65px] xl:leading-[90px] 2xl:text-[86px] 2xl:leading-[100px]"
+            >
+                let’s create an outstanding logo to
+                <span class="font-bold">present your business</span>.
+            </h1>
+            <p
+                class="mb-2 text-[10px] font-medium tracking-[1px] md:text-xs lg:mb-4 xl:mb-8 xl:text-sm 2xl:text-base 2xl:leading-6"
+            >
+                A wide range of services, including brand planning, are provided
+                by our skilled experts. Be it establishing a visual identity,
+                creating a logo, or crafting brand messaging, we are here to
+                help. With our innovative ideas, your company will stand out and
+                build long-lasting relationships with clients.
+            </p>
+            <div class="flex items-center space-x-4">
+                <CommonButton
+                    className="chat-cta text-xs font-semibold md:text-sm lg:text-lg"
+                >
+                    Lets Talk
+                </CommonButton>
+            </div>
+        </div>
+
+        <!-- Right -->
+        <div
+            class="z-0 w-auto lg:absolute lg:top-[25vh] lg:right-0 lg:w-[45%] xl:top-[18vh] xl:bottom-4 xl:w-[45%] 2xl:top-[10vh] 2xl:w-[45%]"
+        >
+            <Image
+                id="hand-tilt"
+                src={webdevimage}
+                alt="Hand Image"
+                class="cursor-pointer"
+            />
+        </div>
+    </div>
+</section>
+
+<script>
+    // import { gsap, ScrollTrigger } from "../../utils/gsapUtils.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Hand tilt effect (keep your existing code)
+        const hand = document.getElementById("hand-tilt");
+        if (hand) {
+            hand.style.transition = "transform 0.3s";
+            hand.addEventListener("mouseenter", () => {
+                hand.style.transform = "scale(1.08)";
+            });
+            hand.addEventListener("mousemove", (e) => {
+                const rect = hand.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * 18;
+                const rotateY = ((x - centerX) / centerX) * 18;
+                hand.style.transform = `scale(1.08) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            hand.addEventListener("mouseleave", () => {
+                hand.style.transition = "transform 0.5s";
+                hand.style.transform = "scale(1) rotateX(0deg) rotateY(0deg)";
+                setTimeout(() => {
+                    hand.style.transition = "transform 0.3s";
+                }, 500);
+            });
+        }
+
+        // GSAP entrance animation for hero content
+        // gsap.from(".hero-section .z-10", {
+        //   y: 60,
+        //   opacity: 0,
+        //   duration: 1,
+        //   ease: "power3.out",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top 80%",
+        //   },
+        // });
+
+        // gsap.from("#hand-tilt", {
+        //   x: 80,
+        //   opacity: 0,
+        //   duration: 1.1,
+        //   ease: "power3.out",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top 80%",
+        //   },
+        // });
+
+        // gsap.to("#hand-tilt", {
+        //   y: -40,
+        //   ease: "none",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top top",
+        //     end: "bottom top",
+        //     scrub: true,
+        //   },
+        // });
+    });
+</script>
+
+<style>
+    .animated-gradient-text {
+        background: linear-gradient(
+            90deg,
+            #fff 0%,
+            #7f5cff 25%,
+            #00e0ff 50%,
+            #ff6bcb 75%,
+            #fff 100%
+        );
+        background-size: 200% 100%;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        animation: gradient-move 3s linear infinite;
+        background-repeat: repeat;
+    }
+    @keyframes gradient-move {
+        0% {
+            background-position: 0% 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+</style>
+
+<!-- cubic-bezier(.22,1,.36,1), box-shadow 0.3s cubic-bezier(.22,1,.36,1) 
+ 
+ cubic-bezier(.22,1,.36,1), box-shadow 0.5s cubic-bezier(.22,1,.36,1)
+  cubic-bezier(.22,1,.36,1), box-shadow 0.3s cubic-bezier(.22,1,.36,1)
+-->

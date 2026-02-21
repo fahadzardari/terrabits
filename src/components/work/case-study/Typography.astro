@@ -1,0 +1,100 @@
+---
+interface Props {
+    title?: string;
+    heading?: string;
+    fontName?: string;
+    fontDescription?: string;
+    fontTag?: string;
+}
+const {
+    title = "Typeface",
+    heading = "Typography",
+    fontName = "Montserrat",
+    fontTag = "font-montserrat",
+} = Astro.props;
+---
+
+<div class={`internal-padding gap-y-4 py-12 font-primary`}>
+    <span class="font-primary text-lg font-semibold text-[#643DB4] md:text-xl">
+        {title}
+    </span>
+    <h1
+        class="font-primary text-5xl font-semibold text-black md:text-4xl md:leading-tight lg:text-5xl xl:text-6xl 2xl:text-[68px]"
+    >
+        {heading}
+    </h1>
+
+    <div
+        class="mt-4 flex flex-col gap-4 rounded-xl bg-white p-6 shadow-lg md:flex-row"
+    >
+        <div class="flex h-full items-center justify-center md:w-1/2">
+            <h1
+                class={`text-[200px] font-semibold md:text-[220px] lg:text-[240px] xl:text-[260px] 2xl:text-[282px] ${fontTag}`}
+            >
+                Aa
+            </h1>
+        </div>
+
+        <div class="flex flex-col justify-center gap-y-4 md:w-1/2">
+            <h2
+                class={`text-2xl font-semibold md:text-2xl lg:text-3xl xl:text-5xl 2xl:text-6xl ${fontTag}`}
+            >
+                {fontName}
+            </h2>
+
+            <p
+                class="text-base text-[#626161] lg:text-lg xl:text-xl 2xl:text-2xl"
+            >
+                Google Fonts/Approachable, Geometric.
+            </p>
+
+            <div
+                class={`flex items-center justify-between border-b border-b-[#626161]`}
+            >
+                <p
+                    class={`text-xl font-bold md:text-[26px] lg:text-[30px] 2xl:text-[42px] ${fontTag}`}
+                >
+                    Bold
+                </p>
+                <p
+                    class="text-sm text-[#626161] md:text-base lg:text-lg 2xl:text-xl"
+                >
+                    Headlines
+                </p>
+            </div>
+
+            <div
+                class={`flex items-center justify-between border-b border-b-[#626161]`}
+            >
+                <p
+                    class={`text-xl font-medium md:text-[26px] lg:text-[30px] 2xl:text-[42px] ${fontTag}`}
+                >
+                    Medium
+                </p>
+                <p
+                    class="text-sm text-[#626161] md:text-base lg:text-lg 2xl:text-xl"
+                >
+                    UI Elements
+                </p>
+            </div>
+            <div
+                class="flex items-center justify-between border-b border-b-[#626161]"
+            >
+                <p
+                    class={`text-xl font-light md:text-[26px] lg:text-[30px] 2xl:text-[42px] ${fontTag}`}
+                >
+                    Light
+                </p>
+                <p
+                    class="text-sm text-[#626161] md:text-base lg:text-lg 2xl:text-xl"
+                >
+                    Body Copy
+                </p>
+            </div>
+
+            <p class={`text-sm text-[#626161] md:text-base  ${fontTag}`}>
+                “The quick brown fox jumps over the lazy dog.”
+            </p>
+        </div>
+    </div>
+</div>

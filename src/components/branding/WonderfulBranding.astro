@@ -1,0 +1,138 @@
+---
+import CommonButton from "../common/CommonButton.astro";
+import Image from "astro/components/Image.astro";
+import WhyBrandingImage from "../../assets/branding/why-branding.png";
+---
+
+<section
+    id="our-mission"
+    class="3xl:ml-[11dvw] flex flex-col gap-12 lg:ml-[8dvw] lg:flex-row lg:items-center lg:justify-between lg:gap-24"
+>
+    <div class="3xl:ml-[11dvw] mx-[8dvw] lg:mx-0">
+        <h2
+            class="mb-4 text-center text-[32px] leading-[40px] font-medium text-[#000047] md:text-left lg:mb-8 lg:text-[40px] lg:leading-[50px] xl:text-[50px]"
+        >
+            Create A Wonderful Branding To Turn The Visitor Into A Retained
+            Customer
+        </h2>
+        <p
+            class="mb-6 text-sm text-[#2A2111] md:mb-8 md:text-base lg:mb-14 lg:text-lg xl:text-xl 2xl:text-2xl"
+        >
+            At NixxonTech, our mission is to revolutionize the digital
+            landscape. It is our objective to turn possibilities into realities
+            besides providing services. To prosper in the digital era, we
+            facilitate startups, small businesses, and large corporations. Our
+            aim is to stimulate expansion, be it via custom website development
+            services, data interpretation, or cloud-based solutions. Creating
+            flawless user experiences is what drives us crazy. Technology should
+            be easy to use, enjoyable, and intuitive for use.
+        </p>
+        <CommonButton typography="chat-cta text-sm 2xl:text-base">
+            Have a Plan? Let's Get Started
+        </CommonButton>
+    </div>
+    <Image
+        src={WhyBrandingImage}
+        alt="Why Branding"
+        class="mission-image w-full rounded-t-4xl md:rounded-none lg:h-[500px] lg:w-[500px] xl:h-[600px] xl:w-[600px] 2xl:h-[700px] 2xl:w-[700px]"
+    />
+</section>
+
+<script>
+    import { gsap, ScrollTrigger } from "../../utils/gsapUtils";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // subtle reveal for heading, paragraph and button
+    gsap.from("#our-mission h2", {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#our-mission h2",
+            start: "top 90%",
+        },
+    });
+
+    gsap.from("#our-mission p", {
+        y: 20,
+        opacity: 0,
+        duration: 0.9,
+        delay: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#our-mission p",
+            start: "top 90%",
+        },
+    });
+
+    gsap.from("#our-mission button", {
+        y: 8,
+        opacity: 0,
+        duration: 0.7,
+        delay: 0.22,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#our-mission button",
+            start: "top 92%",
+        },
+    });
+
+    // image reveal with slight rotation and parallax on scroll
+    const img = document.querySelector("#our-mission .mission-image");
+    if (img) {
+        gsap.fromTo(
+            img,
+            { y: 30, opacity: 0, rotate: -2, scale: 0.98 },
+            {
+                y: 0,
+                opacity: 1,
+                rotate: 0,
+                scale: 1,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top 85%",
+                },
+            },
+        );
+
+        // gentle parallax as the section scrolls
+        gsap.to(img, {
+            y: -18,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#our-mission",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.6,
+            },
+        });
+
+        // micro-interaction: follow cursor slightly on hover for a tactile feel
+        img.style.willChange = "transform";
+        img.addEventListener("mousemove", (e) => {
+            const rect = img.getBoundingClientRect();
+            const relX = (e.clientX - rect.left) / rect.width - 0.5;
+            const relY = (e.clientY - rect.top) / rect.height - 0.5;
+            gsap.to(img, {
+                x: relX * 10,
+                y: relY * 8,
+                rotation: relX * 2,
+                duration: 0.35,
+                ease: "power1.out",
+            });
+        });
+        img.addEventListener("mouseleave", () => {
+            gsap.to(img, {
+                x: 0,
+                y: 0,
+                rotation: 0,
+                duration: 0.45,
+                ease: "power2.out",
+            });
+        });
+    }
+</script>

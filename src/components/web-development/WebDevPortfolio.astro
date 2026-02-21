@@ -1,0 +1,436 @@
+---
+const { projects = [] } = Astro.props;
+import Image from "astro/components/Image.astro";
+import Website1 from "../../assets/home/portfolio/websites/1.webp";
+import CommonButton from "../common/CommonButton.astro";
+
+// Enhanced website project data
+const websiteProjects = [
+    {
+        image: Website1,
+        title: "Quadrant Eye Web Platform",
+        client: "Healthcare Tech",
+        description:
+            "Modern, accessible patient portal with scheduling features.",
+        year: "2023",
+        deviceType: "laptop",
+    },
+    {
+        image: Website1,
+        title: "Type Mouse Digital",
+        client: "Content Agency",
+        description: "Interactive showcase website with content portfolio.",
+        year: "2023",
+        deviceType: "laptop",
+    },
+    {
+        image: Website1,
+        title: "MSHK Portfolio",
+        client: "Design Studio",
+        description: "Immersive design showcase with 3D project gallery.",
+        year: "2022",
+        deviceType: "laptop",
+    },
+    {
+        image: Website1,
+        title: "Blade Works Store",
+        client: "E-Commerce",
+        description: "Premium online shopping experience with custom features.",
+        year: "2023",
+        deviceType: "laptop",
+    },
+    {
+        image: Website1,
+        title: "Nixxon Dashboard",
+        client: "Internal Tool",
+        description: "Client analytics dashboard with real-time metrics.",
+        year: "2023",
+        deviceType: "laptop",
+    },
+];
+---
+
+<section class="internal-padding py-20">
+    <header class="relative mx-auto mb-12 max-w-6xl text-center">
+        <p
+            class="text-gradient-start mb-2 text-xl font-semibold tracking-wider uppercase"
+        >
+            Our Web Development Collection
+        </p>
+        <h2 class="mb-3 text-4xl font-semibold text-black md:text-[54px]">
+            Modern Website Designs
+        </h2>
+        <p class="mx-auto max-w-2xl text-base leading-6 text-[#707070]">
+            We create responsive, high-performance websites that engage users
+            and deliver exceptional results for businesses across industries.
+        </p>
+    </header>
+
+    <div class="mx-auto">
+        <div
+            id="website-grid"
+            class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
+            {
+                websiteProjects.map((project, index) => (
+                    <div class="portfolio-item website-card group relative aspect-[4/3] overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 shadow-lg transition-all duration-300">
+                        <div class="website-device-frame laptop relative mx-auto my-4 overflow-hidden transition-all duration-500">
+                            <div class="device-laptop relative mx-auto overflow-hidden">
+                                <div class="laptop-bezel">
+                                    <div class="laptop-camera" />
+                                </div>
+                                <div class="device-screen">
+                                    <div class="browser-ui">
+                                        <div class="browser-controls">
+                                            <div class="browser-dot red" />
+                                            <div class="browser-dot yellow" />
+                                            <div class="browser-dot green" />
+                                        </div>
+                                        <div class="browser-address">
+                                            www.
+                                            {project.title
+                                                .toLowerCase()
+                                                .replace(/\s+/g, "-")}
+                                            .com
+                                        </div>
+                                    </div>
+                                    <div class="website-scroll-container relative overflow-hidden">
+                                        <Image
+                                            src={project.image}
+                                            alt={project.title}
+                                            class="website-scroll-img w-full transition-transform duration-[4000ms] ease-linear"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="laptop-keyboard" />
+                        </div>
+
+                        <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent p-6 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+                            <h3 class="text-xl font-semibold text-white">
+                                {project.title}
+                            </h3>
+                            <p class="text-sm text-white/80">
+                                {project.client}
+                            </p>
+                            <div class="mt-2 hidden text-sm text-white/70 md:block">
+                                {project.description}
+                            </div>
+                            <div class="mt-3 flex items-center justify-between">
+                                <span class="rounded-full bg-white/20 px-3 py-1 text-xs text-white">
+                                    {project.year}
+                                </span>
+                                <button class="rounded-full bg-indigo-600 px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-indigo-500">
+                                    View Live Site
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Setup website cards
+        const websiteCards = document.querySelectorAll(".website-card");
+
+        websiteCards.forEach((card) => {
+            // Add 3D tilt effect
+            card.addEventListener("mousemove", handleWebsiteCardTilt);
+            card.addEventListener("mouseleave", resetWebsiteCardTilt);
+
+            // Setup scroll behavior
+            const scrollImg = card.querySelector(".website-scroll-img");
+            if (scrollImg) {
+                card.addEventListener("mouseenter", () => {
+                    // Add slight delay for more natural feel
+                    setTimeout(() => {
+                        const imgHeight = scrollImg.offsetHeight;
+                        const containerHeight =
+                            scrollImg.parentElement.offsetHeight - 26; // Account for browser UI
+                        if (imgHeight > containerHeight) {
+                            scrollImg.style.transform = `translateY(calc(-100% + ${containerHeight}px))`;
+                        }
+                    }, 300);
+                });
+
+                card.addEventListener("mouseleave", () => {
+                    scrollImg.style.transition = "transform 1s ease-out";
+                    scrollImg.style.transform = "translateY(0)";
+
+                    // Reset the transition duration after animation completes
+                    setTimeout(() => {
+                        scrollImg.style.transition = "transform 4s ease-out";
+                    }, 1000);
+                });
+            }
+        });
+
+        function handleWebsiteCardTilt(e) {
+            const card = this;
+            const deviceFrame = card.querySelector(".website-device-frame");
+            if (!deviceFrame) return;
+
+            const cardRect = card.getBoundingClientRect();
+            const cardWidth = cardRect.width;
+            const cardHeight = cardRect.height;
+
+            // Calculate mouse position relative to card center
+            const centerX = cardRect.left + cardWidth / 2;
+            const centerY = cardRect.top + cardHeight / 2;
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+
+            // Calculate rotation (smaller values for subtle effect)
+            const rotateY = (mouseX / cardWidth) * 5;
+            const rotateX = -(mouseY / cardHeight) * 5;
+
+            // Apply transform
+            deviceFrame.style.transform = `translateY(-10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        }
+
+        function resetWebsiteCardTilt() {
+            const deviceFrame = this.querySelector(".website-device-frame");
+            if (deviceFrame) {
+                deviceFrame.style.transform = "";
+            }
+        }
+
+        // Add staggered animation for cards on page load
+        function animateCardsIn() {
+            websiteCards.forEach((card, index) => {
+                // Set initial state
+                card.style.opacity = "0";
+                card.style.transform = "translateY(20px)";
+
+                // Animate in with a stagger
+                setTimeout(
+                    () => {
+                        card.style.transition =
+                            "opacity 0.5s ease, transform 0.5s ease";
+                        card.style.opacity = "1";
+                        card.style.transform = "translateY(0)";
+                    },
+                    100 + index * 100,
+                ); // 100ms delay between each card
+            });
+        }
+
+        // Run animation
+        animateCardsIn();
+
+        // Handle background title animation
+        const bgTitle = document.getElementById("portfolio-bg-title");
+        const section = document.querySelector(".internal-padding.py-20");
+        if (bgTitle && section) {
+            function onScroll() {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.7) {
+                    bgTitle.classList.add("visible");
+                } else {
+                    bgTitle.classList.remove("visible");
+                }
+            }
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+        }
+    });
+</script>
+
+<style>
+    /* Text gradient */
+    .text-gradient-start {
+        background: linear-gradient(to right, #9d7eff, #8067ce);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+
+    /* Background title animation */
+    .portfolio-bg-title {
+        opacity: 0;
+        filter: blur(12px);
+        transform: translateY(40px) scale(1.08);
+        transition:
+            opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+            filter 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        pointer-events: none;
+        user-select: none;
+        z-index: 0; /* Lower than header content */
+    }
+
+    .portfolio-bg-title.visible {
+        opacity: 0.13; /* Keep it subtle when visible */
+        filter: blur(0);
+        transform: translateY(0) scale(1);
+    }
+
+    /* Device Frame Styles */
+    .website-device-frame {
+        width: 90%;
+        height: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Laptop Style */
+    .device-laptop {
+        width: 90%;
+        aspect-ratio: 16/10;
+        background: linear-gradient(135deg, #9d7eff 0%, #4338ca 100%);
+        border-radius: 12px 12px 0 0;
+        padding: 12px 12px 0;
+        position: relative;
+        box-shadow:
+            0 20px 40px -15px rgba(0, 0, 0, 0.3),
+            0 10px 20px -5px rgba(0, 0, 0, 0.2);
+        transform-style: preserve-3d;
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .laptop-bezel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+    }
+
+    .laptop-camera {
+        width: 4px;
+        height: 4px;
+        background: #555;
+        border-radius: 50%;
+        box-shadow: inset 0 0 1px #222;
+    }
+
+    .device-laptop:after {
+        content: "";
+        position: absolute;
+        width: 120%;
+        height: 18px;
+        background: linear-gradient(to bottom, #383838, #252525);
+        border-radius: 0 0 12px 12px;
+        bottom: -8px;
+        left: -10%;
+        box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.3);
+        transform-style: preserve-3d;
+        transform: translateZ(-10px);
+    }
+
+    .laptop-keyboard {
+        position: absolute;
+        width: 90%;
+        height: 10px;
+        background: linear-gradient(to bottom, #383838, #252525);
+        bottom: -18px;
+        left: 5%;
+        border-radius: 0 0 5px 5px;
+        box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .device-laptop .device-screen {
+        background: #fff;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        border-radius: 2px;
+        box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .browser-ui {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 26px;
+        background: linear-gradient(90deg, #8067ce 0%, #6366f1 100%);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        border-bottom: 1px solid #ddd;
+        z-index: 3;
+    }
+
+    .browser-controls {
+        display: flex;
+        gap: 4px;
+        margin-right: 8px;
+    }
+
+    .browser-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    .browser-dot.red {
+        background: #f43f5e;
+    }
+    .browser-dot.yellow {
+        background: #ffbd2e;
+    }
+    .browser-dot.green {
+        background: #27c93f;
+    }
+
+    .browser-address {
+        flex: 1;
+        height: 16px;
+        background: #e0e0e0;
+        border-radius: 10px;
+        font-size: 9px;
+        color: #666;
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .website-scroll-container {
+        height: 100%;
+        width: 100%;
+        padding-top: 26px; /* Height of browser UI */
+    }
+
+    /* Website Card 3D Effect */
+    .website-card {
+        perspective: 1200px;
+    }
+
+    .website-card:hover .website-device-frame {
+        transform: translateY(-10px) rotateX(5deg);
+        box-shadow: 0 0 0 4px #9d7eff33;
+    }
+
+    /* Website card styles */
+    .website-card {
+        will-change: transform;
+        transition: all 0.3s ease;
+    }
+
+    .website-card:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Button styles */
+    .bg-indigo-600 {
+        background: linear-gradient(90deg, #8067ce 0%, #4338ca 100%);
+    }
+
+    .bg-indigo-600:hover {
+        background: linear-gradient(90deg, #9d7eff 0%, #6366f1 100%);
+    }
+</style>

@@ -1,0 +1,26 @@
+---
+interface Props {
+    title?: string;
+    paragraph?: string;
+    image?: any;
+}
+import Image from "astro/components/Image.astro";
+
+import DefImage from "../../../assets/work/debbys-place/1.png";
+
+const {
+    title = "Debby's Place",
+    paragraph = "A cozy cafe nestled in the heart of the city, offering a warm and inviting atmosphere for coffee lovers and food enthusiasts alike.",
+    image = DefImage,
+} = Astro.props;
+---
+
+<article class="flex flex-col rounded-4xl p-6 shadow-lg">
+    <Image src={image} alt={title} class="w-full rounded-4xl" />
+    <h2 class="mt-4 text-lg font-semibold text-black md:text-xl lg:text-2xl">
+        {title}
+    </h2>
+    <p class="mt-0.5 text-sm text-[#888888] md:text-base">
+        {paragraph}
+    </p>
+</article>

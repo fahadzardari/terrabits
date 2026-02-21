@@ -1,0 +1,30 @@
+---
+interface Props {
+    title?: string;
+    heading?: string;
+    paragraph?: string;
+}
+
+const {
+    title = "Introduction",
+    heading = "Hygiene Meets Nature.",
+    paragraph = 'In a world filled with chemical-heavy cleaning products, Green Nest was born to offer a gentle, plant-based alternative. The brand focuses on hygiene products infused with organic ingredients like Aloe Vera, Tea Tree, and Lime. <br><br> The goal was to create a brand identity that communicates "Deep Cleaning" without the harsh "Clinical" look. It needed to feel refreshing, moisturizing, and safe for the whole family.',
+} = Astro.props;
+---
+
+<div class="internal-padding py-8">
+    <span class="mb-4 text-lg font-semibold text-[#643DB4] md:text-xl">
+        {title}
+    </span>
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <h1
+            class="text-5xl font-semibold text-black md:text-4xl md:leading-tight lg:text-5xl xl:text-6xl 2xl:text-[68px]"
+        >
+            {heading}
+        </h1>
+        <p
+            class="text-sm leading-8 text-[#535353] capitalize lg:text-lg"
+            set:html={paragraph}
+        />
+    </div>
+</div>

@@ -1,0 +1,92 @@
+---
+import "../../index.css";
+import Layout from "../../layouts/Layout.astro";
+import Experience from "../../components/home/Experience.astro";
+import SwiperSection from "../../components/common/SwiperSection.astro";
+import { mobileCards } from "../../data/swipers";
+import VerticalSwiper from "../../components/common/VerticalSwiper.astro";
+import Testimonials from "../../components/common/Testimonials.astro";
+import HeroMobileApp from "../../components/mobile-application/HeroMobileApp.astro";
+import Innovation from "../../components/mobile-application/Innovation.astro";
+import SuccessRecord from "../../components/mobile-application/SuccessRecord.astro";
+import Portfolio from "../../components/home/Portfolio.astro";
+import VerticalImage1 from "../../assets/mobile-application/vert-1.png";
+import VerticalImage2 from "../../assets/mobile-application/vert-2.png";
+import VerticalImage3 from "../../assets/mobile-application/vert-3.png";
+import VerticalImage4 from "../../assets/mobile-application/vert-4.png";
+import VerticalImage5 from "../../assets/mobile-application/vert-5.png";
+import VerticalImage6 from "../../assets/mobile-application/vert-6.png";
+
+// Create array of data for swiper slides
+const mobileSlides = [
+    {
+        id: "01",
+        title: "Native Apps",
+        description:
+            "We craft powerful native applications specifically for iOS and Android platforms. By utilizing platform-exclusive technologies like Swift, Kotlin, and Java, our apps deliver unmatched speed, seamless navigation, and robust performance. Native development allows us to fully leverage each operating system’s strengths, ensuring a flawless and intuitive user experience.",
+        image: VerticalImage1,
+    },
+    {
+        id: "02",
+        title: "Hybrid Apps",
+        description:
+            "Hybrid apps give you the advantage of reaching multiple platforms with a single solution. Built using frameworks like Ionic and Cordova, our hybrid applications combine the convenience of web technologies with the look and feel of native apps. This approach reduces development costs, accelerates time-to-market, and ensures a smooth experience for users across different devices.",
+        image: VerticalImage2,
+    },
+    {
+        id: "03",
+        title: "Cross-Platform Apps",
+        description:
+            "With modern frameworks such as Flutter and React Native, we develop cross-platform apps that run consistently on both iOS and Android. One unified codebase means faster delivery, easier updates, and cost efficiency without compromising quality. These apps are designed to provide a native-like experience while maintaining scalability for future growth.",
+        image: VerticalImage3,
+    },
+    {
+        id: "04",
+        title: "Progressive Web Apps",
+        description:
+            "Progressive Web Apps bring the best of web and mobile together. They run directly in a browser but feel and function just like a native app—fast, secure, and reliable. PWAs offer offline access, push notifications, and responsive design, making them ideal for businesses that want lightweight yet impactful digital solutions accessible from anywhere.",
+        image: VerticalImage4,
+    },
+    {
+        id: "05",
+        title: "Wearable Apps",
+        description:
+            "We design apps that extend your digital presence to wearable devices such as smartwatches and fitness trackers. These apps deliver real-time insights, convenience, and seamless integration with mobile platforms. By focusing on user-friendly interfaces and performance optimization, we ensure that your brand connects with users on the go.",
+        image: VerticalImage5,
+    },
+    {
+        id: "06",
+        title: "Enterprise Mobile Apps",
+        description:
+            "Our enterprise-grade mobile solutions help organizations streamline operations, improve collaboration, and enhance productivity. Built with scalability and security in mind, these apps integrate seamlessly with existing business systems. Whether for workflow automation, communication, or data management, our enterprise apps are tailored to drive efficiency and growth.",
+        image: VerticalImage6,
+    },
+];
+---
+
+<Layout title="Mobile Application - Nixxon Australia">
+    <HeroMobileApp />
+    <div class="overflow-hidden border-none bg-[#4B00A3]">
+        <div class="rounded-t-[2rem] bg-[#f8f8f8] md:rounded-none">
+            <Experience
+                typewriter="Your Story, In Motion "
+                experience="Transform static concepts into motion that matters. Our video animations bring clarity, creativity, and impact to your brand’s story, ensuring your message is not just seen but remembered and acted upon."
+            />
+            <span class="our-services h-0 w-0"> </span>
+            <VerticalSwiper
+                title="Mobile App Services That Set Us Apart"
+                description="Our mobile app development services blend creativity, excellence, and a customer-focused mindset to produce aesthetically pleasing, incredibly functional apps that encourage devoted users over time."
+                slides={mobileSlides}
+            />
+            <SwiperSection
+                title="Our Mobile Application process"
+                description="Our process turns ideas into scalable, user-friendly apps designed, built, and launched with precision at every step."
+                swiperCards={mobileCards}
+            />
+        </div>
+    </div>
+    <!-- <Innovation /> -->
+    <!-- <SuccessRecord /> -->
+    <Portfolio filterType="mobile-app" header={true} hideFilters={true} pageTitle="Mobile App Projects" />
+    <Testimonials />
+</Layout>

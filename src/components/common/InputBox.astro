@@ -1,0 +1,27 @@
+---
+const {
+    placeholder,
+    type = "text",
+    value = "",
+    className = "",
+    label = "",
+    required = false,
+    // onInput,
+} = Astro.props;
+---
+
+<div class="flex flex-col gap-1">
+    <label
+        class="font-manrope mb-[2px] text-xs leading-5 font-medium text-[#1F2937] md:text-sm"
+    >
+        {label}
+    </label>
+
+    <input
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        required={required}
+        class={`font-manrope bg-white border focus:outline-none border-[#E5E7EB] placeholder:text-[#6B7280] text-black text-base leading-6 px-4 py-3 rounded-xl ${className}`}
+    />
+</div>

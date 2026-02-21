@@ -1,0 +1,57 @@
+---
+interface Props {
+    title?: string;
+    heading?: string;
+    paragraph?: string;
+    colors?: { name: string; hex: string }[];
+}
+const {
+    title = "Pallete",
+    heading = "Color Psychology",
+    paragraph = "We selected a vibrant primary green to cut through the muted “earth tones” usually found in the organic aisle. it signals freshness, energy. and  modern science.",
+    colors = [
+        { name: "Fresh Green", hex: "#7AC71F" },
+        { name: "Deep Forest", hex: "#05402E" },
+        { name: "Cloud White", hex: "#f8fcf8" },
+    ],
+} = Astro.props;
+---
+
+<div class="internal-padding gap-y-4 py-12">
+    <span class="text-lg font-semibold text-[#643DB4] md:text-xl">
+        {title}
+    </span>
+    <h1
+        class="text-5xl font-semibold text-black md:text-4xl md:leading-tight lg:text-5xl xl:text-6xl 2xl:text-[68px]"
+    >
+        {heading}
+    </h1>
+
+    <p
+        class="mt-2 max-w-[1100px] text-sm leading-5 text-[#535353] md:text-base lg:text-lg"
+    >
+        {paragraph}
+    </p>
+
+    <div
+        class="mt-4 flex flex-wrap items-center justify-center gap-x-4 md:gap-x-12 lg:gap-x-20"
+    >
+        {
+            colors.map((color) => (
+                <div class="mt-8 flex flex-col items-center gap-2 rounded-2xl bg-white p-6 drop-shadow-lg">
+                    <div
+                        class="aspect-square h-60 rounded-full drop-shadow-md"
+                        style={`background-color: ${color.hex};`}
+                    />
+                    <span class="text-base font-semibold text-black md:text-lg xl:text-xl">
+                        {color.name}
+                    </span>
+
+                    <span class="mt-2 text-sm font-semibold text-[#777777]">
+                        {color.hex}
+                    </span>
+                </div>
+            ))
+        }
+    </div>
+</div>

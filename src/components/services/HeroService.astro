@@ -1,0 +1,150 @@
+---
+import HeroArt from "../../assets/services/hero.png";
+import CommonButton from "../common/CommonButton.astro";
+import Image from "astro/components/Image.astro";
+---
+
+<section
+    class="hero-section relative min-h-screen overflow-hidden bg-[#4B00A3] pt-40 text-white lg:ml-[65px] lg:rounded-l-3xl lg:pt-0 xl:ml-[88px]"
+>
+    <div
+        class="flex h-full min-h-screen flex-col lg:flex-row lg:items-end lg:justify-between lg:pl-8 2xl:pl-12"
+    >
+        <!-- Left -->
+        <div
+            class="3xl:w-[50%] z-10 w-full px-6 lg:mt-auto lg:w-[75%] lg:pb-8 xl:w-[70%] 2xl:w-[65%] 2xl:pb-16"
+        >
+            <h3
+                class="mb-1 text-base font-semibold md:text-lg lg:text-xl xl:mb-3 xl:text-2xl 2xl:text-4xl"
+            >
+                Things we do
+            </h3>
+            <!-- <span class="mb-4 block h-[2px] w-10 bg-white"></span> -->
+            <h1
+                class="3xl:text-[86px] 3xl:leading-[100px] mb-2 text-[32px] font-bold capitalize md:text-[42px] lg:mb-4 lg:text-[56px] lg:leading-[60px] xl:text-[66px] xl:leading-[70px] 2xl:text-[76px] 2xl:leading-[85px]"
+            >
+                <span class="font-bold"
+                    >From big ideas to the finest detail</span
+                >
+            </h1>
+            <p
+                class="mb-4 text-sm font-medium tracking-[1px] lg:mb-8 lg:text-base xl:text-xl 2xl:text-xl 2xl:leading-6"
+            >
+                We have your digital solution on web design, mobile app
+                development, SEO, branding & digital marketing.
+            </p>
+            <div class="flex items-center space-x-4">
+                <CommonButton
+                    className="chat-cta text-xs font-semibold md:text-sm lg:text-lg"
+                >
+                    Get a Proposal
+                </CommonButton>
+            </div>
+        </div>
+
+        <!-- Right -->
+        <div
+            class="absolute top-8 right-0 bottom-0 z-0 w-[300%] object-cover lg:top-0 lg:right-0 lg:bottom-0 lg:w-[110%] xl:-top-12 xl:w-[100%] 2xl:-top-24"
+        >
+            <Image
+                id="hand-tilt"
+                src={HeroArt}
+                alt="Hand Image"
+                class="w-full cursor-pointer"
+            />
+        </div>
+    </div>
+</section>
+
+<script>
+    // import { gsap, ScrollTrigger } from "../../utils/gsapUtils.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Hand tilt effect (keep your existing code)
+        const hand = document.getElementById("hand-tilt");
+        if (hand) {
+            hand.style.transition = "transform 0.3s";
+            hand.addEventListener("mouseenter", () => {
+                hand.style.transform = "scale(1.08)";
+            });
+            hand.addEventListener("mousemove", (e) => {
+                const rect = hand.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * 18;
+                const rotateY = ((x - centerX) / centerX) * 18;
+                hand.style.transform = `scale(1.08) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            hand.addEventListener("mouseleave", () => {
+                hand.style.transition = "transform 0.5s";
+                hand.style.transform = "scale(1) rotateX(0deg) rotateY(0deg)";
+                setTimeout(() => {
+                    hand.style.transition = "transform 0.3s";
+                }, 500);
+            });
+        }
+
+        // GSAP entrance animation for hero content
+        // gsap.from(".hero-section .z-10", {
+        //   y: 60,
+        //   opacity: 0,
+        //   duration: 1,
+        //   ease: "power3.out",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top 80%",
+        //   },
+        // });
+
+        // gsap.from("#hand-tilt", {
+        //   x: 80,
+        //   opacity: 0,
+        //   duration: 1.1,
+        //   ease: "power3.out",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top 80%",
+        //   },
+        // });
+
+        // gsap.to("#hand-tilt", {
+        //   y: -40,
+        //   ease: "none",
+        //   scrollTrigger: {
+        //     trigger: ".hero-section",
+        //     start: "top top",
+        //     end: "bottom top",
+        //     scrub: true,
+        //   },
+        // });
+    });
+</script>
+
+<style>
+    .animated-gradient-text {
+        background: linear-gradient(
+            90deg,
+            #fff 0%,
+            #7f5cff 25%,
+            #00e0ff 50%,
+            #ff6bcb 75%,
+            #fff 100%
+        );
+        background-size: 200% 100%;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        animation: gradient-move 3s linear infinite;
+        background-repeat: repeat;
+    }
+    @keyframes gradient-move {
+        0% {
+            background-position: 0% 50%;
+        }
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+</style>

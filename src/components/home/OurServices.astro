@@ -1,0 +1,105 @@
+---
+import { HomeServices } from "../../data/services.js";
+const {
+    title = "OUR SERVICES",
+    description = "We Are Specialized In The Following Services",
+    services = HomeServices,
+} = Astro.props;
+---
+
+<section class="our-services internal-padding bg-[#f8f8f8] pt-8 lg:pt-16">
+    <div class="mx-auto mb-12 px-4 lg:mb-20">
+        <h5
+            class="gradient-text mb-6 text-center text-base leading-6 font-bold tracking-[5px] md:text-lg lg:text-xl"
+        >
+            {title}
+        </h5>
+        <h2
+            class="mb-6 text-center text-[30px] leading-[40px] font-medium text-[#000047] lg:mb-10 lg:text-[40px] lg:leading-[50px] xl:text-[50px]"
+        >
+            {description}
+        </h2>
+
+        <!-- Services Tabs -->
+        <div
+            class="mb-4 grid w-full grid-cols-2 justify-center gap-[10px] gap-x-4 md:flex md:flex-wrap lg:mb-8 xl:mb-10 2xl:mb-12"
+        >
+            {
+                services.map((service) => (
+                    <a
+                        href={service.href}
+                        class="service-tab flex min-w-[120px] flex-col items-center justify-between gap-4 rounded-md bg-white pt-5 pb-6 text-xs font-medium transition md:min-w-[150px] md:text-sm lg:min-w-[220px] lg:text-base"
+                    >
+                        <span class="service-icon" set:html={service.icon} />
+                        <span class="service-name">{service.name}</span>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .service-tab {
+        background: #fff;
+        /* color: #333333; */
+        transition:
+            background 0.25s cubic-bezier(0.4, 1.3, 0.7, 1.01),
+            color 0.25s cubic-bezier(0.4, 1.3, 0.7, 1.01),
+            transform 0.22s cubic-bezier(0.4, 1.3, 0.7, 1.01);
+        will-change: background, color, transform;
+    }
+
+    /* ensure the icon container provides currentColor for all SVG children */
+    .service-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #9d7eff; /* icon purple by default */
+        transition: color 0.25s cubic-bezier(0.4, 1.3, 0.7, 1.01);
+    }
+
+    /* make all shapes inside the injected SVG use currentColor */
+    .service-icon svg,
+    .service-icon svg * {
+        color: inherit;
+        fill: currentColor !important;
+        stroke: currentColor !important; /* in case some SVGs use stroke */
+    }
+
+    .service-tab:hover {
+        background: #9d7eff;
+        color: #fff;
+        transform: scale(1.04);
+        cursor: pointer;
+    }
+
+    .service-tab .service-name {
+        color: #333333;
+    }
+
+    .service-tab:hover .service-name {
+        color: #fff;
+    }
+
+    /* change only the icon color on hover by targeting the container */
+    .service-tab:hover .service-icon {
+        color: #fff;
+    }
+
+    .video-scroll-wrapper {
+        position: relative;
+        z-index: 1;
+        /* Optional: add some margin to separate from cards */
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    .video-scroll-img {
+        width: 100%;
+        max-width: 900px;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px rgba(75, 0, 163, 0.1);
+        transition: border-radius 0.3s;
+        will-change: transform, width, height, border-radius;
+    }
+</style>

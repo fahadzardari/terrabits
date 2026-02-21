@@ -1,0 +1,585 @@
+---
+const panelsDummy = [
+    {
+        title: "Corporate Websites",
+        body: "Each corporate website built by Nixxon Australia is tailored...",
+        cta: ["Get Started", "Live Chat"],
+        images: [Acc1, Acc2, Acc3, Acc4],
+    },
+    {
+        title: "E-Commerce Websites",
+        body: "Sell more with bespoke storefronts engineered for conversions.",
+        cta: ["View Work"],
+        images: [Acc1, Acc2, Acc3, Acc4],
+    },
+    {
+        title: "Flat Design Website",
+        body: "Sell more with bespoke storefronts engineered for conversions.",
+        cta: ["View Work"],
+        images: [Acc1, Acc2, Acc3, Acc4],
+    },
+    {
+        title: "Landing Pages",
+        body: "High-impact funnels for campaigns and launches.",
+        cta: ["See Case Studies"],
+        images: [Acc1, Acc2, Acc3, Acc4],
+    },
+    {
+        title: "Responsive Websites",
+        body: "Pixel-perfect across every device.",
+        cta: ["Book a Call"],
+        images: [Acc1, Acc2, Acc3, Acc4],
+    },
+    {
+        title: "WordPress Websites",
+        body: "Enterprise-ready experiences on WordPress.",
+        cta: ["Discover More"],
+        images: [Acc1, Acc2, Acc3, Acc4],
+    },
+];
+import Image from "astro/components/Image.astro";
+import Acc1 from "../../assets/accordion/1.png";
+import Acc2 from "../../assets/accordion/2.png";
+import Acc3 from "../../assets/accordion/3.png";
+import Acc4 from "../../assets/accordion/4.png";
+const {
+    title = "Website Services That set us apart",
+    description = "Businesses may differentiate themselves from the competition online with a distinctive online presence thanks to our bespoke website services. Our staff has the know-how to provide custom solutions, whether it's designing a web application, constructing a content management system, or developing a unique e-commerce platform.",
+    para = "Each corporate website built by Nixxon Australia is tailored to your company's specific demands and objectives. Our goal is to create a professional, branded website for your company that will set it out from the competition.",
+    panels = panelsDummy,
+} = Astro.props;
+---
+
+<section class="internal-padding">
+    <h2
+        class="mb-1 text-2xl font-semibold text-[#000047] lg:text-3xl xl:text-4xl 2xl:text-[40px]"
+    >
+        {title}
+    </h2>
+    <h3
+        class="mb-12 text-xs text-[#000000] md:text-sm lg:text-base xl:text-xl 2xl:text-xl"
+    >
+        {description}
+        {para}
+    </h3>
+
+    <!-- Desktop Horizontal Accordion (>1024px) -->
+    <ul
+        class="accordion-container horizontal-accordion mx-auto hidden h-[600px] max-w-[1300px] justify-center overflow-hidden text-white lg:flex"
+        data-accordion="horizontal"
+    >
+        {
+            panels.map((panel, index) => (
+                <li
+                    class="accordion-item relative flex bg-gradient-to-r from-[#101E39] to-[#643DB4] transition-all duration-[0.4s] ease-linear lg:pt-12"
+                    data-accordion-item
+                    data-active={index === 0 ? "true" : "false"}
+                    aria-expanded={index === 0 ? "true" : "false"}
+                >
+                    {/* Vertical title always on the left */}
+                    <div class="accordion-label flex h-full items-center justify-center pr-4 xl:pr-6 2xl:px-8">
+                        <h3 class="writing-vertical-lr rotate-180 text-lg font-semibold text-white uppercase xl:text-xl 2xl:text-[22px]">
+                            {panel.title}
+                        </h3>
+                    </div>
+
+                    {/* Content panel - shown when active */}
+                    <div class="accordion-content flex flex-col overflow-hidden px-5 py-6 text-left">
+                        <h3 class="accordion-content-item mb-2 text-lg leading-tight font-semibold text-white xl:mb-4 xl:text-xl 2xl:text-2xl">
+                            {panel.title}
+                        </h3>
+
+                        <p class="accordion-content-item max-w-[450px] text-xs text-white xl:max-w-[620px] xl:text-sm xl:leading-6 2xl:text-base">
+                            {panel.body}
+                        </p>
+
+                        <div class="accordion-content-item grid w-fit grid-cols-4 gap-2 py-2">
+                            {panel.images.map((imgSrc, imgIndex) => (
+                                <div class="image-wrapper overflow-hidden rounded-xl transition-all duration-700 ease-in-out hover:scale-110">
+                                    <Image
+                                        src={imgSrc}
+                                        alt={`Accordion Image ${imgIndex + 1}`}
+                                        class="accordion-img aspect-square w-full max-w-[100px] object-cover xl:max-w-[150px]"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+
+                        <div class="accordion-content-item mt-4 flex flex-wrap gap-3">
+                            <span class="get-started-btn btn-animate flex items-center justify-center text-[10px] md:text-xs lg:text-sm">
+                                Get Started
+                            </span>
+                            <span class="btn-text-animate flex items-center text-[10px] md:text-xs lg:text-sm">
+                                Live Chat
+                                <svg
+                                    width="21"
+                                    height="21"
+                                    viewBox="0 0 21 21"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="arrow-icon ml-2"
+                                >
+                                    <path
+                                        d="M15.3733 11.0958L8.03537 18.4338C7.68147 18.7877 7.1077 18.7877 6.75384 18.4338L5.89799 17.5779C5.54469 17.2246 5.54401 16.652 5.89648 16.2979L11.7119 10.455L5.89648 4.61224C5.54401 4.25811 5.54469 3.68551 5.89799 3.33222L6.75384 2.47636C7.10774 2.12246 7.6815 2.12246 8.03537 2.47636L15.3733 9.81429C15.7272 10.1682 15.7272 10.7419 15.3733 11.0958Z"
+                                        fill="white"
+                                    />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Divider line */}
+                    <span class="absolute inset-y-0 right-0 w-[1px] bg-white/10" />
+                </li>
+            ))
+        }
+    </ul>
+
+    <!-- Mobile Vertical Accordion (≤1024px) -->
+    <ul
+        class="accordion-container vertical-accordion mx-auto flex max-w-[768px] flex-col overflow-hidden text-white lg:hidden"
+        data-accordion="vertical"
+    >
+        {
+            panels.map((panel, index) => (
+                <li
+                    class="vertical-accordion-item relative flex flex-col bg-gradient-to-b from-[#101E39] to-[#643DB4] transition-all duration-[0.8s] ease-linear"
+                    data-accordion-item
+                    data-active={index === 0 ? "true" : "false"}
+                    aria-expanded={index === 0 ? "true" : "false"}
+                >
+                    {/* Horizontal title at top */}
+                    <div class="vertical-accordion-label flex w-full items-center justify-between p-4">
+                        <h3 class="text-lg font-semibold text-white uppercase">
+                            {panel.title}
+                        </h3>
+                    </div>
+
+                    {/* Content panel - shown when active */}
+                    <div class="vertical-accordion-content overflow-hidden px-4 pt-0 pb-6">
+                        <p class="mb-4 text-xs text-white md:text-sm">
+                            {panel.body}
+                        </p>
+
+                        <div class="mb-4 grid grid-cols-4 gap-2">
+                            {panel.images.map((imgSrc, imgIndex) => (
+                                <div class="image-wrapper overflow-hidden rounded-xl transition-all duration-700 ease-in-out hover:scale-110">
+                                    <Image
+                                        src={imgSrc}
+                                        alt={`Accordion Image ${imgIndex + 1}`}
+                                        class="accordion-img aspect-square w-full object-cover"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+
+                        <div class="flex flex-wrap gap-3">
+                            <span class="get-started-btn btn-animate flex items-center justify-center text-[10px] md:text-xs">
+                                Get Started
+                            </span>
+                            <span class="btn-text-animate flex items-center text-[10px] md:text-xs">
+                                Live Chat
+                                <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 21 21"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="arrow-icon ml-2"
+                                >
+                                    <path
+                                        d="M15.3733 11.0958L8.03537 18.4338C7.68147 18.7877 7.1077 18.7877 6.75384 18.4338L5.89799 17.5779C5.54469 17.2246 5.54401 16.652 5.89648 16.2979L11.7119 10.455L5.89648 4.61224C5.54401 4.25811 5.54469 3.68551 5.89799 3.33222L6.75384 2.47636C7.10774 2.12246 7.6815 2.12246 8.03537 2.47636L15.3733 9.81429C15.7272 10.1682 15.7272 10.7419 15.3733 11.0958Z"
+                                        fill="white"
+                                    />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Divider line */}
+                    <span class="absolute inset-x-0 bottom-0 h-[1px] bg-white/10" />
+                </li>
+            ))
+        }
+    </ul>
+</section>
+
+<script>
+    import { gsap } from "../../utils/gsapUtils.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Initialize horizontal accordion (desktop)
+        initHorizontalAccordion();
+
+        // Initialize vertical accordion (mobile/tablet)
+        initVerticalAccordion();
+
+        // Handle resize events
+        window.addEventListener("resize", () => {
+            initHorizontalAccordion();
+            initVerticalAccordion();
+        });
+
+        // Horizontal Accordion Logic (Desktop)
+        function initHorizontalAccordion() {
+            const accordion = document.querySelector(
+                "[data-accordion='horizontal']",
+            );
+            if (!accordion) return;
+
+            const items = [
+                ...accordion.querySelectorAll("[data-accordion-item]"),
+            ];
+            const totalItems = items.length;
+
+            // Configuration for horizontal accordion
+            const MAX_ACTIVE_PX = 800;
+            const MIN_INACTIVE_PX = 60;
+
+            // Compute widths based on container width
+            function computeWidths(containerWidth) {
+                // Maximum active width we can afford while keeping minInactive for others
+                const maxPossibleActivePx = Math.max(
+                    0,
+                    containerWidth - MIN_INACTIVE_PX * (totalItems - 1),
+                );
+
+                // Pick active width: prefer MAX_ACTIVE_PX but clamp to available space
+                let activePx = Math.min(MAX_ACTIVE_PX, maxPossibleActivePx);
+
+                // If there's no room (very small container), fallback to proportional split
+                if (activePx <= 0) {
+                    activePx = Math.floor(containerWidth * 0.6);
+                }
+
+                // Distribute remaining width to inactive panels
+                const remainingForInactive = Math.max(
+                    0,
+                    containerWidth - activePx,
+                );
+                const inactivePx = Math.floor(
+                    remainingForInactive / Math.max(1, totalItems - 1),
+                );
+
+                // Convert to percentages
+                const activePercent = (activePx / containerWidth) * 100;
+                const inactivePercent = (inactivePx / containerWidth) * 100;
+
+                return { activePercent, inactivePercent };
+            }
+
+            // Initial setup
+            setupHorizontalAccordion();
+
+            function setupHorizontalAccordion() {
+                const containerWidth = accordion.clientWidth;
+                const { activePercent, inactivePercent } =
+                    computeWidths(containerWidth);
+
+                // Apply widths for each item based on active state
+                items.forEach((item) => {
+                    const isActive = item.dataset.active === "true";
+                    item.style.width = isActive
+                        ? `${activePercent}%`
+                        : `${inactivePercent}%`;
+                });
+            }
+
+            // Set active item with smooth transition
+            function setActiveHorizontal(target) {
+                // Don't do anything if already active
+                if (target.dataset.active === "true") return;
+
+                // Calculate new widths
+                const containerWidth = accordion.clientWidth;
+                const { activePercent, inactivePercent } =
+                    computeWidths(containerWidth);
+
+                // Update data attributes
+                items.forEach((item) => {
+                    const isActive = item === target;
+                    item.dataset.active = isActive ? "true" : "false";
+                    item.setAttribute(
+                        "aria-expanded",
+                        isActive ? "true" : "false",
+                    );
+                });
+
+                // Animate width changes with GSAP
+                gsap.to(items, {
+                    width: function (index) {
+                        const item = items[index];
+                        return item.dataset.active === "true"
+                            ? `${activePercent}%`
+                            : `${inactivePercent}%`;
+                    },
+                    duration: 0.7,
+                    ease: "none", // Linear animation
+                    overwrite: true,
+                });
+            }
+
+            // Click and hover handlers
+            items.forEach((item) => {
+                // Click handler
+                item.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    setActiveHorizontal(item);
+                });
+
+                // Hover handler (desktop only)
+                if (window.matchMedia("(hover: hover)").matches) {
+                    let hoverTimer;
+                    item.addEventListener("mouseenter", () => {
+                        clearTimeout(hoverTimer);
+                        hoverTimer = setTimeout(
+                            () => setActiveHorizontal(item),
+                            100,
+                        );
+                    });
+                }
+            });
+        }
+
+        // Vertical Accordion Logic (Mobile/Tablet)
+        function initVerticalAccordion() {
+            const accordion = document.querySelector(
+                "[data-accordion='vertical']",
+            );
+            if (!accordion) return;
+
+            const items = [
+                ...accordion.querySelectorAll(".vertical-accordion-item"),
+            ];
+            const totalItems = items.length;
+
+            // Configuration for vertical accordion
+            const MAX_ACTIVE_HEIGHT = 450; // Max height for active panel
+            const MIN_INACTIVE_HEIGHT = 60; // Height for collapsed panels
+
+            // Compute heights for vertical accordion
+            function computeHeights() {
+                // For vertical orientation we'll use fixed heights
+                return {
+                    activeHeight: MAX_ACTIVE_HEIGHT,
+                    inactiveHeight: MIN_INACTIVE_HEIGHT,
+                };
+            }
+
+            // Initial setup
+            setupVerticalAccordion();
+
+            function setupVerticalAccordion() {
+                const { activeHeight, inactiveHeight } = computeHeights();
+
+                // Apply heights for each item based on active state
+                items.forEach((item) => {
+                    const isActive = item.dataset.active === "true";
+
+                    if (isActive) {
+                        // For active items, expand to full height
+                        item.style.height = `${activeHeight}px`;
+                        // Rotate the icon
+                        const icon = item.querySelector(".accordion-icon");
+                        if (icon) icon.classList.add("rotate-180");
+                    } else {
+                        // For inactive, just show the header
+                        item.style.height = `${inactiveHeight}px`;
+                    }
+                });
+            }
+
+            // Set active item with smooth transition
+            function setActiveVertical(target) {
+                // Don't do anything if already active
+                if (target.dataset.active === "true") return;
+
+                const { activeHeight, inactiveHeight } = computeHeights();
+
+                // Update data attributes and animate
+                items.forEach((item) => {
+                    const isActive = item === target;
+                    item.dataset.active = isActive ? "true" : "false";
+                    item.setAttribute(
+                        "aria-expanded",
+                        isActive ? "true" : "false",
+                    );
+
+                    // Animate height changes
+                    gsap.to(item, {
+                        height: isActive
+                            ? `${activeHeight}px`
+                            : `${inactiveHeight}px`,
+                        duration: 0.7,
+                        ease: "none", // Linear animation
+                    });
+
+                    // Rotate icon
+                    const icon = item.querySelector(".accordion-icon");
+                    if (icon) {
+                        if (isActive) {
+                            icon.classList.add("rotate-180");
+                        } else {
+                            icon.classList.remove("rotate-180");
+                        }
+                    }
+                });
+            }
+
+            // Click handler for vertical accordion
+            items.forEach((item) => {
+                const header = item.querySelector(".vertical-accordion-label");
+                if (header) {
+                    header.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        setActiveVertical(item);
+                    });
+                }
+            });
+        }
+
+        // Initial animations when accordion comes into view
+        const accordions = document.querySelectorAll(".accordion-container");
+        accordions.forEach((accordion) => {
+            gsap.from(accordion, {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: accordion,
+                    start: "top 80%",
+                },
+            });
+        });
+    });
+</script>
+
+<style>
+    /* Common styles */
+    .accordion-container {
+        list-style: none;
+        padding: 0;
+    }
+
+    .get-started-btn {
+        width: 136.41px;
+        height: 40.26px;
+        background: #643db4;
+        border-radius: 27.0647px 38.6638px 5.15517px 27.0647px;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+        will-change: transform;
+    }
+
+    .get-started-btn:hover {
+        box-shadow: 0 4px 12px rgba(100, 61, 180, 0.25);
+        transform: scale(1.05);
+    }
+
+    .image-wrapper {
+        aspect-ratio: 1/1;
+        display: block;
+    }
+
+    /* Horizontal accordion styles (desktop) */
+    .horizontal-accordion .accordion-item {
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .horizontal-accordion .accordion-label {
+        flex-shrink: 0;
+        width: 90px;
+        z-index: 5;
+    }
+
+    .horizontal-accordion .accordion-content {
+        width: 710px;
+        min-width: 710px;
+        overflow: hidden;
+        padding: 1.5rem;
+        opacity: 1;
+    }
+
+    .writing-vertical-lr {
+        writing-mode: vertical-lr;
+        text-orientation: mixed;
+    }
+
+    /* Vertical accordion styles (mobile) */
+    .vertical-accordion {
+        width: 100%;
+        height: auto;
+    }
+
+    .vertical-accordion-item {
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        height: 60px; /* Default collapsed height */
+    }
+
+    .vertical-accordion-item[data-active="true"] {
+        height: 450px; /* Expanded height */
+    }
+
+    .vertical-accordion-label {
+        height: 60px;
+        cursor: pointer;
+    }
+
+    .vertical-accordion-content {
+        opacity: 1;
+        height: 100%;
+    }
+
+    .accordion-icon {
+        transition: transform 0.3s ease;
+    }
+
+    /* Media queries */
+    @media (min-width: 1025px) {
+        .horizontal-accordion {
+            display: flex;
+        }
+
+        .vertical-accordion {
+            display: none;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .horizontal-accordion {
+            display: none;
+        }
+
+        .vertical-accordion {
+            display: flex;
+        }
+
+        .get-started-btn {
+            width: 120px;
+            height: 36px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .vertical-accordion-item[data-active="true"] {
+            height: 400px;
+        }
+
+        .get-started-btn {
+            width: 110px;
+            height: 32px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .vertical-accordion-item[data-active="true"] {
+            height: 350px;
+        }
+    }
+</style>
