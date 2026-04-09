@@ -23,9 +23,12 @@ import Navbar from "../components/common/Navbar.astro";
         <Footer />
 
         <!-- Global Calendly URL (used by ContactModal) -->
-        <script>
+        <script is:inline>
             window.CALENDLY_URL = "https://calendly.com/info-terrabits/30min";
         </script>
-        <script src="https://app.termly.io/resource-blocker/81902f4f-629e-4b9a-9e1b-63d6c4053f22?autoBlock=on"></script>
+        <script
+            is:inline
+            src="https://app.termly.io/resource-blocker/81902f4f-629e-4b9a-9e1b-63d6c4053f22?autoBlock=on"
+        ></script>
     </body>
 </html>
